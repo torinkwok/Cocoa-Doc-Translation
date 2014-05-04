@@ -97,17 +97,18 @@ The app and system plug-ins listed below represent some of the many opportunitie
 
 * **Image units.** An image unit is a type of plug-in that you can use with the Core Image and Core Video technologies. An image unit consists of a collection of filters—each of which implements a specific manipulation for image data—packaged together in a single bundle. For example, you could write a set of filters that perform different kinds of edge detection and package them as one image unit. To learn how to create an image unit, see “Packaging Filters as Image Units”.
 
-* **Input methods.** A common example of an input method is an interface for typing Japanese or Chinese characters using multiple keystrokes. Other examples of input methods include spelling checkers and pen-based gesture recognition systems. You can create input methods using Input Method Kit (InputMethodKit.framework). For information on how to use this framework, see Input Method Kit Framework Reference.
+* **Input methods.** A common example of an input method is an interface for typing Japanese or Chinese characters using multiple keystrokes. Other examples of input methods include spelling checkers and pen-based gesture recognition systems. You can create input methods using Input Method Kit (InputMethodKit.framework). For information on how to use this framework, see [ Input Method Kit Framework Reference ]( https://developer.apple.com/library/mac/documentation/Cocoa/Reference/InputMethodKitFrameworkRef/_index.html#//apple_ref/doc/uid/TP40006154 ).
 
-* **Metadata importers.** Spotlight relies on metadata importers to gather information about the user’s files and to build a systemwide index. Spotlight uses this index to help users find information by searching on attributes that make sense to them, such as the duration of a video or the dimensions of an image. If your app defines a custom file format, you should always provide a metadata importer for that file format. (If your app relies on commonly used file formats, such as JPEG, RTF, or PDF, the system provides a metadata importer for you.) To learn how to create metadata importers, see Spotlight Importer Programming Guide.
+* **Metadata importers.** Spotlight relies on metadata importers to gather information about the user’s files and to build a systemwide index. Spotlight uses this index to help users find information by searching on attributes that make sense to them, such as the duration of a video or the dimensions of an image. If your app defines a custom file format, you should always provide a metadata importer for that file format. (If your app relies on commonly used file formats, such as JPEG, RTF, or PDF, the system provides a metadata importer for you.) To learn how to create metadata importers, see [ Spotlight Importer Programming Guide ]( https://developer.apple.com/library/mac/documentation/Carbon/Conceptual/MDImporters/MDImporters.html#//apple_ref/doc/uid/TP40001267 ).
 
-* **Quartz Composer plug-ins.** Quartz Composer supports a plug-in mechanism that allows you to create a custom patch and make it available in the Quartz Composer workspace and to most Quartz Composer clients. (A patch is processing unit that performs a specific task, such as processing a string or rendering an OpenGL texture.) To learn how to create a Quartz Composer plug-in, see Quartz Composer Custom Patch Programming Guide.
+* **Quartz Composer plug-ins.** Quartz Composer supports a plug-in mechanism that allows you to create a custom patch and make it available in the Quartz Composer workspace and to most Quartz Composer clients. (A patch is processing unit that performs a specific task, such as processing a string or rendering an OpenGL texture.) To learn how to create a Quartz Composer plug-in, see [ Quartz Composer Custom Patch Programming Guide ]( https://developer.apple.com/library/mac/documentation/GraphicsImaging/Conceptual/QuartzComposer_Patch_PlugIn_ProgGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40004787 ).
 
-* **Quick Look plug-ins.** A Quick Look plug-in—also known as a Quick Look generator—converts a document from its native format into a format that Quick Look can display to users. If your app creates documents of a nonstandard or private type, it’s a good idea to provide a Quick Look generator so that users can get previews of these documents in Quick Look. To learn how to create a Quick Look plug-in, see Quick Look Programming Guide.
+* **Quick Look plug-ins.** A Quick Look plug-in—also known as a Quick Look generator—converts a document from its native format into a format that Quick Look can display to users. If your app creates documents of a nonstandard or private type, it’s a good idea to provide a Quick Look generator so that users can get previews of these documents in Quick Look. To learn how to create a Quick Look plug-in, see [ Quick Look Programming Guide ]( https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/Quicklook_Programming_Guide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005020 ).
 
 * **Safari plug-ins.** Safari supports the Netscape-style plug-in model for incorporating additional types of content in the web browser. In Safari in OS X v10.7 and later, these plug-ins run in their own process, which improves the stability and security of Safari. Netscape-style plug-ins include support for onscreen drawing, event handling, and networking and scripting functions.
 
-### 插件
+
+### 插件（Plug-ins）
 
 插件是对众多apps和系统行为进行扩展的标准方式。一个插件其实就是一个可以由一个app在运行时动态加载的bundle。因为它是被动态加载的，所以用户可以直接添加或者移除一个插件。
 
@@ -119,7 +120,20 @@ The app and system plug-ins listed below represent some of the many opportunitie
 
 *  **Automator插件。** 使用Automator插件，你可以扩展Automator默认支持的动作集，一个工具型app通常都允许用户通过与定义的动作调板组合各种复杂的脚本。Automator插件可以使用AppleScript或者Objective-C编写，所以你可以为你自己的app或者其他支持脚本apps添加特性编写它们。（为你的app的最通用的功能提供Automator插件是一个很棒的注意，因为这样可以给予用户更多的与你的app交互的方式）。想了解如果编写Automator插件，参阅[ Automator Programming Guide ]( https://developer.apple.com/library/mac/documentation/AppleApplications/Conceptual/AutomatorConcepts/Automator.html#//apple_ref/doc/uid/TP40001450 )。
 
-*  **Core Audio plug-ins.** 核心音频插件可以提供在大多数处理阶段中对音频流的操作。举个例子：你可以使用核心音频插件去生成，处理或者接收一个音频流或者与一个音频相关的硬件设备进行交互。想要了解Core Audio，参阅 [ Core Audio Overview ]( https://developer.apple.com/library/mac/documentation/MusicAudio/Conceptual/CoreAudioOverview/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003577 )。
+*  **Core Audio插件** Core Audio插件可以提供在大多数处理阶段中对音频流的操作。举个例子：你可以使用Core Audio插件去生成，处理或者接收一个音频流或者与一个音频相关的硬件设备进行交互。想要了解Core Audio，参阅 [ Core Audio Overview ]( https://developer.apple.com/library/mac/documentation/MusicAudio/Conceptual/CoreAudioOverview/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003577 )。
+
+* **图像单元。** 图像单元可以与Core Image和Core Video技术一起使用的插件类型。一个图像单元由一个过滤器集合组成，每个过滤器实现了一个针对图像数据的特性的处理方式，最后将它们打包在一个独立的bundle中。举个例子：你可以编写一系列执行不同种类边界检测的过滤器并且将它们打包成一个图像单元。想要了解如何创建一个图像单元，参阅“*Packing Filters as Image Units*”。
+
+* **输入法。** 一个输入法的常见例子就是使用多键输入的日文或中文输入接口。输入法的其他例子还包括拼写检查和基于钢笔的手势识别系统。你可以使用输入法套件（InputMethodKit.framework）创建输入法。关于如何使用这个框架的信息，参阅[ Input Method Kit Framework Reference ]( https://developer.apple.com/library/mac/documentation/Cocoa/Reference/InputMethodKitFrameworkRef/_index.html#//apple_ref/doc/uid/TP40006154 )。
+
+* **元数据导入器。** Spotlight依赖于元数据导入器来收集关于用户文件的信息并根据此来构建一个系统范围的索引。Spotlight使用这个索引并通过对诸如一段视频的长度或者一幅图像的尺寸这类用户能够理解的属性进行搜索来帮助用户定位信息。如果你的app定义了一个定制文件格式，你应该总是为这个文件格式提供元数据导入器。（你过你的app依赖于诸如JPEG，RTF，或者PDF这类通常使用的文件格式，系统则已经为你提供了元数据导入器。）想要了解如果创建元数据导入器，参阅[ Spotlight Importer Programming Guide ]( https://developer.apple.com/library/mac/documentation/Carbon/Conceptual/MDImporters/MDImporters.html#//apple_ref/doc/uid/TP40001267 )。
+
+* **Quartz组合器插件。** Quartz组合器插件提供了一个插件机制，它允许你创建自定义的补丁并且使该补丁在Quartz组合器的工作空间和大多数的Quartz组合器的客户端中都可用。（一个补丁其实是一个用于执行诸如处理字符串或者渲染OpenGL纹理之类的特定任务的处理单元。）要想了解如何创建Quartz组合器插件，参阅[ Quartz Composer Custom Patch Programming Guide ]( https://developer.apple.com/library/mac/documentation/GraphicsImaging/Conceptual/QuartzComposer_Patch_PlugIn_ProgGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40004787 )。
+
+* **Quick Look插件。** Quick Look插件又名：Quick Look生成器——它将一个文档的原始格式转化成Quick Look可以显示给用户的格式。如果你的app创建了非标准或者私有类型的文档，那么提供一个Quick Look生成器以便于用户可以在Quick Look中获取这些文档的预览是一个很棒的注意！。要想了解如何创建Quick Look插件，参阅[ Quick Look Programming Guide ]( https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/Quicklook_Programming_Guide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005020 )。
+
+* **Safari插件。** Safari提供了Netscape风格的插件模型以便你将额外类型的内容并入web浏览器。在OS X 10.7之后版本中的Safari中，插件都是运行在其自己的进程中，这提升了Safari的稳定性和安全性，Netscape风格的插件提供了包括对屏幕绘制，事件处理，网络及脚本函数等功能。
+
 
 
 
