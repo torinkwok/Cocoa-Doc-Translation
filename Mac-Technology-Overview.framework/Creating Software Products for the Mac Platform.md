@@ -78,7 +78,7 @@ You can use any programming language to create your own frameworks, but it’s b
 
 To learn about the structure and composition of frameworks, see [ Framework Programming Guide ](https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPFrameworks/Frameworks.html#//apple_ref/doc/uid/10000183i ). That document also describes how to use Xcode to create public and private frameworks.
 
-你可以使用任何编程语言去创建你自己的框架，但是最好选择一种能够使后续的框架更新变得最容易的语言。Apple公司的框架通常都是以ANSI C或者Objective-C两种语言中的一种来倒出可编程接口的。这两种语言都具有定义明确的倒出结构，可以使框架的不同修订版之间保持良好的兼容性。
+你可以使用任何编程语言去创建你自己的框架，但是最好选择一种能够使后续的框架更新变得最容易的语言。Apple公司的框架通常都是以ANSI C或者Objective-C两种语言中的一种来导出可编程接口的。这两种语言都具有定义明确的倒出结构，可以使框架的不同修订版之间保持良好的兼容性。
 
 想要了解更多关于框架的结构和组成的话，参阅[ Framework Programming Guide ](https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPFrameworks/Frameworks.html#//apple_ref/doc/uid/10000183i )。该文档还描述了如何使用Xcode去创建公开和私有的框架。
 
@@ -87,7 +87,7 @@ Plug-ins are the standard way to extend many apps and system behaviors. A plug-i
 
 The app and system plug-ins listed below represent some of the many opportunities for developing plug-ins.
 
-* **Address Book action plug-ins.** An Address Book plug-in lets you add custom actions that act on the data in a person’s Address Book card. For example, the existing Large Type action displays the selected phone number in large type. Each action plug-in performs a single action, which can open a simple window within the Address Book app. If an action needs to do anything else, it must launch your app to perform the action. To learn how to create an Address Book action plug-in, see “Creating and Using Address Book Action Plug-ins”.
+* **Address Book action plug-ins.** An Address Book plug-in lets you add custom actions that act on the data in a person’s Address Book card. For example, the existing Large Type action displays the selected phone number in large type. Each action plug-in performs a single action, which can open a simple window within the Address Book app. If an action needs to do anything else, it must launch your app to perform the action. To learn how to create an Address Book action plug-in, see “[ Creating and Using Address Book Action Plug-ins ]( https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/AddressBook/Tasks/Actions.html#//apple_ref/doc/uid/20001681 )”.
 
 * **App plug-ins.** An app plug-in can extend the features of any app that supports a plug-in model. In addition to third-party apps, several Apple apps also support plug-ins, such as iTunes, Final Cut Pro, and Aperture. For information about developing plug-ins for Apple apps, visit the Apple Developer website.
 
@@ -97,7 +97,11 @@ The app and system plug-ins listed below represent some of the many opportunitie
 
 ### 插件
 
+插件是对众多apps和系统行为进行扩展的标准方式。一个插件其实就是一个可以由一个app在运行时动态加载的bundle。因为它是被动态加载的，所以用户可以直接添加或者移除一个插件。
 
+下方列出的app和系统插件向你展示了开发插件的众多可能性：
+
+* **地址簿动作插件。** 一个地址簿动作插架允许你添加能够作用于某一个人的地址簿卡片数据的行为。举个例子：已经存在的`Large Type`动作就以large type的形式去显示用户选中的电话号码。
 
 
 
