@@ -11,5 +11,6 @@ The Chinese translation of Cocoa Doc.
 
 欢迎大家fork，如果发现任何地方翻译有误，强烈欢迎各位帮助笔者修改。
 
-Email: Tong-G@outlook.com
-Tumblr: http://esquire-tongg.tumblr.com
+Email: <Tong-G@outlook.com>
+
+Tumblr: <http://esquire-tongg.tumblr.com>
