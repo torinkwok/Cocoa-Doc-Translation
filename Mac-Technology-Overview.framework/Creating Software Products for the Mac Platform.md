@@ -107,6 +107,11 @@ The app and system plug-ins listed below represent some of the many opportunitie
 
 * **Safari plug-ins.** Safari supports the Netscape-style plug-in model for incorporating additional types of content in the web browser. In Safari in OS X v10.7 and later, these plug-ins run in their own process, which improves the stability and security of Safari. Netscape-style plug-ins include support for onscreen drawing, event handling, and networking and scripting functions.
 
+```
+Note: Beginning in OS X v10.7, Safari does not support WebKit plug-ins because they are not compatible with the new process architecture. Going forward, you must convert WebKit plug-ins to Netscape-style plug-ins or Safari Extensions
+```
+
+
 
 ### 插件（Plug-ins）
 
@@ -133,6 +138,22 @@ The app and system plug-ins listed below represent some of the many opportunitie
 * **Quick Look插件。** Quick Look插件又名：Quick Look生成器——它将一个文档的原始格式转化成Quick Look可以显示给用户的格式。如果你的app创建了非标准或者私有类型的文档，那么提供一个Quick Look生成器以便于用户可以在Quick Look中获取这些文档的预览是一个很棒的注意！。要想了解如何创建Quick Look插件，参阅[ Quick Look Programming Guide ]( https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/Quicklook_Programming_Guide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005020 )。
 
 * **Safari插件。** Safari提供了Netscape风格的插件模型以便你将额外类型的内容并入web浏览器。在OS X 10.7之后版本中的Safari中，插件都是运行在其自己的进程中，这提升了Safari的稳定性和安全性，Netscape风格的插件提供了包括对屏幕绘制，事件处理，网络及脚本函数等功能。
+
+```
+注意： 从OS X 10.7开始，Safari不再支持Webkit插件，因为它们与新的进程架构不再兼容。在后续的开发中，你必须将你的Webkit风格插件转换成Netscape风格插件，或者直接开发Safari扩展。
+```
+
+### Safari Extensions
+Use Safari extensions to add features both to the Safari web browser and to the content that Safari displays. For example, you can add custom buttons to the browser’s toolbar, reformat webpages, block unwanted sites, and create contextual menu items. Extensions let you inject scripts and style sheets into pages of web content.
+
+A Safari extension is a collection of HTML, JavaScript, and CSS files with support for both HTML5 and CSS3. Safari extensions are supported in both OS X and Windows systems running Safari 5.0 and later.
+
+To learn more about Safari extensions, read Safari Extensions Development Guide in the Safari Developer Library.
+
+### Safari扩展（Safari Extensions）
+
+
+
 
 
 
