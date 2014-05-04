@@ -89,11 +89,11 @@ The app and system plug-ins listed below represent some of the many opportunitie
 
 * **Address Book action plug-ins.** An Address Book plug-in lets you add custom actions that act on the data in a person’s Address Book card. For example, the existing Large Type action displays the selected phone number in large type. Each action plug-in performs a single action, which can open a simple window within the Address Book app. If an action needs to do anything else, it must launch your app to perform the action. To learn how to create an Address Book action plug-in, see “[ Creating and Using Address Book Action Plug-ins ]( https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/AddressBook/Tasks/Actions.html#//apple_ref/doc/uid/20001681 )”.
 
-* **App plug-ins.** An app plug-in can extend the features of any app that supports a plug-in model. In addition to third-party apps, several Apple apps also support plug-ins, such as iTunes, Final Cut Pro, and Aperture. For information about developing plug-ins for Apple apps, visit the Apple Developer website.
+* **App plug-ins.** An app plug-in can extend the features of any app that supports a plug-in model. In addition to third-party apps, several Apple apps also support plug-ins, such as iTunes, Final Cut Pro, and Aperture. For information about developing plug-ins for Apple apps, visit the [ Apple Developer website ]( https://developer.apple.com/ ).
 
-* **Automator plug-ins.** Using an Automator plug-in, you can expand the default set of actions available in Automator, a utility app that lets users assemble complex scripts using a palette of predefined actions. Automator plug-ins can be written in AppleScript or Objective-C, so you can write them for your own app’s features or for the features of other scriptable apps. (It’s a good idea to provide Automator plug-ins for your app’s most common tasks because doing so gives users more ways to interact with your app.) To learn how to write an Automator plug-in, see Automator Programming Guide.
+* **Automator plug-ins.** Using an Automator plug-in, you can expand the default set of actions available in Automator, a utility app that lets users assemble complex scripts using a palette of predefined actions. Automator plug-ins can be written in AppleScript or Objective-C, so you can write them for your own app’s features or for the features of other scriptable apps. (It’s a good idea to provide Automator plug-ins for your app’s most common tasks because doing so gives users more ways to interact with your app.) To learn how to write an Automator plug-in, see [ Automator Programming Guide ]( https://developer.apple.com/library/mac/documentation/AppleApplications/Conceptual/AutomatorConcepts/Automator.html#//apple_ref/doc/uid/TP40001450 ).
 
-* **Core Audio plug-ins.** A Core Audio plug-in can support the manipulation of audio streams during most processing stages. For example, you can use plug-ins to generate, process, or receive an audio stream or to interact with new types of audio-related hardware devices. To begin learning about Core Audio, read Core Audio Overview.
+* **Core Audio plug-ins.** A Core Audio plug-in can support the manipulation of audio streams during most processing stages. For example, you can use plug-ins to generate, process, or receive an audio stream or to interact with new types of audio-related hardware devices. To begin learning about Core Audio, read [ Core Audio Overview ]( https://developer.apple.com/library/mac/documentation/MusicAudio/Conceptual/CoreAudioOverview/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003577 ).
 
 ### 插件
 
@@ -101,7 +101,15 @@ The app and system plug-ins listed below represent some of the many opportunitie
 
 下方列出的app和系统插件向你展示了开发插件的众多可能性：
 
-* **地址簿动作插件。** 一个地址簿动作插架允许你添加能够作用于某一个人的地址簿卡片数据的行为。举个例子：已经存在的`Large Type`动作就以large type的形式去显示用户选中的电话号码。
+* **地址簿动作插件。** 一个地址簿动作插架允许你添加能够作用于某一个人的地址簿卡片数据的行为。举个例子：已经存在的*Large Type*动作就以large type的形式去显示用户选中的电话号码。如果需要任何其他动作，必须运行你的app来执行该动作。想要了解如何创建地址簿动作插件，参阅“[ Creating and Using Address Book Action Plug-ins ]( https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/AddressBook/Tasks/Actions.html#//apple_ref/doc/uid/20001681 )”。
+
+* **App插件。** App插件可以扩展任何支持插件模型的app的功能。除了第三方应用之外，几个Apple公司的app也同样支持插件，比如iTunes.app， Final Cut Pro.app，以及Aperture.app。想了解更多有关为Apple的应用开发插件的信息，请访问[ Apple Developer website ]( https://developer.apple.com/ )站点。
+
+*  **Automator插件。** 使用Automator插件，你可以扩展Automator默认支持的动作集，一个工具型app通常都允许用户通过与定义的动作调板组合各种复杂的脚本。Automator插件可以使用AppleScript或者Objective-C编写，所以你可以为你自己的app或者其他支持脚本apps添加特性编写它们。（为你的app的最通用的功能提供Automator插件是一个很棒的注意，因为这样可以给予用户更多的与你的app交互的方式）。想了解如果编写Automator插件，参阅[ Automator Programming Guide ]( https://developer.apple.com/library/mac/documentation/AppleApplications/Conceptual/AutomatorConcepts/Automator.html#//apple_ref/doc/uid/TP40001450 )。
+
+*  **Core Audio plug-ins.** 核心音频插件可以提供在大多数处理阶段中对音频流的操作。举个例子：你可以使用核心音频插件去生成，处理或者接收一个音频流或者与一个音频相关的硬件设备进行交互。想要了解Core Audio，参阅 [ Core Audio Overview ]( https://developer.apple.com/library/mac/documentation/MusicAudio/Conceptual/CoreAudioOverview/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003577 )。
+
+
 
 
 
