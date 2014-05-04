@@ -131,7 +131,7 @@ Note: Beginning in OS X v10.7, Safari does not support WebKit plug-ins because t
 
 * **输入法。** 一个输入法的常见例子就是使用多键输入的日文或中文输入接口。输入法的其他例子还包括拼写检查和基于钢笔的手势识别系统。你可以使用输入法套件（InputMethodKit.framework）创建输入法。关于如何使用这个框架的信息，参阅[ Input Method Kit Framework Reference ]( https://developer.apple.com/library/mac/documentation/Cocoa/Reference/InputMethodKitFrameworkRef/_index.html#//apple_ref/doc/uid/TP40006154 )。
 
-* **元数据导入器。** Spotlight依赖于元数据导入器来收集关于用户文件的信息并根据此来构建一个系统范围的索引。Spotlight使用这个索引并通过对诸如一段视频的长度或者一幅图像的尺寸这类用户能够理解的属性进行搜索来帮助用户定位信息。如果你的app定义了一个定制文件格式，你应该总是为这个文件格式提供元数据导入器。（你过你的app依赖于诸如JPEG，RTF，或者PDF这类通常使用的文件格式，系统则已经为你提供了元数据导入器。）想要了解如果创建元数据导入器，参阅[ Spotlight Importer Programming Guide ]( https://developer.apple.com/library/mac/documentation/Carbon/Conceptual/MDImporters/MDImporters.html#//apple_ref/doc/uid/TP40001267 )。
+* **元数据导入器。** Spotlight依赖于元数据导入器来收集关于用户文件的信息并根据此来构建一个系统范围的索引。Spotlight使用这个索引并通过对诸如一段视频的长度或者一幅图像的尺寸这类用户能够理解的属性进行搜索来帮助用户定位信息。如果你的app定义了一个定制文件格式，你应该总是为这个文件格式提供元数据导入器。（你过你的app依赖于诸如JPEG，RTF，或者PDF这类通常使用的文件格式，系统则已经为你提供了元数据导入器。）想要了解如何创建元数据导入器，参阅[ Spotlight Importer Programming Guide ]( https://developer.apple.com/library/mac/documentation/Carbon/Conceptual/MDImporters/MDImporters.html#//apple_ref/doc/uid/TP40001267 )。
 
 * **Quartz组合器插件。** Quartz组合器插件提供了一个插件机制，它允许你创建自定义的补丁并且使该补丁在Quartz组合器的工作空间和大多数的Quartz组合器的客户端中都可用。（一个补丁其实是一个用于执行诸如处理字符串或者渲染OpenGL纹理之类的特定任务的处理单元。）要想了解如何创建Quartz组合器插件，参阅[ Quartz Composer Custom Patch Programming Guide ]( https://developer.apple.com/library/mac/documentation/GraphicsImaging/Conceptual/QuartzComposer_Patch_PlugIn_ProgGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40004787 )。
 
