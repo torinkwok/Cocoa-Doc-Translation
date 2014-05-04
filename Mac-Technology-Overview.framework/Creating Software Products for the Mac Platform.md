@@ -148,10 +148,41 @@ Use Safari extensions to add features both to the Safari web browser and to the 
 
 A Safari extension is a collection of HTML, JavaScript, and CSS files with support for both HTML5 and CSS3. Safari extensions are supported in both OS X and Windows systems running Safari 5.0 and later.
 
-To learn more about Safari extensions, read Safari Extensions Development Guide in the Safari Developer Library.
+To learn more about Safari extensions, read Safari Extensions Development Guide in the [ Safari Developer Library ]( https://developer.apple.com/library/safari/navigation/index.html ).
 
 ### Safari扩展（Safari Extensions）
- 
+使用Safari扩展以向Safari浏览器和Safari浏览器显示的页面添加新的特性。举个例子：你可以向浏览器的工具栏中添加定制按钮，可以重写格式化网页，可以屏蔽有害网站，并且还可以创建上下文菜单项。扩展使得你可以向web页面注入脚本和样式表。
+
+一个Safari扩展其实就是一个HTML，JavaScript以及CSS文件的集合，它支持HTML 5和CSS3，Safari扩展同时被OS X和Windows上运行的Safari 5.0之后的版本所支持。
+
+要了解更多关于Safari扩展的内容，参阅[ Safari Developer Library ]( https://developer.apple.com/library/safari/navigation/index.html )。
+
+### Dashboard Widgets
+A Dashboard widget is a lightweight web app that helps users perform a common task, such as checking a stock price or getting a weather report. Widgets reside in the Dashboard environment, which can appear over the user’s current desktop or as a separate space. OS X includes several built-in widgets, and users can download third-party widgets from [ Apple - Downloads - Dashboard ]( http://www.apple.com/downloads/dashboard/ ).
+
+In effect, widgets are HTML-based apps with optional JavaScript code to provide dynamic behavior. Dashboard uses WebKit to provide the environment for displaying the HTML and running the JavaScript code. Your widgets can take advantage of several extensions provided by that environment, including a way to render content using Quartz-like JavaScript functions.
+
+The Dashcode app provides a streamlined environment for developing widgets and includes several templates that help you get started. To learn how to use Dashcode, see [ Dashcode User Guide ]( https://developer.apple.com/library/mac/documentation/AppleApplications/Conceptual/Dashcode_UserGuide/Contents/Resources/en.lproj/Introduction/Introduction.html#//apple_ref/doc/uid/TP40004692 ). To learn more about the technologies you can use in a widget, see [ Dashboard Programming Topics ]( https://developer.apple.com/library/mac/documentation/AppleApplications/Conceptual/Dashboard_ProgTopics/Introduction/Introduction.html#//apple_ref/doc/uid/TP40002837 ).
+
+### Dashboard窗件（Dashboard Widgets）
+Dashboard窗件是帮助用户执行诸如查询股票价格或者获取天气预报之类的通用任务的轻量级web应用。窗件（Widgets）存在于Dashboard环境中，该环境可以展示在用户的当前桌面或者分隔空间中。OS X内置了几款窗件，并且用户可以从[ Apple - Downloads - Dashboard ]( http://www.apple.com/downloads/dashboard/ )下载第三方窗件。
+
+实际上，窗件是基于HTML的app，并且可以选择使用JavaScript代码为其提供动态行为。Dashboard使用WebKit来提供显示HTML和运行JavaScript代码的环境。你的窗件可以利用该环境提供的几个扩展，包括使用累Quartz的JavaScript函数渲染内容。
+
+Dashcode.app提供了一个简化的用于开发窗件的环境，并且还囊括了几个帮助你开始开发的模版。要了解如何使用Dashcode.app，参阅[ Dashcode User Guide ]( https://developer.apple.com/library/mac/documentation/AppleApplications/Conceptual/Dashcode_UserGuide/Contents/Resources/en.lproj/Introduction/Introduction.html#//apple_ref/doc/uid/TP40004692 )。要了解更多你可以在窗件中使用的技术，参见[ Dashboard Programming Topics ]( https://developer.apple.com/library/mac/documentation/AppleApplications/Conceptual/Dashboard_ProgTopics/Introduction/Introduction.html#//apple_ref/doc/uid/TP40002837 )。
+
+### Agent Applications
+An agent is a special type of application that typically runs in the background, providing information as needed to the user or to another app. For example, the Dock is an agent application that is run by OS X.
+
+An agent can be launched by the user but is more likely to be launched by the system or another app. As a result, agents do not show up in the Dock or the window displayed by the Force Quit menu command. Although agents might occasionally come to the foreground and display a user interface, they do not have a menu bar for choosing commands. All user interaction with an agent application is brief and focused on a specific goal, such as setting preferences or requesting information.
+
+To create an agent application, you create a bundled app and include the LSUIElement key in its information property list (Info.plist) file. For more information on using this key, see Information Property List Key Reference.
+
+### 应用程序代理（Agent Applications）
+代理其实是一种运行在后台，按需向用户或者其他app提供信息的特殊的应用类型。举个例子：Dock就是一个由OS X运行的应用程序代理。
+
+一个代理
+
 
 
 
