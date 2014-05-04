@@ -74,6 +74,33 @@ Apple工具使用框架来部署公开的OS X（以及iOS）编程接口，他�
 注意：即使OS X也提供了将多个子框架封装到一个单个包中的所谓的“包罗”框架机制，但是这个机制主要是用于Apple公司内部软件的部署。并不赞成第三方开发者创建包罗框架。
 ```
 
+You can use any programming language to create your own frameworks, but it’s best to choose a language that makes it easy to update the framework later. Apple frameworks generally export programmatic interfaces in either ANSI C or Objective-C. Both of these languages have a well-defined export structure that makes it easy to maintain compatibility between different revisions of the framework.
+
+To learn about the structure and composition of frameworks, see [ Framework Programming Guide ](https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPFrameworks/Frameworks.html#//apple_ref/doc/uid/10000183i ). That document also describes how to use Xcode to create public and private frameworks.
+
+你可以使用任何编程语言去创建你自己的框架，但是最好选择一种能够使后续的框架更新变得最容易的语言。Apple公司的框架通常都是以ANSI C或者Objective-C两种语言中的一种来倒出可编程接口的。这两种语言都具有定义明确的倒出结构，可以使框架的不同修订版之间保持良好的兼容性。
+
+想要了解更多关于框架的结构和组成的话，参阅[ Framework Programming Guide ](https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPFrameworks/Frameworks.html#//apple_ref/doc/uid/10000183i )。该文档还描述了如何使用Xcode去创建公开和私有的框架。
+
+### Plug-ins
+Plug-ins are the standard way to extend many apps and system behaviors. A plug-in is a bundle whose code is loaded dynamically into the runtime of an app. Because it’s loaded dynamically, a plug-in can be added and removed by the user.
+
+The app and system plug-ins listed below represent some of the many opportunities for developing plug-ins.
+
+* **Address Book action plug-ins.** An Address Book plug-in lets you add custom actions that act on the data in a person’s Address Book card. For example, the existing Large Type action displays the selected phone number in large type. Each action plug-in performs a single action, which can open a simple window within the Address Book app. If an action needs to do anything else, it must launch your app to perform the action. To learn how to create an Address Book action plug-in, see “Creating and Using Address Book Action Plug-ins”.
+
+* **App plug-ins.** An app plug-in can extend the features of any app that supports a plug-in model. In addition to third-party apps, several Apple apps also support plug-ins, such as iTunes, Final Cut Pro, and Aperture. For information about developing plug-ins for Apple apps, visit the Apple Developer website.
+
+* **Automator plug-ins.** Using an Automator plug-in, you can expand the default set of actions available in Automator, a utility app that lets users assemble complex scripts using a palette of predefined actions. Automator plug-ins can be written in AppleScript or Objective-C, so you can write them for your own app’s features or for the features of other scriptable apps. (It’s a good idea to provide Automator plug-ins for your app’s most common tasks because doing so gives users more ways to interact with your app.) To learn how to write an Automator plug-in, see Automator Programming Guide.
+
+* **Core Audio plug-ins.** A Core Audio plug-in can support the manipulation of audio streams during most processing stages. For example, you can use plug-ins to generate, process, or receive an audio stream or to interact with new types of audio-related hardware devices. To begin learning about Core Audio, read Core Audio Overview.
+
+### 插件
+
+
+
+
+
 
 
 
