@@ -240,8 +240,31 @@ If you're an app developer, you might want to reuse preference panes intended fo
 
 如果你是一名app开发者，你可能想要重用SystemPreference.app中的偏好设置面板，或者使用相同的模型去实现一个你的app的偏好设置面板。要了解如何创建和管理偏好设置面板，参阅[ Preference Pane Programming Guide ]( https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/PreferencePanes/PreferencePanes.html#//apple_ref/doc/uid/10000110i )。
 
+### Dynamic Websites and Web Services
+OS X supports a variety of techniques and technologies for creating web content. In addition to “Identity Services” and “Dashboard Widgets,” dynamic websites and web services offer web developers ways to deliver their content quickly and easily.
 
+OS X provides support for creating and testing dynamic content in web pages. If you are developing CGI-based web apps, you can create websites using a variety of scripting technologies, including Perl and the PHP Hypertext Preprocessor (a complete list of scripting technologies is provided in “Scripts”). You can also create and deploy more complex web apps using JBoss, Tomcat, and WebObjects. To deploy your webpages, use the built-in Apache HTTP web server.
 
+Safari provides standards-compliant support for viewing pages that incorporate numerous technologies, including HTML, XML, XHTML, DOM, CSS, Java, and JavaScript. You can also use Safari to test pages that contain multimedia content created for QuickTime, Flash, and Shockwave.
+
+The Simple Object Access Protocol (SOAP) is an object-oriented protocol that defines a way for programs to communicate over a network. XML-RPC is a protocol for performing remote procedure calls between programs. In OS X, you can create clients that use these protocols to gather information from web services across the Internet. To create these clients, you use technologies such as PHP, JavaScript, AppleScript, and Cocoa.
+
+If you want to provide your own web services in OS X, use WebObjects or implement the service using the scripting language of your choice. You then post your script code to a web server, give clients a URL, and publish the message format your script supports.
+
+For information on how to create client programs using AppleScript, see[ XML-RPC and SOAP Programming Guide ]( https://developer.apple.com/library/mac/documentation/AppleScript/Conceptual/soapXMLRPC/chapter1/soapXMLRPC_intro.html#//apple_ref/doc/uid/TP30001126 ). For information on how to create web services, see WebObjects Web Services Programming Guide.
+
+### 动态网站和web服务（Dynamic Websites and Web Services）
+OS X支持各种各样创建web内容的技巧和技术。除了*“Identity”*和*“Dashboard Widgets”*之外提供这些外，动态网站和web服务也提供给开发者们很多快速简易途径。
+
+OS X为创建和测试web页面中的动态内容提供了支持。如果你正在开发基于CGI的web应用，你可以使用各种各样的脚本技术来创建网站，包括Perl和PHP超文本预处理器（*“Scripts”*一节中提供了一分可用的脚本技术的完整列表）。你还可以使用JBoss，Tomcat和WebObjects来创建和部署更多的复杂的web应用。要部署你的网页，可使用内置的Apache HTTP web服务器。
+
+Safari为查看包含许多技术的页面提供了与标准兼容的支持，包括HTML，XML，XHTML，DOM，CSS，Java和JavaScript。你还可以使用Safari去测试包含为QuickTime，Flash和Shockware创建的多媒体内容的页面。
+
+简单对象存取协议（SOAP）是一个面向对象协议，该协议定义了程序之间通过网络进行通信的方式。XML-RPC是一个在程序之间执行远程程序调用的协议。在OS X中，你可以创建使用这些协议的客户端，跨越因特网去从web服务中收集信息。要创建这些客户端，你可以使用诸如PHP，JavaScript，AppleScript和Cocoa等技术。
+
+如果你想在OS X中提供你自己的web服务，可以使用WebObjects或者使用你所选择的脚本语言去实现。随后你可以将你的脚本代码发布到web服务器上，给客户端一个URL，然后发布你的脚本支持的信息格式。
+
+要了解如何使用AppleScript创建客户端程序，参阅[ XML-RPC and SOAP Programming Guide ]( https://developer.apple.com/library/mac/documentation/AppleScript/Conceptual/soapXMLRPC/chapter1/soapXMLRPC_intro.html#//apple_ref/doc/uid/TP30001126 )。要了解如何创建web服务，参阅*WebObjects Web Services Programming Guide*。
 
 
 
