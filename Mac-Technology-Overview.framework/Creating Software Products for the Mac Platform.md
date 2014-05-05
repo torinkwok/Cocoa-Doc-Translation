@@ -218,6 +218,18 @@ A service typically acts on the currently selected data. When the user initiates
 
 服务通常作用于当前选中的数据。当用户初始化一个服务时，控制选中数据的app将选中数据放到剪贴板中。选择的服务所属的app会获取这些数据，处理它们，然后将结果（如果有的话）写回到剪贴板中来让最初的那个app取回。举个例子：用户可以选中Finder中的一个文件夹，然后选择压缩文件夹的系统服务并且使用压缩版本替代原始版本。服务也可以提供单向动作。举个例子：一个服务可以获取一个窗口中当前选中的文本，并且使用这些文本去创建一条email消息。要想了解如何在你的app中提供和使用系统服务，参阅：[ Services Implementation Guide ]( https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/SysServices/introduction.html#//apple_ref/doc/uid/10000101i )。
 
+### Preference Panes
+Preference panes are used primarily to modify system preferences for the current user. Preference panes are implemented as plug-ins and installed in /Library/PreferencePanes. App developers can also take advantage of these plug-ins to manage per-user app preferences; however, most apps provide their own UI to manage preferences.
+
+You might need to create preference panes if you create:
+
+Hardware devices that are user configurable
+Systemwide utilities, such as virus protection programs, that require user configuration
+If you're an app developer, you might want to reuse preference panes intended for the System Preferences app or use the same model to implement your app preferences. To learn how to create and manage preference panes, read Preference Pane Programming Guide.
+
+### 偏好设置面板（Preference Panes）
+
+
 
 
 
