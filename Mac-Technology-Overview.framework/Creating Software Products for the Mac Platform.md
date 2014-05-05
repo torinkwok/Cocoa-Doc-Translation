@@ -223,11 +223,27 @@ Preference panes are used primarily to modify system preferences for the current
 
 You might need to create preference panes if you create:
 
-Hardware devices that are user configurable
-Systemwide utilities, such as virus protection programs, that require user configuration
-If you're an app developer, you might want to reuse preference panes intended for the System Preferences app or use the same model to implement your app preferences. To learn how to create and manage preference panes, read Preference Pane Programming Guide.
+* Hardware devices that are user configurable
+
+* Systemwide utilities, such as virus protection programs, that require user configuration
+
+If you're an app developer, you might want to reuse preference panes intended for the System Preferences app or use the same model to implement your app preferences. To learn how to create and manage preference panes, read [ Preference Pane Programming Guide ]( https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/PreferencePanes/PreferencePanes.html#//apple_ref/doc/uid/10000110i ).
 
 ### 偏好设置面板（Preference Panes）
+偏好设置面板主要用于修改当前用户的系统偏好设置。偏好设置面板以插件的形式实现并且安装在`/Library/PreferencePanes`中。App开发者也可以利用这些插件去管理每个用户的的app偏好，然而大多数apps都提供它们自己的UI去管理偏好设置。
+
+如果你创建如下形式的程序，你可能需要创建偏好设置面板：
+
+* 用户可配置的硬件设备
+
+* 系统范围的工具，比如需要用户进行配置的病毒防护程序。
+
+如果你是一名app开发者，你可能想要重用SystemPreference.app中的偏好设置面板，或者使用相同的模型去实现一个你的app的偏好设置面板。要了解如何创建和管理偏好设置面板，参阅[ Preference Pane Programming Guide ]( https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/PreferencePanes/PreferencePanes.html#//apple_ref/doc/uid/10000110i )。
+
+
+
+
+
 
 
 
