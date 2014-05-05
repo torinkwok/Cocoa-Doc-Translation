@@ -186,8 +186,27 @@ To create an agent application, you create a bundled app and include the LSUIEle
 要想创建一个代理app，你应该创建一个打包的app并且在它的信息属性列表文件（Info.plist）中包含LSUIElment键。想要了解更多关于使用该键的信息，参阅[ Information Property List Key Reference ]( https://developer.apple.com/library/mac/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009247 )。
 
 
+### Screen Savers
+Screen savers are small programs that take over the screen after a certain period of idleness. Screen savers provide entertainment and also prevent the screen image from being burned into the surface of a display. OS X supports both slideshows and programmatically generated screen-saver content.
 
+A slideshow is a simple type of screen saver that does not require any code to implement. To create a slideshow, you create a bundle with an extension of .slideSaver. Inside this bundle, you place a Resources directory that contains the images you want to display in your slideshow. Your bundle should also include an information property list that specifies basic information about the bundle, such as its name, identifier string, and version.
 
+OS X includes several slideshow screen savers you can use as templates for creating your own. These screen savers are located in /System/Library/Screen Savers. You should put your own slideshows in either /Library/Screen Savers or in the ~/Library/Screen Savers directory of a user.
+
+A programmatic screen saver is a screen saver that continuously generates content to appear on the screen. You can use this type of screen saver to create animations or to create a screen saver with user-configurable options. The bundle for a programmatic screen saver ends with the .saver extension.
+
+You create programmatic screen savers using Cocoa and the Objective-C language. Specifically, you create a custom subclass of [ ScreenSaverView ]( https://developer.apple.com/library/mac/documentation/UserExperience/Reference/ScreenSaver/Classes/ScreenSaverView_Class/Reference/Reference.html#//apple_ref/occ/cl/ScreenSaverView ) that provides the interface for displaying the screen saver content and options. The information property list of your bundle provides the system with the name of your custom subclass. For information on creating programmatic screen savers, see[ Screen Saver Framework Reference ]( https://developer.apple.com/library/mac/documentation/UserExperience/Reference/ScreenSaver/ObjC_classic/_index.html#//apple_ref/doc/uid/20001822 ).
+
+### 屏幕保护程序（Screen Savers）
+屏幕保护程序是一个在系统一段时间闲置后对屏幕进行接管的小程序。***Screen savers provide entertainment and also prevent the screen image from being burned into the surface of a display.（这一句求翻译）***OS X支持幻灯片和以编程的方式生成屏幕保护程序的内容。
+
+幻灯片是一种不用任何代码就可以实现的简单的屏幕保护程序类型。要创建一个幻灯片，你应该创建一个扩展名为.slideSaver的bundle。在这个bundle中，你应该放置一个包含你想在幻灯片中显示的图像的资源列表。你的bundle也应该包含一个指定了诸如名称，标识字符串和版本等基本信息的Info.plist文件。
+
+OS X囊括了几个幻灯片保护程序，你可以在创建自己的屏幕保护程序时将它们用作模板。这些屏幕保护程序位于`/System/Library/Screen Savers`。你应该将你自己的幻灯片放到`/Library/Screen Savers`或者某个用户的`~/Library/Screen Savers`中。
+
+一个编程式的屏幕保护程序是一个持续在屏幕上生成内容的屏幕保护程序。你可以使用这种类型的屏幕保护程序来创建动画或者带有创建用户可配置选项的屏幕保护程序。编程式的屏幕保护程序的bundle以扩展名.saver结尾。
+
+你应该使用Cocoa和Objective-C语言来创建编程式的屏幕保护程序。尤其是，你需要创建一个[ ScreenSaverView ]( https://developer.apple.com/library/mac/documentation/UserExperience/Reference/ScreenSaver/Classes/ScreenSaverView_Class/Reference/Reference.html#//apple_ref/occ/cl/ScreenSaverView )的子类，该类提供了用于显示屏幕保护程序内容和选项的界面。你的bundle中的Info.plist文件将你定制的子类的名字提供给系统。想要了解更多关于创建编程式屏幕保护程序的信息，参见[ Screen Saver Framework Reference ]( https://developer.apple.com/library/mac/documentation/UserExperience/Reference/ScreenSaver/ObjC_classic/_index.html#//apple_ref/doc/uid/20001822 )。
 
 
 
