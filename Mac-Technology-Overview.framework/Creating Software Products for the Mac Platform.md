@@ -176,12 +176,16 @@ An agent is a special type of application that typically runs in the background,
 
 An agent can be launched by the user but is more likely to be launched by the system or another app. As a result, agents do not show up in the Dock or the window displayed by the Force Quit menu command. Although agents might occasionally come to the foreground and display a user interface, they do not have a menu bar for choosing commands. All user interaction with an agent application is brief and focused on a specific goal, such as setting preferences or requesting information.
 
-To create an agent application, you create a bundled app and include the LSUIElement key in its information property list (Info.plist) file. For more information on using this key, see Information Property List Key Reference.
+To create an agent application, you create a bundled app and include the LSUIElement key in its information property list (Info.plist) file. For more information on using this key, see [ Information Property List Key Reference ]( https://developer.apple.com/library/mac/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009247 ).
 
 ### 应用程序代理（Agent Applications）
-代理其实是一种运行在后台，按需向用户或者其他app提供信息的特殊的应用类型。举个例子：Dock就是一个由OS X运行的应用程序代理。
+代理其实是一种运行在后台，按需向用户或者其他app提供信息的特殊类型的app。举个例子：Dock就是一个由OS X运行的应用程序代理。
 
-一个代理
+一个代理可以由用户启动，但是更多的可能是被系统或者其他app启动。因此，代理不会在通过强制退出菜单命令出现在Dock或者正在显示的窗口中。即使代理偶尔可能会浮现在前台并显示它的用户界面，但是它们没有选择命令的菜单栏。所有用户与代理应用程序之间的交互都是很简短并且很有针对性的，比如设置偏好或者请求信息。
+
+要想创建一个代理app，你应该创建一个打包的app并且在它的信息属性列表文件（Info.plist）中包含LSUIElment键。想要了解更多关于使用该键的信息，参阅[ Information Property List Key Reference ]( https://developer.apple.com/library/mac/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009247 )。
+
+
 
 
 
