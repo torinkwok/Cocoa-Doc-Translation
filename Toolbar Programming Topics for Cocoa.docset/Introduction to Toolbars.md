@@ -52,3 +52,20 @@ toolbar height.
 * “子类化NSToolbarItem” 描述了当子类化NSToolbarItem时需要重写的方法。
 
 * “工具栏管理技术” 描述了如何决定一个工具栏是否有被添加到*溢出菜单*中的项，以及如何计算工具栏的高度。
+
+
+## See Also
+
+The following sample code is available through Apple Developer Connection:
+
+* [ iSpend ]( https://developer.apple.com/library/mac/samplecode/iSpend/Introduction/Intro.html#//apple_ref/doc/uid/DTS10003625 ) shows how to add basic toolbar support to an application.
+
+* [ ToolbarSample ]( https://developer.apple.com/library/mac/samplecode/ToolbarSample/Introduction/Intro.html#//apple_ref/doc/uid/DTS10000413 ) implements an example toolbar including using custom views in a toolbar item.
+
+## 另请参阅
+
+下面的示例通过Apple Developer Connection可用：
+
+* [ iSpend ]( https://developer.apple.com/library/mac/samplecode/iSpend/Introduction/Intro.html#//apple_ref/doc/uid/DTS10003625 ) 展示了如何为一个app添加基本的工具栏支持。
+
+* [ ToolbarSample ]( https://developer.apple.com/library/mac/samplecode/ToolbarSample/Introduction/Intro.html#//apple_ref/doc/uid/DTS10000413 ) 实现了一个在toolbar项中使用custom视图的示例
