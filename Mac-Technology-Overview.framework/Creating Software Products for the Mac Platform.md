@@ -137,7 +137,7 @@ Note: Beginning in OS X v10.7, Safari does not support WebKit plug-ins because t
 
 * **Quick Look插件。** Quick Look插件又名：Quick Look生成器——它将一个文档的原始格式转化成Quick Look可以显示给用户的格式。如果你的app创建了非标准或者私有类型的文档，那么提供一个Quick Look生成器以便于用户可以在Quick Look中获取这些文档的预览是一个很棒的注意！。要想了解如何创建Quick Look插件，参阅[ Quick Look Programming Guide ]( https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/Quicklook_Programming_Guide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005020 )。
 
-* **Safari插件。** Safari提供了Netscape风格的插件模型以便你将额外类型的内容并入web浏览器。在OS X 10.7之后版本中的Safari中，插件都是运行在其自己的进程中，这提升了Safari的稳定性和安全性，Netscape风格的插件提供了包括对屏幕绘制，事件处理，网络及脚本函数等功能。
+* **Safari插件。** Safari提供了Netscape风格的插件模型以便你将额外类型的内容并入web浏览器。在OS X 10.7之后版本中的Safari中，插件都是运行在其自己的进程中，这提升了Safari的稳定性和安全性，Netscape风格的插件提供了包括屏幕绘制，事件处理，网络及脚本函数等功能。
 
 ```
 注意： 从OS X 10.7开始，Safari不再支持Webkit插件，因为它们与新的进程架构不再兼容。在后续的开发中，你必须将你的Webkit风格插件转换成Netscape风格插件，或者直接开发Safari扩展。
