@@ -294,11 +294,36 @@ Launch items should not be confused with the login items found in the Accounts s
 Few developers should ever need to create launch items or daemons. These programs are reserved for special situations in which you need to guarantee the availability of a particular service. For example, OS X provides a launch item to run the DNS daemon. Similarly, a virus-detection program might install a launch item to launch a daemon that monitors the system for virus-like activity. In both cases, the launch item would run its daemon in the root session, which provides services to all users of the system. To learn more about launch items and daemons, see[ Daemons and Services Programming Guide ]( https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/Introduction.html#//apple_ref/doc/uid/10000172i ).
 
 ### 启动项和守护进程（Launch Items and Daemons）
-启动项是在系统启动和登录期间启动其他程序或执行一次性草堆的特殊程序。守护进程是在系统中持续运行并且作为服务器来处理客户端请求的程序。你通常使用启动项去启动守护进程或者执行周期性的维护任务，比如说检查硬盘驱动器的损坏信息。
+启动项是在系统启动和登录期间启动其他程序或执行一次性操作的特殊程序。守护进程是在系统中持续运行并且作为服务器来处理客户端请求的程序。你通常使用启动项去启动守护进程或者执行周期性的维护任务，比如说检查硬盘驱动器的损坏信息。
 
 不应该混淆启动项与Accounts系统偏好中的登录项。登录项通常是运行在给定用户空间中的代理应用程序，其可以由用户配置。启动项则不是用户可配置的。
 
 少数开发者需要创建启动项或者守护进程。这些程序是为你需要保证特定服务可用性的特殊情况下保留的。比如说OS X提供了一个启动项以运行DNS守护进程。类似地，一个病毒侦测程序可以安装一个启动项去启动一个监视系统中病毒活动的守护进程。在这两种情况中，启动项将会在root会话中运行他的守护进程，以将服务提供给系统的所有用户。要了解更多的关于启动项和守护进程的信息，参阅[ Daemons and Services Programming Guide ]( https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/Introduction.html#//apple_ref/doc/uid/10000172i )。
+
+### Scripts
+A script is a set of text commands that are interpreted at runtime and turned into a sequence of actions. Most scripting languages provide high-level features that make it easy to implement complex workflows quickly. Scripting languages are often very flexible, letting you call other programs and manipulate the data they return. Some scripting languages are also portable across platforms, so that you can use your scripts anywhere.
+
+Table 1-1 lists many of the scripting languages available in OS X.
+
+Language         | Description
+---------------- | -----------------------------------------------------------------
+AppleScript      | An English-based language for controlling scriptable apps in OS X. Use it to tie together apps involved in a custom workflow or repetitive job. For more information, see AppleScript Overview.
+bash             | A Bourne-compatible shell script language used to build programs on UNIX-based systems.
+Perl             | A general-purpose scripting language supported on many platforms. Perl provides an extensive set of features suited for text parsing and pattern matching and also has some object-oriented features. For more information, see The Perl Programming Language website.
+PHP              | A cross-platform, general-purpose scripting language that is especially suited for web development. For more information, see PHP: Hypertext Preprocessor.
+Python           | A general-purpose, object-oriented scripting language implemented for many platforms. For more information, see Python Programming Language. To learn about using Python with the Cocoa scripting bridge, see Ruby and Python Programming Topics for Mac.
+Ruby             | A general-purpose, object-oriented scripting language implemented for many platforms. For more information, see Ruby Programming Language. To learn about using Ruby with the Cocoa scripting bridge, see Ruby and Python Programming Topics for Mac.
+sh               | The Bourne shell script language used to build programs on UNIX-based systems.
+Tcl              | A general-purpose language implemented for many platforms. Tcl (Tool Command Language) is often used to create graphical interfaces for scripts. For more information, see Tcl Developer Site.
+tcsh             | A variant of the C shell script language used to build programs on UNIX-based systems.
+zsh              | The Z shell script language used to build programs on UNIX-based systems.
+
+### 脚本（Scripts）
+脚本是一组在运行时进行解析并转化成一系列动作的文本命令。大多数脚本语言提供了使**快速实现复杂工作流程**变得很容易的高层特性。脚本语言通常非常灵活，它使得你可以调用其他程序并且处理它们返回的数据。一些脚本语言同时也是可移植可跨平台的，这使得你可以随处使用你的脚本。
+
+表1-1列出了许多OS X中支持的脚本语言。
+
+
 
 
 
