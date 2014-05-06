@@ -307,7 +307,27 @@ Table 1-1 lists many of the scripting languages available in OS X.
 
 Language         | Description
 ---------------- | -----------------------------------------------------------------
-AppleScript      | An English-based language for controlling scriptable apps in OS X. Use it to tie together apps involved in a custom workflow or repetitive job. For more information, see AppleScript Overview.
+AppleScript      | An English-based language for controlling scriptable apps in OS X. Use it to tie together apps involved in a custom workflow or repetitive job. For more information, see[ AppleScript Overview ]( https://developer.apple.com/library/mac/documentation/AppleScript/Conceptual/AppleScriptX/AppleScriptX.html#//apple_ref/doc/uid/10000156i ).
+bash             | A Bourne-compatible shell script language used to build programs on UNIX-based systems.
+Perl             | A general-purpose scripting language supported on many platforms. Perl provides an extensive set of features suited for text parsing and pattern matching and also has some object-oriented features. For more information, see The [ Perl Programming Language website ]( http://www.perl.org/ ).
+PHP              | A cross-platform, general-purpose scripting language that is especially suited for web development. For more information, see [ PHP: Hypertext Preprocessor ]( http://www.php.net/ ).
+Python           | A general-purpose, object-oriented scripting language implemented for many platforms. For more information, see [ Python Programming Language ]( http://www.python.org/ ). To learn about using Python with the Cocoa scripting bridge, see Ruby and Python Programming Topics for Mac.
+Ruby             | A general-purpose, object-oriented scripting language implemented for many platforms. For more information, see [ Ruby Programming Language ]( http://www.ruby-lang.org/ ). To learn about using Ruby with the Cocoa scripting bridge, see Ruby and Python Programming Topics for Mac.
+sh               | The Bourne shell script language used to build programs on UNIX-based systems.
+Tcl              | A general-purpose language implemented for many platforms. Tcl (Tool Command Language) is often used to create graphical interfaces for scripts. For more information, see [ Tcl Developer Site ]( http://www.tcl.tk/ ).
+tcsh             | A variant of the C shell script language used to build programs on UNIX-based systems.
+zsh              | The Z shell script language used to build programs on UNIX-based systems.
+
+
+
+### 脚本（Scripts）
+脚本是一组在运行时进行解析并转化成一系列动作的文本命令。大多数脚本语言提供了使**快速实现复杂工作流程**变得很简单的高层特性。脚本语言通常非常灵活，它使得你可以调用其他程序并且处理它们返回的数据。一些脚本语言同时也是可移植可跨平台的，这使得你可以随处使用你的脚本。
+
+表1-1列出了许多OS X中支持的脚本语言。
+
+语言              | 描述
+---------------- | -----------------------------------------------------------------
+AppleScript      | 这是一门基于英语的脚本语言，用于在OS X控制支持脚本的apps。使用它在一个定制的工作流程中或者重复性的工作中使不同app相互配合。想要了解更多信息，参阅[ AppleScript Overview ]( https://developer.apple.com/library/mac/documentation/AppleScript/Conceptual/AppleScriptX/AppleScriptX.html#//apple_ref/doc/uid/10000156i )。
 bash             | A Bourne-compatible shell script language used to build programs on UNIX-based systems.
 Perl             | A general-purpose scripting language supported on many platforms. Perl provides an extensive set of features suited for text parsing and pattern matching and also has some object-oriented features. For more information, see The Perl Programming Language website.
 PHP              | A cross-platform, general-purpose scripting language that is especially suited for web development. For more information, see PHP: Hypertext Preprocessor.
@@ -317,11 +337,6 @@ sh               | The Bourne shell script language used to build programs on UN
 Tcl              | A general-purpose language implemented for many platforms. Tcl (Tool Command Language) is often used to create graphical interfaces for scripts. For more information, see Tcl Developer Site.
 tcsh             | A variant of the C shell script language used to build programs on UNIX-based systems.
 zsh              | The Z shell script language used to build programs on UNIX-based systems.
-
-### 脚本（Scripts）
-脚本是一组在运行时进行解析并转化成一系列动作的文本命令。大多数脚本语言提供了使**快速实现复杂工作流程**变得很容易的高层特性。脚本语言通常非常灵活，它使得你可以调用其他程序并且处理它们返回的数据。一些脚本语言同时也是可移植可跨平台的，这使得你可以随处使用你的脚本。
-
-表1-1列出了许多OS X中支持的脚本语言。
 
 
 
