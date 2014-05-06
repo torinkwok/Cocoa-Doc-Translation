@@ -5,7 +5,9 @@ NSToolbar and NSToolbarItem classes provide you with a standard way to display a
 # 工具栏如何工作
 
 NSToolbar和NSToolbar两个类为你提供了在标题窗口的标题栏下方显示工具栏的标准途径。这些类也为用户提供了定制工具栏和保存那些定制的标准途径。下面展示了工具栏看上去是什么样子的：
-![ Example toolbar ]( http://cl.ly/image/1y2b0K3O0G2r/Screen%20Shot%202014-05-06%20at%2018.13.56.png ).
+
+**Figure 1**  Example toolbar
+![ Example toolbar ]( http://cl.ly/image/0F101G3m0P1C/toolbar.jpg ).
 
 
 
@@ -71,6 +73,33 @@ The toolbar’s identifier is fixed at object creation, but you can change other
 
 工具栏的标识符在对象创建时就是固定的，但是你可以通过调用*setAllowsUserCustomization:*，*setAutosavesConfiguration:*，*setDisplayMode:*来更改工具栏的其他属性。
 
+
+## Toolbar Items
+
+Each item in an NSToolbar is an instance of NSToolbarItem. The visible parts of a toolbar item are its content, its text label, and its menu form representation.
+
+The toolbar item’s content is either an NSImage or an NSView. An item whose content is an NSImage is called an image item. An item whose content is an NSView is called a view item. The search field shown in Figure 1 is a view item, the others are image items.
+
+Print is a standard item provided by NSToolbar. The other items are custom items, supplied by this application. Blue text is a custom image item. Font Style and Font Size are custom view items.
+
+The menu representation is used at two different times: when the toolbar is displayed using labels only and when the window is too small to show the complete toolbar and some items are displayed in an overflow menu.
+
+## 工具栏项
+
+每个工具栏项在NSToolbar中是一个NSToolbarItem实例。一个工具栏项的可视部分是它的内容，文本标签以及它的菜单表现形式。
+
+工具栏项的内容是一个NSImage或者NSView实例。以NSImage实例做为内容的工具栏项被称作*image项*。以NSView实例做为内容的项被称作*view项*。如图Figure 1中搜索域是一个*view项*，其他的都是*image项*。
+
+`打印`项是一个由NSToolbar提供的标准的工具栏项。其他的项都是定制项，由该app提供。蓝色文本是一个定制的*image项*。`字体风格`和`字体尺寸`是定制*view项*。
+
+菜单展示会在两个不同的时间被使用：当工具栏只使用标签显示时和当窗口太小而无法完整显示工具栏时，一些项就会在*溢出菜单*中显示。
+
+
+## NSWindow and the toolbar
+
+NSWindow has a number of methods to support NSToolbar: The methods toolbar and setToolbar: are for attaching a toolbar to the window; the toggleToolbarShown: method is the action for the Hide Toolbar / Show Toolbar menu item; runToolbarCustomizationPalette: is the action method for the Customize Toolbar menu item.
+
+Interface Builder predefines an application’s View menu with Show Toolbar and Customize Toolbar menu items and connects these items to toggleToolbarShown: and runToolbarCustomizationPalette: through the First Responder. NSWindow validates both toolbar menu items and toggles the title of the former menu item between “Show Toolbar” and “Hide Toolbar” to correspond with the actual state of the toolbar.
 
 
 
