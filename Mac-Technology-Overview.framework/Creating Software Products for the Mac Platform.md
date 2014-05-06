@@ -266,6 +266,16 @@ Safari为查看包含许多技术的页面提供了与标准兼容的支持，�
 
 要了解如何使用AppleScript创建客户端程序，参阅[ XML-RPC and SOAP Programming Guide ]( https://developer.apple.com/library/mac/documentation/AppleScript/Conceptual/soapXMLRPC/chapter1/soapXMLRPC_intro.html#//apple_ref/doc/uid/TP30001126 )。要了解如何创建web服务，参阅*WebObjects Web Services Programming Guide*。
 
+### Mail Stationery
+The Mail app provides templates that give users prebuilt email messages that are easily customized. Because templates are HTML based, they can incorporate images and advanced formatting to give the user’s email a much more stylish and sophisticated appearance.
+
+Developers and web designers can create custom template packages for external or internal users. Each template consists of an HTML page, a property list file, and a set of images which are packaged together in a bundle and then stored in the Mail app’s stationery folder. The HTML page and images define the content of the email message and can include drop zones for custom user content. The property list file gives Mail information about the template, such as its name, ID, and the name of its thumbnail image. To learn how to create new stationery templates, see [ Mail Programming Topics ]( https://developer.apple.com/library/mac/documentation/AppleApplications/Conceptual/MailArticles/Introduction/Introduction.html#//apple_ref/doc/uid/TP40006071 ).
+
+### Mail Stationery
+Mail.app提供了给用户预先构建容易定制的email消息的模板。因为这些模板时基于HTML的，所以它们可以包含图像和其他高级格式以此来给用户的邮件提供更加现代化和精致的内容展示。
+
+开发者和web设计师可以为外部或内部的用户创建定制模板包。每个模板由一个HTML页面，一个plist文件，和一组一起被打包到bundle中的图像，它们随后应该存储在Mail.app的stationery文件夹中。HTML页面和图像定义了email消息的内容，并且还可以为定制用户内容而包含拖拽区域。plist文件用于给Mail.app提供关于这个模板的信息，比如模板的名字，ID和模板中缩略图的名字。要了解如何创建新的stationery模板，参阅[ Mail Programming Topics ]( https://developer.apple.com/library/mac/documentation/AppleApplications/Conceptual/MailArticles/Introduction/Introduction.html#//apple_ref/doc/uid/TP40006071 )。
+
 
 
 
