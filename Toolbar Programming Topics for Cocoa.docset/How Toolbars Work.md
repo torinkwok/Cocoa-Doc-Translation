@@ -98,9 +98,20 @@ The menu representation is used at two different times: when the toolbar is disp
 
 ## NSWindow and the toolbar
 
-NSWindow has a number of methods to support NSToolbar: The methods toolbar and setToolbar: are for attaching a toolbar to the window; the toggleToolbarShown: method is the action for the Hide Toolbar / Show Toolbar menu item; runToolbarCustomizationPalette: is the action method for the Customize Toolbar menu item.
+NSWindow has a number of methods to support NSToolbar: The methods *toolbar* and *setToolbar:* are for attaching a toolbar to the window; the *toggleToolbarShown:* method is the action for the Hide Toolbar / Show Toolbar menu item; *runToolbarCustomizationPalette:* is the action method for the Customize Toolbar menu item.
 
-Interface Builder predefines an application’s View menu with Show Toolbar and Customize Toolbar menu items and connects these items to toggleToolbarShown: and runToolbarCustomizationPalette: through the First Responder. NSWindow validates both toolbar menu items and toggles the title of the former menu item between “Show Toolbar” and “Hide Toolbar” to correspond with the actual state of the toolbar.
+Interface Builder predefines an application’s View menu with Show Toolbar and Customize Toolbar menu items and connects these items to *toggleToolbarShown:* and *runToolbarCustomizationPalette:* through the First Responder. NSWindow validates both toolbar menu items and toggles the title of the former menu item between “Show Toolbar” and “Hide Toolbar” to correspond with the actual state of the toolbar.
+
+
+## NSWindow和工具栏
+
+NSWindow有若干个支持NSToolbar的方法：方法*toolbar*和*setToolbar:*是为了将一个工具栏附加到窗口中；*toggleToolbarShown:*方法是为`隐藏工具栏`／`显示工具栏`两个菜单项提供的动作（action）；*runToolbarCustomizationPalette:*方法是为`定制工具栏`菜单项提供的动作（action）。
+
+Interface Builder预定义了一个app的`视图`菜单及其中的`显示工具栏`以及`定制工具栏`菜单项，并且预先通过*First Responder*将它们连接到了*toggleToolbarShown:*和*runToolbarCustomizationPalette:*方法。NSWindow验证工具栏菜单项，并且将`显示工具栏`菜单项的标题在*“显示工具栏”*和*“隐藏工具栏”*之间进行切换以符合工具栏实际的状态。
+
+
+
+
 
 
 
