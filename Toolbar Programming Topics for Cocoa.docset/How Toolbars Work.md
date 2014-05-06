@@ -7,6 +7,7 @@ NSToolbar and NSToolbarItem classes provide you with a standard way to display a
 NSToolbar和NSToolbar两个类为你提供了在标题窗口的标题栏下方显示工具栏的标准途径。这些类也为用户提供了定制工具栏和保存那些定制的标准途径。下面展示了工具栏看上去是什么样子的：
 
 **Figure 1**  Example toolbar
+
 ![ Example toolbar ]( http://cl.ly/image/0F101G3m0P1C/toolbar.jpg ).
 
 
