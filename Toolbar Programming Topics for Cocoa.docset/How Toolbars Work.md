@@ -59,5 +59,19 @@ When a user customizes the toolbar of an application’s window, that customizat
 
 
 
+## Toolbar configurations
+
+There are kinds of toolbars, and there are individual toolbar objects. A kind of toolbar is represented by string called the toolbar identifier. When you create an NSToolbar you supply a toolbar identifier so your toolbar delegate will know that the new instance is to be of that kind. For example, consider a Mail application that has two kinds of windows, Message and Mailbox. Each needs its own kind of toolbar: one appropriate for viewing a message and one appropriate for listing the messages in a mailbox. To implement this user interface, the application has two toolbar identifiers, "Message", and "Mailbox". Each message window has its own distinct toolbar object, but all message window toolbar objects have the same identifier: "Message". When you modify the toolbar in a window (either through the user interface or programmatically) you change the toolbar configuration of that kind of toolbar, not just of that instance. So, when you customize the toolbar in one message window, the new configuration automatically propagates to the toolbars in all other message windows currently open. If the toolbar is hidden in any message window, it will stay hidden, but when it is shown again, it looks like the others of its kind.
+
+The toolbar’s identifier is fixed at object creation, but you can change other attributes of it with *setAllowsUserCustomization:*, *setAutosavesConfiguration:*, and *setDisplayMode:*.
+
+## 工具栏配置
+
+工具栏有多种类型，并且是独立的工具栏对象。一种工具栏通过工具栏标识符的字符串调用来展现。当你创建一个NSToolbar时，会提供一个工具栏标识符，所以你的工具栏委托会知道新的工具栏是哪种类型。比如，考虑拥有*消息窗口*和*信箱窗口*两种窗口类型的Mail.app。每个窗口都需要它自己的工具栏类型：一个适用于查看消息，另一个适用于在信箱中列出所有消息。要实现这样的用户界面，app应该具有两个工具栏，“消息”和“信箱”。每个消息窗口有它自己的独立的工具栏对象，但是所有信息窗口的工具栏对象都有同一个标识符：“消息”。当你在*消息窗口*中更改工具栏时（通过用户界面或者编程的方式），你会改变所有属于这个类型的工具栏的配置，而不仅仅是该实例的。所以，当你在一个*消息窗口*中定制工具栏的时候，新的配置会自动传递给所有当前打开的*消息窗口*中的工具栏。如果在某一个*消息窗口*中工具栏是隐藏着的，它也会继续保持隐藏，但是一旦当其重新显示，它的外观就会变得和其他该类型的工具栏一样。
+
+工具栏的标识符在对象创建时就是固定的，但是你可以通过调用*setAllowsUserCustomization:*，*setAutosavesConfiguration:*，*setDisplayMode:*来更改工具栏的其他属性。
+
+
+
 
 
