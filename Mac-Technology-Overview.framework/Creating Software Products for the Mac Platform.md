@@ -344,7 +344,30 @@ A scripting addition delivers additional functionality for AppleScript scripts b
 ### AppleScript脚本附件（ Scripting Additions for AppleScript）
 一个脚本附件通过为新的命令和数据类型添加系统范围的支持来为AppleScript脚本实现附加功能。那些需要当前命令集中不支持的特性的开发者，可以使用脚本附件去实现这些特性，并且使它们对全部apps可用。比如说一个内置的脚本附件从一个AppleScript脚本中扩展了基本的文件处理命令以支持文件内容的读写。关于如何创建一个脚本附件的信息，参阅Technical Note TN1164， 参阅[ “Scripting Additions for OS X” ]( http://developer.apple.com/technotes/tn/tn1164.html )。
 
+### Kernel Extensions
+Kernel extensions are code modules that load directly into the kernel process space and therefore bypass the protections offered by the OS X core environment. Most developers have little need to create kernel extensions. The situations in which you might need a kernel extension are the following:
 
+* Your code needs to handle a primary hardware interrupt.
+
+* The client of your code is inside the kernel.
+
+* A large number of apps require a resource your code provides. For example, you might implement a file-system stack using a kernel extension.
+
+* Your code has special requirements or needs to access kernel interfaces that are not available in the user space.
+
+Although a device driver is a type of kernel extension, by convention the term *kernel extension* refers to a code module that implements a new network stack or file system. You would not use a kernel extension to communicate with an external device such as a digital camera or a printer. (For information on communicating with external devices, see [ “Device Drivers” ]( https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/OSX_Technology_Overview/SoftwareProducts/SoftwareProducts.html#//apple_ref/doc/uid/TP40001067-CH206-TPXREF123 ).)
+
+### 内核扩展（Kernel Extensions）
+内核扩展是一种直接载入内核进程空间并且因此而绕过OS X核心环境提供的保护的代码模块。大多数开发者基本上没有创建内核扩展的必要。如下是几种你可能需要创建内科扩展的情况：
+* 你的代码需要处理一个首要的硬件中断
+
+* 你的代码的客户存在于内核之中
+
+* 大量的apps需要你的代码提供的资源。比如说你可能使用内核扩展实现一个文件系统栈。
+
+* 你的代码有特殊的需求或者需要访问在用户空间中不可用的内核接口。
+
+即使硬件驱动程序是一种内核扩展，但是按照惯例，术语*内核扩展*指的是实现网络栈或者文件系统的代码模块。你不会使用内核扩展与诸如数码相机或打印机之类的外部设备进行通信。（关于与外部设备通信的信息，参阅：[ “Device Drivers” ]( https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/OSX_Technology_Overview/SoftwareProducts/SoftwareProducts.html#//apple_ref/doc/uid/TP40001067-CH206-TPXREF123 )）。
 
 
 
