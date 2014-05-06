@@ -373,6 +373,20 @@ For information about writing kernel extensions, see [ Kernel Programming Guide 
 
 想要了解关于编写内核扩展的信息，参阅[ Kernel Programming Guide ]( https://developer.apple.com/library/mac/documentation/Darwin/Conceptual/KernelProgramming/About/About.html#//apple_ref/doc/uid/TP30000905 )。
 
+### Device Drivers
+Device drivers are a special type of kernel extension that enable OS X to communicate with many hardware devices, including mice, keyboards, and FireWire drives. Device drivers communicate hardware status to the system and facilitate the transfer of device-specific data to and from the hardware. OS X provides default drivers for many types of devices, but these might not meet the needs of all hardware developers.
+
+Although developers of mice and keyboards might be able to use the standard drivers, many other developers require custom drivers. Developers of hardware such as scanners, printers, AGP cards, and PCI cards typically have to create custom device drivers because these devices require more sophisticated data handling than is usually needed for mice and keyboards. Hardware developers also tend to differentiate their hardware by adding custom features and behavior, which makes it difficult for Apple to provide generic drivers to handle all devices.
+
+Apple provides code you can use as the basis for your custom drivers. The I/O Kit provides an object-oriented framework for developing device drivers using C++. To learn more about the I/O Kit, see [ I/O Kit Fundamentals ]( https://developer.apple.com/library/mac/documentation/DeviceDrivers/Conceptual/IOKitFundamentals/Introduction/Introduction.html#//apple_ref/doc/uid/TP0000011 ).
+
+### 设备驱动程序（Device Drivers）
+设备驱动程序是一种使OS X可以与包括鼠标，键盘以及FireWire设备等众多硬件设备进行通信的特殊类型的内核扩展。硬件驱动程序将硬件的状态传递给系统并且促进特定设备数据在系统和硬件之间的双向传输。OS X为很多类型的设备提供了默认的驱动程序，但是这些驱动程序可能无法满足全部的硬件开发者的需要。
+
+即使鼠标和键盘的开发者可以使用标准的驱动程序，但是很多其他开发者需要定制驱动程序。诸如扫描仪，打印机，AGP卡，PCI卡等硬件的开发者通常不得不创建定制的设备驱动程序，因为这些设备需要比鼠标键盘更复杂的数据控制。硬件开发者们也倾向于通过添加定制的特性和行为来将他们的硬件和别的区分开来，以使得Apple很难去提供通用的驱动程序去操作所有设备。
+
+Apple公司提供了一些代码，你可以将它们作为你的定制驱动程序的基础来使用。I/O Kit为开发设备驱动程序提供了一个使用C++的面向对象的框架。要学习更多关于I/O Kit的内容，参阅[ I/O Kit Fundamentals ]( https://developer.apple.com/library/mac/documentation/DeviceDrivers/Conceptual/IOKitFundamentals/Introduction/Introduction.html#//apple_ref/doc/uid/TP0000011 )。
+
 
 
 
