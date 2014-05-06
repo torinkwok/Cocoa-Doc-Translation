@@ -338,8 +338,11 @@ tcsh             | 这是一门C shell脚本语言的变体，通常用于构建
 zsh              | Z shell脚本语言通常用于构建基于UNIX的系统上的程序。
 
 
+### Scripting Additions for AppleScript
+A scripting addition delivers additional functionality for AppleScript scripts by adding systemwide support for new commands or data types. Developers who need features not available in the current command set can use scripting additions to implement those features and make them available to all apps. For example, one of the built-in scripting additions extends the basic file-handling commands to support the reading and writing of file contents from an AppleScript script. For information on how to create a scripting addition, see Technical Note TN1164, [ “Scripting Additions for OS X” ]( http://developer.apple.com/technotes/tn/tn1164.html )。
 
-
+### AppleScript脚本附件（ Scripting Additions for AppleScript）
+一个脚本附件通过为新的命令和数据类型添加系统范围的支持来为AppleScript脚本实现附加功能。那些需要当前命令集中不支持的特性的开发者，可以使用脚本附件去实现这些特性，并且使它们对全部apps可用。比如说一个内置的脚本附件从一个AppleScript脚本中扩展了基本的文件处理命令以支持文件内容的读写。关于如何创建一个脚本附件的信息，参阅Technical Note TN1164， 参阅[ “Scripting Additions for OS X” ]( http://developer.apple.com/technotes/tn/tn1164.html )。
 
 
 
