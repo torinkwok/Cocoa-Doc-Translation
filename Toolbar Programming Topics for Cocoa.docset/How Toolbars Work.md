@@ -48,12 +48,14 @@ There are a couple of standard toolbar item identifiers that NSToolbar knows abo
 
 If you need to change the action sent by a standard item, write a toolbarWillAddItem: notification method.
 
-When a user customizes the toolbar of an application’s window, that customization is saved as a user preference. The customized toolbar is used thereafter when the application launches in place of the default set of toolbar items specified by the developer
+When a user customizes the toolbar of an application’s window, that customization is saved as a user preference. The customized toolbar is used thereafter when the application launches in place of the default set of toolbar items specified by the developer.
 
 
 有几个NSToolbar知道的标准工具栏项标识符。**NSToolbarSeparatorItemIdentifier**是标准的垂直分割线。 **NSToolbarSpaceItemIdentifier**是一个固定的宽度空间。**NSToolbarFlexibleSpaceItemIdentifier** 是一个可变的宽度空间。此外，还有**NSToolbarShowColorsItemIdentifier**, **NSToolbarShowFontsItemIdentifier**, **NSToolbarPrintItemIdentifier**, 以及**NSToolbarCustomizeToolbarItemIdentifier**。这些项只能通过标识符才能使用。
 
-如果你需要
+如果你需要更改标准项所发送的动作，可以编写一个*toolbarWillAddItem:*通知方法。
+
+当一个用户定制一个app的窗口中的工具栏时，定制信息会被保存在一个用户偏好中。定制过的工具栏会被使用，之后当app再启动时，定制好的工具栏项会替代app开发者指定的默认的项集合。
 
 
 
