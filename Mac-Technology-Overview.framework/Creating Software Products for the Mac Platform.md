@@ -319,7 +319,6 @@ tcsh             | A variant of the C shell script language used to build progra
 zsh              | The Z shell script language used to build programs on UNIX-based systems.
 
 
-
 ### 脚本（Scripts）
 脚本是一组在运行时进行解析并转化成一系列动作的文本命令。大多数脚本语言提供了使**快速实现复杂工作流程**变得很简单的高层特性。脚本语言通常非常灵活，它使得你可以调用其他程序并且处理它们返回的数据。一些脚本语言同时也是可移植可跨平台的，这使得你可以随处使用你的脚本。
 
@@ -333,12 +332,10 @@ Perl             | 这是一门在多个平台都有实现的通用的脚本语�
 PHP              | 一门跨平台，通用的脚本语言，尤其适用于web开发，更多信息参阅：[ PHP: Hypertext Preprocessor ]( http://www.php.net/ )。
 Python           | 一门通用的，面向对象的脚本语言，针对多个平台实现。更多信息参阅[ Python Programming Language ]( http://www.python.org/ )。要学习关于通过Cocoa的脚本桥接机制使用Python，参阅*Ruby and Python Programming Topics for Mac*。
 Ruby             | 一门通用的，面向对象的脚本语言，针对多个平台实现。更多信息参阅[ Ruby Programming Language ]( http://www.python.org/ )。要学习关于通过Cocoa的脚本桥接机制使用Ruby，参阅*Ruby and Python Programming Topics for Mac*。
-sh               | The Bourne shell script language used to build programs on UNIX-based systems.
-Tcl              | A general-purpose language implemented for many platforms. Tcl (Tool Command Language) is often used to create graphical interfaces for scripts. For more information, see Tcl Developer Site.
-tcsh             | A variant of the C shell script language used to build programs on UNIX-based systems.
-zsh              | The Z shell script language used to build programs on UNIX-based systems.
-
-
+sh               | Bourne shell脚本语言通常用于构建基于UNIX的系统上的程序。
+Tcl              | 这是一门针对多平台实现的通用的语言，Tcl（Tool Command Language）经常用于实现脚本的图形用户界面，参阅[ Tcl Developer Site ]( http://www.tcl.tk/ )。
+tcsh             | 这是一门C shell脚本语言的变体，通常用于构建基于UNIX的系统上的程序。
+zsh              | Z shell脚本语言通常用于构建基于UNIX的系统上的程序。
 
 
 
