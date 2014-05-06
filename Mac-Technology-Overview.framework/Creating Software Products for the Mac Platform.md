@@ -357,8 +357,10 @@ Kernel extensions are code modules that load directly into the kernel process sp
 
 Although a device driver is a type of kernel extension, by convention the term *kernel extension* refers to a code module that implements a new network stack or file system. You would not use a kernel extension to communicate with an external device such as a digital camera or a printer. (For information on communicating with external devices, see [ “Device Drivers” ]( https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/OSX_Technology_Overview/SoftwareProducts/SoftwareProducts.html#//apple_ref/doc/uid/TP40001067-CH206-TPXREF123 ).)
 
+For information about writing kernel extensions, see [ Kernel Programming Guide ]( https://developer.apple.com/library/mac/documentation/Darwin/Conceptual/KernelProgramming/About/About.html#//apple_ref/doc/uid/TP30000905 ).
+
 ### 内核扩展（Kernel Extensions）
-内核扩展是一种直接载入内核进程空间并且因此而绕过OS X核心环境提供的保护的代码模块。大多数开发者基本上没有创建内核扩展的必要。如下是几种你可能需要创建内科扩展的情况：
+内核扩展是一种直接载入内核进程空间并且因此而绕过OS X核心环境提供的保护的代码模块。大多数开发者基本上没有创建内核扩展的必要。如下是几种你可能需要创建内核扩展的情况：
 * 你的代码需要处理一个首要的硬件中断
 
 * 你的代码的客户存在于内核之中
@@ -367,7 +369,10 @@ Although a device driver is a type of kernel extension, by convention the term *
 
 * 你的代码有特殊的需求或者需要访问在用户空间中不可用的内核接口。
 
-即使硬件驱动程序是一种内核扩展，但是按照惯例，术语*内核扩展*指的是实现网络栈或者文件系统的代码模块。你不会使用内核扩展与诸如数码相机或打印机之类的外部设备进行通信。（关于与外部设备通信的信息，参阅：[ “Device Drivers” ]( https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/OSX_Technology_Overview/SoftwareProducts/SoftwareProducts.html#//apple_ref/doc/uid/TP40001067-CH206-TPXREF123 )）。
+即使硬件驱动程序是一种内核扩展，但是按照惯例，术语*内核扩展*指的是实现网络栈或者文件系统的代码模块。不应使用内核扩展与诸如数码相机或打印机之类的外部设备进行通信。（关于与外部设备通信的信息，参阅：[ “Device Drivers” ]( https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/OSX_Technology_Overview/SoftwareProducts/SoftwareProducts.html#//apple_ref/doc/uid/TP40001067-CH206-TPXREF123 )）。
+
+想要了解关于编写内核扩展的信息，参阅[ Kernel Programming Guide ]( https://developer.apple.com/library/mac/documentation/Darwin/Conceptual/KernelProgramming/About/About.html#//apple_ref/doc/uid/TP30000905 )。
+
 
 
 
