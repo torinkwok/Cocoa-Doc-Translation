@@ -39,14 +39,21 @@ Note: In OS X v10.4 and earlier versions of the operating system, only toolbar i
 大多数工具栏会包含简单的可点击的并且动作像一个button的项。最简单的工具栏项是通过它的图标（icon），标签（label），调板标签（palette label，在定制sheet窗口中使用），目标（target），动作（action）以及工具提示（tooltip）。大多数工具栏可以使用这些简单的项被展示出来。如果你需要在你的工具栏中有一些更复杂的东西，在一个工具栏项上调用*setView:*方法以提供定制视图。比如说你可以创建一个包含一个弹出式菜单或文本域以及一个button的工具栏。
 
 ```
-Note: In OS X v10.4 and earlier versions of the operating system, only toolbar items that are pop-up buttons can have key equivalents. In OS X v10.5 and later, all visible controls in a toolbar can have key equivalents.
 注意：在OS X 10.4以及更早版本的操作系统中，只有弹出式按钮项可以有一个快捷键。在OS X 10.5和之后的版本中，所有在工具栏中可见的NSControl子类对象都可以拥有快捷键。
 ```
 
+
+
 There are a couple of standard toolbar item identifiers that NSToolbar knows about. **NSToolbarSeparatorItemIdentifier** is the standard vertical line separator. **NSToolbarSpaceItemIdentifier** is a fixed width space. **NSToolbarFlexibleSpaceItemIdentifier** is a variable width space. Additionally, there are **NSToolbarShowColorsItemIdentifier**, **NSToolbarShowFontsItemIdentifier**, **NSToolbarPrintItemIdentifier**, and **NSToolbarCustomizeToolbarItemIdentifier**. These items are accessible only by identifier.
+
+If you need to change the action sent by a standard item, write a toolbarWillAddItem: notification method.
+
+When a user customizes the toolbar of an application’s window, that customization is saved as a user preference. The customized toolbar is used thereafter when the application launches in place of the default set of toolbar items specified by the developer
+
 
 有几个NSToolbar知道的标准工具栏项标识符。**NSToolbarSeparatorItemIdentifier**是标准的垂直分割线。 **NSToolbarSpaceItemIdentifier**是一个固定的宽度空间。**NSToolbarFlexibleSpaceItemIdentifier** 是一个可变的宽度空间。此外，还有**NSToolbarShowColorsItemIdentifier**, **NSToolbarShowFontsItemIdentifier**, **NSToolbarPrintItemIdentifier**, 以及**NSToolbarCustomizeToolbarItemIdentifier**。这些项只能通过标识符才能使用。
 
+如果你需要
 
 
 
