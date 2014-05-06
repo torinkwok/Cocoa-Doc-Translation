@@ -43,8 +43,9 @@ Note: In OS X v10.4 and earlier versions of the operating system, only toolbar i
 注意：在OS X 10.4以及更早版本的操作系统中，只有弹出式按钮项可以有一个快捷键。在OS X 10.5和之后的版本中，所有在工具栏中可见的NSControl子类对象都可以拥有快捷键。
 ```
 
+There are a couple of standard toolbar item identifiers that NSToolbar knows about. **NSToolbarSeparatorItemIdentifier** is the standard vertical line separator. **NSToolbarSpaceItemIdentifier** is a fixed width space. **NSToolbarFlexibleSpaceItemIdentifier** is a variable width space. Additionally, there are **NSToolbarShowColorsItemIdentifier**, **NSToolbarShowFontsItemIdentifier**, **NSToolbarPrintItemIdentifier**, and **NSToolbarCustomizeToolbarItemIdentifier**. These items are accessible only by identifier.
 
-
+有几个NSToolbar知道的标准工具栏项标识符。**NSToolbarSeparatorItemIdentifier**是标准的垂直分割线。 **NSToolbarSpaceItemIdentifier**是一个固定的宽度空间。**NSToolbarFlexibleSpaceItemIdentifier** 是一个可变的宽度空间。此外，还有**NSToolbarShowColorsItemIdentifier**, **NSToolbarShowFontsItemIdentifier**, **NSToolbarPrintItemIdentifier**, 以及**NSToolbarCustomizeToolbarItemIdentifier**。这些项只能通过标识符才能使用。
 
 
 
