@@ -1,6 +1,6 @@
 # Toolbar Management Checklist
 
-## Before you begin coding:
+#### Before you begin coding:
 
 * If you have image-based toolbar items, find or create the images (in the proper size and aspect ratio) and add them to your project as a resource.
 
