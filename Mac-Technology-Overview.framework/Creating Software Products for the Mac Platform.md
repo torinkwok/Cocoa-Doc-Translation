@@ -276,6 +276,32 @@ Mail.app提供了给用户预先构建容易定制的email消息的模板。因�
 
 开发者和web设计师可以为外部或内部的用户创建定制模板包。每个模板由一个HTML页面，一个plist文件，和一组一起被打包到bundle中的图像，它们随后应该存储在Mail.app的stationery文件夹中。HTML页面和图像定义了email消息的内容，并且还可以为定制用户内容而包含拖拽区域。plist文件用于给Mail.app提供关于这个模板的信息，比如模板的名字，ID和模板中缩略图的名字。要了解如何创建新的stationery模板，参阅[ Mail Programming Topics ]( https://developer.apple.com/library/mac/documentation/AppleApplications/Conceptual/MailArticles/Introduction/Introduction.html#//apple_ref/doc/uid/TP40006071 )。
 
+### Command-Line Tools
+Command-line tools are simple programs that manipulate data through a text-based interface. These tools do not use windows, menus, or other user interface elements traditionally associated with apps. Instead, they run from the command-line environment of the Terminal app. Because command-line tools require less explicit knowledge of the system to develop, they are often simpler to write than many other types of software. However, command-line tools are best suited to technically savvy users who are familiar with the conventions and syntax of the command-line interface.
+
+Xcode supports the creation of command-line tools from several initial code bases. For example, you can create a simple and portable tool using standard C or C++ library calls, or you can create a tool more specific to OS X using frameworks such as Core Foundation, Core Services, or Cocoa Foundation.
+
+### 命令行工具
+命令行工具是一通过基于文本的界面来操纵数据的简易程序。这些工具不会使用与apps所关联的那些常见的窗口，菜单或者其他用户界面元素。取而代之的是，它们从Terminal.app的命令行环境中运行。因为命令行工具对于开发来说相对更少地需要与特定系统相关的知识，所以它们通常要比其他类型的软件更容易编写。然而，命令行工具对那些熟悉命令行界面约定和语法的技术用户却是最好的工具。
+
+Xcode支持几个初始库来创建命令行工具。比如说你可以通过调用标准的C或C++库来创建一个简单的可移植的工具，或者你也可以使用更多针对OS X的框架来创建命令行工具，比如Core Foundation，Core Services，或者Cocoa Foundation。
+
+### Launch Items and Daemons
+Launch items are special programs that launch other programs or perform one-time operations during startup and login periods. Daemons are programs that run continuously and act as servers for processing client requests. You typically use launch items to launch daemons or perform periodic maintenance tasks, such as checking the hard drive for corrupted information.
+
+Launch items should not be confused with the login items found in the Accounts system preferences. Login items are typically agent applications that run within a given user’s session and can be configured by that user. Launch items are not user-configurable.
+
+Few developers should ever need to create launch items or daemons. These programs are reserved for special situations in which you need to guarantee the availability of a particular service. For example, OS X provides a launch item to run the DNS daemon. Similarly, a virus-detection program might install a launch item to launch a daemon that monitors the system for virus-like activity. In both cases, the launch item would run its daemon in the root session, which provides services to all users of the system. To learn more about launch items and daemons, see[ Daemons and Services Programming Guide ]( https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/Introduction.html#//apple_ref/doc/uid/10000172i ).
+
+### 启动项和守护进程（Launch Items and Daemons）
+启动项是在系统启动和登录期间启动其他程序或执行一次性草堆的特殊程序。守护进程是在系统中持续运行并且作为服务器来处理客户端请求的程序。你通常使用启动项去启动守护进程或者执行周期性的维护任务，比如说检查硬盘驱动器的损坏信息。
+
+不应该混淆启动项与Accounts系统偏好中的登录项。登录项通常是运行在给定用户空间中的代理应用程序，其可以由用户配置。启动项则不是用户可配置的。
+
+少数开发者需要创建启动项或者守护进程。这些程序是为你需要保证特定服务可用性的特殊情况下保留的。比如说OS X提供了一个启动项以运行DNS守护进程。类似地，一个病毒侦测程序可以安装一个启动项去启动一个监视系统中病毒活动的守护进程。在这两种情况中，启动项将会在root会话中运行他的守护进程，以将服务提供给系统的所有用户。要了解更多的关于启动项和守护进程的信息，参阅[ Daemons and Services Programming Guide ]( https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/Introduction.html#//apple_ref/doc/uid/10000172i )。
+
+
+
 
 
 
