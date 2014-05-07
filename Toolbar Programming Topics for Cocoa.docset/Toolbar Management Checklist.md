@@ -61,6 +61,63 @@ For further information see [“Adding and Removing Toolbar Items” ](https://d
 
 
 
+**What happens:** The NSToolbar object begins communicating with its delegate in order to populate the toolbar with toolbar items.
+
+1. The window gets the allowed and default toolbar item identifiers:
+    * The toolbar object calls the delegate method *toolbarAllowedItemIdentifiers:* to get the total set of possible toolbar items.
+    
+    * Unless it finds the default toolbar configuration in user preferences, the toolbar calls the delegate method *toolbarDefaultItemIdentifiers:* to get the default set.
+    To have the default configuration saved to and read from user preferences, the NSToolbar object’s *autosavesConfiguration* attribute must be set.
+
+    * If certain toolbar items should indicate a selected state, the delegate should implement *toolbarSelectableItemIdentifiers:* to return the identifiers of those toolbar items.
+    
+2. The window asks for each NSToolbarItem object (by identifier) to insert into the toolbar.
+
+    * To add each toolbar item to the toolbar, the NSToolbar object sends *toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:* to the delegate.
+    
+    If the NSToolbarItem object is image-based, get the image from the application bundle (for example, by using the NSImage class method *imageNamed:*) and send
+    *setImage:* to the toolbar item. Also set the toolbar item’s label, palette label, target, and action. You may also set a menu form representation.
+    
+    If the toolbar item is view-based, send *setView:* to the toolbar-item object, passing in the outlet to the view. Also set the toolbar item’s label, palette label,
+    its minimum size (minSize), and its maximum size (maxSize). (If you do not set a minSize and maxSize, the view does not appear because it is sized to zero in both
+    dimensions.) You may also set a menu form representation.
+
+    * If the delegate wants to customize a toolbar item before it is added, it can also implement the *toolbarWillAddItem:* notification method.
+
+For further information see [“Adding and Removing Toolbar Items,”](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Toolbars/Tasks/AddRemoveToolbarItems.html#//apple_ref/doc/uid/20000755-BBCGJCDJ ) [“Setting a Toolbar Item’s Representation,”](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Toolbars/Tasks/SettingTBItemRep.html#//apple_ref/doc/uid/20000722-BBCGFFHE) [“Setting a Toolbar Item’s Size”](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Toolbars/Tasks/SettingTBItemSize.html#//apple_ref/doc/uid/20000754-BAJEFGAB) and [“Setting a Toolbar Item’s Size.”](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Toolbars/Tasks/SettingTBItemSize.html#//apple_ref/doc/uid/20000754-BAJEFGAB)
+
+**What happens:** NSToolbar对象为了使用工具栏项填充工具栏，会开始与它的委托对象进行通信。
+
+1. 窗口获取当前允许的和默认的工具栏项的标识符：
+    * 工具栏对象调用委托方法*toolbarAllowedItemIdentifiers:*来获得当前全部可用的工具栏项。
+    
+    * 如果没有在用户偏好中找到工具栏的默认配置，那么工具栏对象可以调用委托方法*toolbarDefaultItemIdentifiers:*去获取默认的工具栏项集合。
+    
+    想要存储默认配置到用户偏好中或者从用户偏好中读取默认配置，必须设置工具栏对象的*autosavesConfiguration*属性。
+    
+    * 如果一个工具栏项要表明选中状态，委托应该实现*toolbarSelectableItemIdentifiers:*方法去返回那些工具栏项的标识符。
+    
+2. 窗口会要求每个NSToolbarItem对象（通过标识符）插入到工具栏中。
+    * 要将每个工具栏项添加到工具栏中，NSToolbar对象会给它的委托发送*toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:*消息。
+    
+    如果NSToolbarItem对象时基于图像的，会从application bundle获取图像（比如说使用NSImage的类方法*imageNamed:*）并给工具栏项发送*setImage:*消息。也可以设置工具栏项的标签（label），调板标签（palette label），目标（target）以及动作（action）。你还可以设置一个*菜单表现形式*。
+    
+    如果工具栏项是基于视图的，会给工具栏项对象发送*setView:*消息，并给视图传递一个outlet。也可以设置工具栏项的标签（label），调板标签（palette label），目标（target）以及动作（action）。你还可以设置一个*菜单表现形式*
+    
+    * 如果委托想要在一个工具栏项被添加到工具栏之前定制它，也可以实现*toolbarWillAddItem:*通知方法。
+
+了解进一步的信息请参阅：[“Adding and Removing Toolbar Items,”](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Toolbars/Tasks/AddRemoveToolbarItems.html#//apple_ref/doc/uid/20000755-BBCGJCDJ ) [“Setting a Toolbar Item’s Representation,”](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Toolbars/Tasks/SettingTBItemRep.html#//apple_ref/doc/uid/20000722-BBCGFFHE) [“Setting a Toolbar Item’s Size”](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Toolbars/Tasks/SettingTBItemSize.html#//apple_ref/doc/uid/20000754-BAJEFGAB)以及[“Setting a Toolbar Item’s Size.”](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Toolbars/Tasks/SettingTBItemSize.html#//apple_ref/doc/uid/20000754-BAJEFGAB)    
+
+
+
+
+
+
+
+
+
+
+
 
 
 
