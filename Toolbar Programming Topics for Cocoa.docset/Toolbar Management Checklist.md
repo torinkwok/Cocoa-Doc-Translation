@@ -135,9 +135,30 @@ For further information, see [“Validating Toolbar Items.”](https://developer
 
 ---------------
 
+**What happens:** The user chooses the Customize Toolbar menu item.
+
+* As the customization sheet opens, the toolbar object calls the delegate methods *toolbarAllowedItemIdentifiers:* and *toolbarDefaultItemIdentifiers:*. Then as the toolbar adds each toolbar item to the customization palette, it sends to the delegate if the item kind is custom image or custom view.
+
+* When the user adds an item to the toolbar, the toolbar invokes the delegate method *toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:*; if a new instance of the toolbar item is needed, the toolbar sends *toolbarWillAddItem:* to the delegate just before it adds the item.
+
+* Just after the user removes an item from the toolbar, the toolbar sends *toolbarDidRemoveItem:* to the delegate.
+
+* When the user drags the default set to the toolbar, the toolbar reuses as many items already in the toolbar as possible, calling *toolbarDidRemoveItem:* for the items it needs to remove and calling *toolbarWillAddItem:* for the ones it needs to add.
+
+Note that the toolbar does not call any delegate methods when the user closes the customization sheet.
 
 
+**What happens:** 用户选择`定制工具栏`菜单项。
 
+* 随着*定制卷帘窗口*打开，工具栏对象会调用委托方法*toolbarAllowedItemIdentifiers:* 和 *toolbarDefaultItemIdentifiers:*。然后当工具栏添加各自的工具栏项到定制调板时，如果项类型是定制图像或者定制视图类型，则会发送给委托。
+
+* 当用户向工具栏添加新项时，工具栏会调用委托方法*toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:*；如果需要一个新的工具栏项实例，工具栏会在它添加项之前给委托发送*toolbarWillAddItem:*消息。
+
+* 当用户从工具栏移除一个项后，工具栏会向委托发送*toolbarDidRemoveItem:*消息。
+
+* 当用户将默认项集合拖曳到工具栏上时，工具栏尽可能多地重用已经在工具栏中的项，当项需要移除时，会为其调用*toolbarDidRemoveItem:*方法，当一个项需要被添加事，会为其调用*toolbarWillAddItem:*方法。
+
+注意当用户关闭*定制卷帘窗口*时，工具栏不会调用任何委托方法。
 
 
 
