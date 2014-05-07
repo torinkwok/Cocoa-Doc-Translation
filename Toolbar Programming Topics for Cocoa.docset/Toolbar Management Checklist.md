@@ -38,6 +38,8 @@ Note: You can create a toolbar in Interface Builder as described in "Creating a 
 注意：你可以像“Creating a Toolbar in Interface Builder.”中描述的在Interface Builder中创建一个工具栏。工具栏可以有一个默认的项集合以及一个当前允许的项集合。如果你是为此目的使用Interface Builder，你可以忽略下面描述的很多编程步骤。在运行时，你可以将从*nib文件解归档的工具栏和项*与*那些以编程方式创建的工具栏和项* 组合使用。
 ```
 
+-----------
+
 **What happens:** The application launches or a document is created or opened, causing a nib file to be loaded and its object unarchived.
 
 * A custom controller class in *awakeFromNib* or, for document-based applications, an NSDocument subclass in *windowControllerDidLoadNib:* completes the following steps for each toolbar it uses:
@@ -59,7 +61,7 @@ For further information see [“Adding and Removing Toolbar Items” ](https://d
     
 更多进一步的信息请参阅[“Adding and Removing Toolbar Items”](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Toolbars/Tasks/AddRemoveToolbarItems.html#//apple_ref/doc/uid/20000755-BBCGJCDJ)
 
-
+-----------
 
 **What happens:** The NSToolbar object begins communicating with its delegate in order to populate the toolbar with toolbar items.
 
@@ -108,8 +110,17 @@ For further information see [“Adding and Removing Toolbar Items,”](https://d
 
 了解进一步的信息请参阅：[“Adding and Removing Toolbar Items,”](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Toolbars/Tasks/AddRemoveToolbarItems.html#//apple_ref/doc/uid/20000755-BBCGJCDJ ) [“Setting a Toolbar Item’s Representation,”](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Toolbars/Tasks/SettingTBItemRep.html#//apple_ref/doc/uid/20000722-BBCGFFHE) [“Setting a Toolbar Item’s Size”](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Toolbars/Tasks/SettingTBItemSize.html#//apple_ref/doc/uid/20000754-BAJEFGAB)以及[“Setting a Toolbar Item’s Size.”](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Toolbars/Tasks/SettingTBItemSize.html#//apple_ref/doc/uid/20000754-BAJEFGAB)    
 
+--------------
 
+**What happens:** Users click toolbar items; the runtime context of the application changes.
 
+Declare and implement action methods for each of your custom toolbar items, usually in a custom controller class.
+When you create a toolbar item you can identify the selector of each of these methods through the setAction: method of NSToolbarItem. Also set the target by calling the setTarget:, usually passing in self.
+
+Validate toolbar items.
+If the toolbar item is image-based, the target of an action should implement validateToolbarItem: if it wants validation more specialized than the default. If the toolbar item is view-based, you should create a subclass of NSToolbarItem for the item and override the validate method.
+
+**What happens:** 用户点击工具栏项；app的运行时上下谓会更改。
 
 
 
