@@ -114,13 +114,26 @@ For further information see [“Adding and Removing Toolbar Items,”](https://d
 
 **What happens:** Users click toolbar items; the runtime context of the application changes.
 
-Declare and implement action methods for each of your custom toolbar items, usually in a custom controller class.
-When you create a toolbar item you can identify the selector of each of these methods through the setAction: method of NSToolbarItem. Also set the target by calling the setTarget:, usually passing in self.
+* Declare and implement action methods for each of your custom toolbar items, usually in a custom controller class.
+When you create a toolbar item you can identify the selector of each of these methods through the *setAction:* method of NSToolbarItem. Also set the target by calling the *setTarget*:, usually passing in self.
 
-Validate toolbar items.
-If the toolbar item is image-based, the target of an action should implement validateToolbarItem: if it wants validation more specialized than the default. If the toolbar item is view-based, you should create a subclass of NSToolbarItem for the item and override the validate method.
+* Validate toolbar items.
+If the toolbar item is image-based, the target of an action should implement *validateToolbarItem:* if it wants validation more specialized than the default. If the toolbar item is view-based, you should create a subclass of NSToolbarItem for the item and override the *validate* method.
 
-**What happens:** 用户点击工具栏项；app的运行时上下谓会更改。
+For further information, see [“Validating Toolbar Items.”](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Toolbars/Tasks/ValidatingTBItems.html#//apple_ref/doc/uid/20000753-BAJGFHDD)
+
+
+**What happens:** 用户点击工具栏项时；app的运行时环境改变时。
+
+* 为你的每个工具栏项声明并实现action，通常是在一个定制的控制器类中做这些工作。
+当你创建一个工具栏项时，可以通过NSToolbarItem的*setAction:*方法对这些方法的selector进行标记。也可以通过调用*setTarget*方法来设置目标（target），通常将控制器自身作为*setTarget*方法的参数传入。
+
+* 验证工具栏项。
+如果工具栏项时基于图像的，且如果想要比默认的验证更有针对性，则其action的目标应该实现*validateToolbarItem:*方法。如果工具栏项时基于视图的，你应该为该项创建NSToolbarItem的子类，并且重写其*validate*方法。
+
+进一步的信息请参阅：[“Validating Toolbar Items.”](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Toolbars/Tasks/ValidatingTBItems.html#//apple_ref/doc/uid/20000753-BAJGFHDD)
+
+---------------
 
 
 
