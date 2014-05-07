@@ -12,7 +12,7 @@
 
 * Add to an application menu (usually named View) the menu items Show Toolbar and Customize Toolbar..., connect these to the First Responder icon in the nib file window, and select the actions *toggleToolbarShown:* and *runToolbarCustomizationPalette:*. (Note that NSWindow automatically changes *“Show Toolbar”* to *“Hide Toolbar”* as appropriate.)
 
-For further information, see [ "Adding and Removing Toolbar Items" ]( https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Toolbars/Tasks/AddRemoveToolbarItems.html#//apple_ref/doc/uid/20000755-BBCGJCDJ ).”
+For further information, see [ "Adding and Removing Toolbar Items" ](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Toolbars/Tasks/AddRemoveToolbarItems.html#//apple_ref/doc/uid/20000755-BBCGJCDJ).”
 
 ```
 Note: You can create a toolbar in Interface Builder as described in "Creating a Toolbar in Interface Builder". The toolbar can have a default set and allowed set of toolbar items. If you use Interface Builder for this purpose, you may ignore many of the programmatic steps described below. At runtime, you can combine toolbars and toolbar items unarchived from a nib file and those created programmatically.
@@ -32,7 +32,7 @@ Note: You can create a toolbar in Interface Builder as described in "Creating a 
 
 * 添加一个应用程序菜单（通常叫做`视图`)和显示`显示工具栏`及`定制工具栏...`的菜单项，将它们连接到nib文件窗口中的*First Responder*图标，并且选择与*toggleToolbarShown:*和*runToolbarCustomizationPalette:*两个动作进行连接。（注意NSWindow会根据情况自动将*Show Toolbar*改变成*Hide Toolbar*）。
 
-了解进一步的信息，参阅：[ “Adding and Removing Toolbar Items” ]( https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Toolbars/Tasks/AddRemoveToolbarItems.html#//apple_ref/doc/uid/20000755-BBCGJCDJ )”。
+了解进一步的信息，参阅：[“Adding and Removing Toolbar Items”](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Toolbars/Tasks/AddRemoveToolbarItems.html#//apple_ref/doc/uid/20000755-BBCGJCDJ)”。
 
 ```
 注意：你可以像“Creating a Toolbar in Interface Builder.”中描述的在Interface Builder中创建一个工具栏。工具栏可以有一个默认的项集合以及一个当前允许的项集合。如果你是为此目的使用Interface Builder，你可以忽略下面描述的很多编程步骤。在运行时，你可以将从*nib文件解归档的工具栏和项*与*那些以编程方式创建的工具栏和项* 组合使用。
@@ -40,15 +40,24 @@ Note: You can create a toolbar in Interface Builder as described in "Creating a 
 
 **What happens:** The application launches or a document is created or opened, causing a nib file to be loaded and its object unarchived.
 
-* A custom controller class in awakeFromNib or, for document-based applications, an NSDocument subclass in windowControllerDidLoadNib: completes the following steps for each toolbar it uses:
-    1. It makes a new NSToolbar object using initWithIdentifier:.
-    2. It sets attributes of the toolbar if the defaults won’t do using setAllowsUserCustomization:, setAutosavesConfiguration:, and
-    setDisplayMode:.
+* A custom controller class in *awakeFromNib* or, for document-based applications, an NSDocument subclass in *windowControllerDidLoadNib:* completes the following steps for each toolbar it uses:
+    1. It makes a new NSToolbar object using *initWithIdentifier:*.
+    2. It sets attributes of the toolbar if the defaults won’t do using *setAllowsUserCustomization:*, *setAutosavesConfiguration:*, and
+    *setDisplayMode:*.
     3. It sets the toolbar’s delegate (usually itself).
-    4. It associates the toolbar with a window by sending the NSWindow object a setToolbar: message.
+    4. It associates the toolbar with a window by sending the NSWindow object a *setToolbar:* message.
     
-For further information see “Adding and Removing Toolbar Items”
+For further information see [“Adding and Removing Toolbar Items” ](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Toolbars/Tasks/AddRemoveToolbarItems.html#//apple_ref/doc/uid/20000755-BBCGJCDJ)
 
+**What happens:** 在应用程序启动，或者创建或打开一个文档时，会引起nib文件被加载并且nib文件中的对象被解归档。
+
+* 一个定制的控制器会在*awakeFromNib*中，而对于一个基于文档的应用中的NSDocument子类来说会在*windowControllerDidLoadNib:*中，为它所使用的每个工具栏完成如下的步骤：
+    1. 使用*initWithIdentifier:*方法创建一个新的NSToolbar实例。
+    2. 使用*setAllowsUserCustomization:*，*setAutosavesConfiguration:*以及*setDisplayMode:*来更改工具栏被创建时默认的属性。
+    3. 设置工具栏实例的委托（通常是该对象本身）
+    4. 通过给NSWindow对象发送*setToolbar:*消息来将创建好的工具栏与一个NSWindow相关联。
+    
+更多进一步的信息请参阅[“Adding and Removing Toolbar Items”](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Toolbars/Tasks/AddRemoveToolbarItems.html#//apple_ref/doc/uid/20000755-BBCGJCDJ)
 
 
 
