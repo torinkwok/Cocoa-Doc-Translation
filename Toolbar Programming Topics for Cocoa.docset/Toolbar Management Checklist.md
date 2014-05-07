@@ -15,7 +15,7 @@
 For further information, see [ "Adding and Removing Toolbar Items" ]( https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Toolbars/Tasks/AddRemoveToolbarItems.html#//apple_ref/doc/uid/20000755-BBCGJCDJ ).”
 
 ```
-Note: You can create a toolbar in Interface Builder as described in [ “Creating a Toolbar in Interface Builder.” ]( https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Toolbars/Articles/ToolbarInIB.html#//apple_ref/doc/uid/TP40008136-SW1 ) The toolbar can have a default set and allowed set of toolbar items. If you use Interface Builder for this purpose, you may ignore many of the programmatic steps described below. At runtime, you can combine toolbars and toolbar items unarchived from a nib file and those created programmatically.
+Note: You can create a toolbar in Interface Builder as described in "Creating a Toolbar in Interface Builder". The toolbar can have a default set and allowed set of toolbar items. If you use Interface Builder for this purpose, you may ignore many of the programmatic steps described below. At runtime, you can combine toolbars and toolbar items unarchived from a nib file and those created programmatically.
 ```
 
 # 工具栏管理清单
@@ -35,7 +35,7 @@ Note: You can create a toolbar in Interface Builder as described in [ “Creatin
 了解进一步的信息，参阅：[ “Adding and Removing Toolbar Items” ]( https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Toolbars/Tasks/AddRemoveToolbarItems.html#//apple_ref/doc/uid/20000755-BBCGJCDJ )”。
 
 ```
-注意：你可以像[ “Creating a Toolbar in Interface Builder.” ](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Toolbars/Articles/ToolbarInIB.html#//apple_ref/doc/uid/TP40008136-SW1 )中描述的在Interface Builder中创建一个工具栏。工具栏可以有一个默认的项集合以及一个当前允许的项集合。如果你是为此目的使用Interface Builder，你可以忽略下面描述的很多编程步骤。在运行时，你可以将从*nib文件解归档的工具栏和项*与*那些以编程方式创建的工具栏和项* 组合使用。
+注意：你可以像“Creating a Toolbar in Interface Builder.”中描述的在Interface Builder中创建一个工具栏。工具栏可以有一个默认的项集合以及一个当前允许的项集合。如果你是为此目的使用Interface Builder，你可以忽略下面描述的很多编程步骤。在运行时，你可以将从*nib文件解归档的工具栏和项*与*那些以编程方式创建的工具栏和项* 组合使用。
 ```
 
 **What happens:** The application launches or a document is created or opened, causing a nib file to be loaded and its object unarchived.
