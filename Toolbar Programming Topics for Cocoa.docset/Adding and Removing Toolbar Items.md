@@ -214,13 +214,31 @@ The method *removeItemAtIndex:* removes the toolbar item at the specified index.
 
 An NSToolbar delegate can optionally be notified when toolbar items have been added or removed from the toolbar.
 
-The optional delegate method toolbarWillAddItem: provides notification that a toolbar item is about to be added to the toolbar. The identifier for the toolbar item is contained in the notification's userInfo dictionary under the key @"item". The typical use for this method is to set the target for a standard toolbar item, such as Print, and perhaps to alter other attributes of the item, such as its tool tip.
+The optional delegate method *toolbarWillAddItem:* provides notification that a toolbar item is about to be added to the toolbar. The identifier for the toolbar item is contained in the notification's userInfo dictionary under the key @"item". The typical use for this method is to set the target for a standard toolbar item, such as Print, and perhaps to alter other attributes of the item, such as its tool tip.
 
 The example code in Listing 5 sets the target and action for the standard toolbar Print item when the delegate is notified that the item will be added to the toolbar.
 
+**Listing 5**  An implementation of the *toolbarWillAddItem:* method to configure an NSToolbarItem before it is added to the toolbar
+
 ## 当从工具栏移除工具栏项时得到通知
 
+在工具栏项被从工具栏中添加或移除之后，NSToolbar委托能够选择性地被通知到。
 
+可选的委托方法*toolbarWillAddItem:*提供了一个工具栏项打算被添加到工具栏中时的通知。该工具栏项的标识符被包含在通知对象的userInfo词典中的`@"item"`键下。该方法通常用于为诸如`打印`之类的标准工具栏项设置目标（target），还可能修改该项的其他属性，比如它的工具提示。
+
+Listing 5中的范例代码在委托被通知到标准工具栏的`打印`项将被添加到工具栏中时，为其设置了目标（target）和动作（action）。
+
+**Listing 5**  一份*toolbarWillAddItem:* 方法的简单实现，用于在一个NSToolbarItem实例被添加到工具栏之前对其进行配置。
+```
+- (void) toolbarWillAddItem:(NSNotification *)notification {
+    NSToolbarItem *addedItem = [[notification userInfo] objectForKey: @"item"];
+    if ([[addedItem itemIdentifier] isEqual: NSToolbarPrintItemIdentifier]) {
+    [addedItem setToolTip:@"Print Your Document"];
+    [addedItem setTarget:self];
+    [addedItem setAction:@selector(myCustomPrintAction:)];
+    }
+}
+```
 
 
 
