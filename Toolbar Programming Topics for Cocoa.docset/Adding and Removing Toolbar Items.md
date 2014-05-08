@@ -34,7 +34,7 @@ The example implementation shown in Listing 1 configures the toolbar to allow a 
 ```
 
 **Figure 1**  Example toolbar item configuration
-![ Figure 1 ](http://i.imgbox.com/34XfiPV1.png)
+![ Figure 1 ](http://i.imgbox.com/8Ya6UAJn.gif)
 
 
 
