@@ -30,9 +30,9 @@ The lower the layer a technology is in, the more specialized are the services it
 * The Core OS layer defines programming interfaces that are related to hardware and networking, including interfaces for running high-performance computation tasks on a computer’s CPU and GPU.
 * The Kernel and Device Drivers layer consists of the Mach kernel environment, device drivers, BSD library functions (libSystem), and other low-level components. The layer includes support for file systems, networking, security, interprocess communication, programming languages, device drivers, and extensions to the kernel.
 
-``` 
-Relevant Chapters: “Cocoa Application Layer,” “Media Layer,” “Core Services Layer,” “Core OS Layer,” “Kernel and Device Drivers Layer”
-```
+
+> Relevant Chapters: “Cocoa Application Layer,” “Media Layer,” “Core Services Layer,” “Core OS Layer,” “Kernel and Device Drivers Layer”
+
 
 技术越底层，提供的服务就越有针对性。通常地，较高层的技术涵盖较低层的技术以提供通用的app行为。一个好的经验法则是尽量使用能够达到你的app的目的的众多编程接口中层次最高的那一个。如下是一个关于OS X分层的小结：
 
@@ -42,9 +42,9 @@ Relevant Chapters: “Cocoa Application Layer,” “Media Layer,” “Core Ser
 * ***核心操作系统层（Core OS）***定义了与硬件和网络相关的编程接口，包括使用CPU和GPU执行高性能计算任务的编程接口。
 * ***内核和设备驱动层（Kernel and Device Drivers）***由Mach内核环境，设备驱动，BSD库函数（libSystem），以及其他底层组件等组成。这一层包含了对文件系统，网络，安全，进程间的通信，编程语言，设备驱动，以及内核扩展的支持。
 
-``` 
-相关章节： “Cocoa Application Layer,” “Media Layer,” “Core Services Layer,” “Core OS Layer,” “Kernel and Device Drivers Layer”
-```
+
+> 相关章节： “Cocoa Application Layer,” “Media Layer,” “Core Services Layer,” “Core OS Layer,” “Kernel and Device Drivers Layer”
+
 
 ### You Can Create Many Different Kinds of Software for Mac
 Using the developer tools and system frameworks, you can develop a wide variety of software for Mac, including the following:
@@ -55,9 +55,9 @@ Using the developer tools and system frameworks, you can develop a wide variety 
 * __App plug-ins and loadable bundles.__ Plug-ins extend the capabilities of other apps; bundles contain code and resources that apps can dynamically load at runtime.
 * __System plug-ins.__ System plug-ins, such as audio units, kernel extensions, I/O Kit device drivers, preference panes, Spotlight importers, and screen savers, extend the capabilities of the system.
 
-```
-Relevant Chapter: “Creating Software Products for the Mac Platform”
-```
+
+> Relevant Chapter: “Creating Software Products for the Mac Platform”
+
 
 ### 你可以为Mac创建很多不同类型的软件
 使用SDK和系统框架，你可以为Mac开发五花八门的软件，包括下面这些：
@@ -69,27 +69,27 @@ Relevant Chapter: “Creating Software Products for the Mac Platform”
 * __System plug-ins__ 像音频装置，内核扩展，I/O组件，设备驱动，偏好设置面板，Spotlight导入器以及屏幕保护等插件扩展了系统的功能。
 
 
-```
-相关章节： “Creating Software Products for the Mac Platform”
-```
+
+> 相关章节： “Creating Software Products for the Mac Platform”
+
 
 ### When Porting a Cocoa Touch App, Be Aware of API Similarities and Differences
 The technology stacks on which Cocoa and Cocoa Touch apps are based have many similarities. Some system frameworks are identical (or nearly identical) in each platform, including Foundation, Core Data, and AV Foundation. This commonality of API makes some migration tasks—for example, porting the data model of your Cocoa Touch app—easy.
 
 Other migration tasks are more challenging because they depend on frameworks that reflect the differences between the platforms. For example, porting controller objects and revising the user interface are more demanding tasks because they depend on AppKit and UIKit, which are the primary app frameworks in the Cocoa and CocoaTouch layers, respectively.
 
-```
-Relevant Chapter: “Migrating from Cocoa Touch”
-```
+
+> Relevant Chapter: “Migrating from Cocoa Touch”
+
 
 ### 当移植一个Cocoa-Touch应用时，要了解API之间的异同
 Cocoa和Cocoa-Touch有许多相似之处。甚至一些系统框架在两个平台上时完全相同（或几乎相同）的，包括Foundation，Core Data以及AV Foundation框架。两个API之间的共性使得迁移工作——比如移植你的Cocoa-Touch应用的数据模型——变得很容易。
 
 其他的迁移工作更具有挑战性，因为它们依赖于能反映出平台差异的框架。比方说，移植控制器对象和校正用户界面都是很吃力的工作，因为它们分别依赖于Cocoa和CocoaTouch层各自的首要app框架：AppKit和UIKit。
 
-```
-相关章节： “Migrating from Cocoa Touch”
-```
+
+> 相关章节： “Migrating from Cocoa Touch”
+
 
 ## See Also
 
