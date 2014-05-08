@@ -45,6 +45,8 @@ The example code in Listing 2 causes the default items to be configured as shown
 
 通过实现必要的委托方法*toolbarDefaultIdentifiers:*来返回工具栏的默认项集合。实现被期望返回一个包含一组指定工具栏默认项的队列。如果在工具栏初始化时，没有在user defaults中找到覆盖值（通过以YES为参数调用*setAutosavesConfiguration:*方法），这些项就会被用于工具栏的默认项。此外，如果用户选择重置为默认工具栏，*toolbarDefaultItemIndentifiers:*方法返回的集合也会被用到。
 
+在Listing 2中的范例代码引起默认项被配置，如Figure 2中所示。
+
 **Listing 2**  *toolbarDefaultItemIdentifiers:*方法实现范例
 ```
 - (NSArray *) toolbarDefaultItemIdentifiers: (NSToolbar *) toolbar {
@@ -85,15 +87,19 @@ Listing 3中的范例代码为app的定制工具栏项（SaveDocToolbarItemIdent
     if ([itemIdentifier isEqual: SaveDocToolbarItemIdentifier]) {
     // Set the text label to be displayed in the
     // toolbar and customization palette
+    // 设置要在工具栏和定制调板中显示的文本标签。
     [toolbarItem setLabel:@"Save"];
     [toolbarItem setPaletteLabel:@"Save"];
  
     // Set up a reasonable tooltip, and image
     // you will likely want to localize many of the item's properties
+    // 创建一个合理的工具提示和图像
+    // 你很可能会想要本地化很多项的属性
     [toolbarItem setToolTip:@"Save Your Document"];
     [toolbarItem setImage:[NSImage imageNamed:@"SaveDocumentItemImage"]];
  
     // Tell the item what message to send when it is clicked
+    // 告诉新创建的项当它被点击时，会发送什么消息。
     [toolbarItem setTarget:self];
     [toolbarItem setAction:@selector(saveDocument:)];
     } else  {
@@ -101,6 +107,8 @@ Listing 3中的范例代码为app的定制工具栏项（SaveDocToolbarItemIdent
     // provided or supported by us or Cocoa
     // Returning nil will inform the toolbar
     // that this kind of item is not supported
+    // 当itemIdentifier指的是我们或者Cocoa都不曾提供的项时...
+    // 返回nil将通知工具栏：不支持该项的类型
     toolbarItem = nil;
     }
     return toolbarItem;
