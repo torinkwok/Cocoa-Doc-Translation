@@ -12,22 +12,6 @@ The required delegate method *toolbarAllowedItemIdentifiers:* returns an array o
 
 The example implementation shown in Listing 1 configures the toolbar to allow a selection of the standard Cocoa toolbar items as well as two application specific toolbar items. The resulting toolbar is shown in Figure 1.
 
-**Listing 1**  Example *toolbarAllowedItemIdentifiers:* method implementation
-```
-- (NSArray *) toolbarAllowedItemIdentifiers: (NSToolbar *) toolbar {
-    return [NSArray arrayWithObjects: SaveDocToolbarItemIdentifier,
-        NSToolbarPrintItemIdentifier,
-        NSToolbarShowColorsItemIdentifier,
-        NSToolbarShowFontsItemIdentifier,
-        NSToolbarCustomizeToolbarItemIdentifier,
-        NSToolbarFlexibleSpaceItemIdentifier,
-        NSToolbarSpaceItemIdentifier,
-        NSToolbarSeparatorItemIdentifier, nil];
-}
-```
-
-**Figure 1**  Example toolbar item configuration
-![ Figure 1 ](http://i.imgbox.com/34XfiPV1.png)
 
 ## 被允许的和默认的工具栏项
 
