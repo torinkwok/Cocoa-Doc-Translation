@@ -126,6 +126,63 @@ Returning a toolbar item that creates a custom view is somewhat more complicated
 > 注意：自OS X 10.5起，如果你在一个NSToolbarItem对象上调用setView:方法，而没有调用setMinSize:或setMaxSize:方法，那么工具栏项会将自己的最大和最小尺寸设置为与视图的frame相同。
 
 
+One side effect of using a custom view for a toolbar item that must be considered is the case when the toolbar is being displayed as text-only. The default behavior is to display the item's label as disabled text, effectively disabling the toolbar item entirely. A toolbar item can instead specify an NSMenu instance that will be used when the toolbar is displayed in the text-only mode. This menu is also used when a toolbar item that uses a custom view is displayed in a toolbar's overflow menu.
+
+The example code in Listing 4 implements the search toolbar item as shown in Figure 1.
+
+*Listing 4*  A *toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:* method implementation to create an view- based NSToolbarItem instance
+
+为工具栏项使用定制视图的一个副作用是必须考虑*当工具栏以text-only模式显示时的情况。默认的行为是以禁用文本的方式显示该项的标签，有效地完全禁用工具栏项。一个工具栏项可以使用一个NSMenu实例，该菜单实例在工具栏以text-only模式显示时会被用到。这个菜单实例在使用定制视图的工具栏项被显示在一个工具栏的溢出菜单中时也会被用到。
+
+Listing 4中的范例代码实现了如Figure 1中所演示的`搜索工具栏项`
+
+*Listing 4*  一个*toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:*方法的实现，用于创建一个机遇视图的NSToolbarItem实例
+
+```
+- (NSToolbarItem *) toolbar:(NSToolbar *)toolbar
+      itemForItemIdentifier:(NSString *)itemIdentifier
+  willBeInsertedIntoToolbar:(BOOL)flag
+{
+    NSToolbarItem *toolbarItem = [[[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier] autorelease];
+ 
+    if ([itemIdentifier isEqual: SearchDocToolbarItemIdentifier]) {
+    // Set up the standard properties
+    [toolbarItem setLabel:@"Search"];
+    [toolbarItem setPaletteLabel:@"Search"];
+    [toolbarItem setToolTip:@"Search Your Document"];
+ 
+    // Use a custom view, a rounded text field,
+    // attached to searchFieldOutlet in InterfaceBuilder as
+    // the custom view
+    [toolbarItem setView:searchFieldOutlet];
+    [toolbarItem setMinSize:NSMakeSize(100,NSHeight([searchFieldOutlet frame]))];
+    [toolbarItem setMaxSize:NSMakeSize(400,NSHeight([searchFieldOutlet frame]))];
+ 
+    // Create the custom menu
+    NSMenu *submenu=[[[NSMenu alloc] init] autorelease];
+    NSMenuItem *submenuItem=[[[NSMenuItem alloc] initWithTitle: @"Search Panel"
+            action:@selector(searchUsingSearchPanel:)
+            keyEquivalent: @""] autorelease];
+    NSMenuItem *menuFormRep=[[[NSMenuItem alloc] init] autorelease];
+ 
+    [submenu addItem: submenuItem];
+    [submenuItem setTarget:self];
+    [menuFormRep setSubmenu:submenu];
+    [menuFormRep setTitle:[toolbarItem label]];
+    [toolbarItem setMenuFormRepresentation:menuFormRep];
+    } else {
+    // itemIdentifier referred to a toolbar item that is not
+    // not provided or supported by us or cocoa
+    // Returning nil will inform the toolbar
+    // this kind of item is not supported
+    toolbarItem = nil;
+    }
+    return toolbarItem;
+}
+```
+
+
+
 
 
 
