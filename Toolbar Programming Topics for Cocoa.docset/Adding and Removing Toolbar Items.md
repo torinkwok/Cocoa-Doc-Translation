@@ -128,15 +128,19 @@ Returning a toolbar item that creates a custom view is somewhat more complicated
 
 One side effect of using a custom view for a toolbar item that must be considered is the case when the toolbar is being displayed as text-only. The default behavior is to display the item's label as disabled text, effectively disabling the toolbar item entirely. A toolbar item can instead specify an NSMenu instance that will be used when the toolbar is displayed in the text-only mode. This menu is also used when a toolbar item that uses a custom view is displayed in a toolbar's overflow menu.
 
-The example code in Listing 4 implements the search toolbar item as shown in Figure 1.
+The example code in Listing 4 implements the `search toolbar item` as shown in Figure 1.
 
-*Listing 4*  A *toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:* method implementation to create an view- based NSToolbarItem instance
+**Listing 4**  A *toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:* method implementation to create an view- based NSToolbarItem instance
+
+> Note: Beginning in OS X v10.5, if you always set a fresh view on the toolbar item in toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:, then NSToolbar does not copy that view. In previous versions of the operating system, NSToolbar would always copy the view when displaying it in the customization palette, using a keyed archiver.
+
+
 
 为工具栏项使用定制视图的一个副作用是必须考虑*当工具栏以text-only模式显示时的情况。默认的行为是以禁用文本的方式显示该项的标签，有效地完全禁用工具栏项。一个工具栏项可以使用一个NSMenu实例，该菜单实例在工具栏以text-only模式显示时会被用到。这个菜单实例在使用定制视图的工具栏项被显示在一个工具栏的溢出菜单中时也会被用到。
 
 Listing 4中的范例代码实现了如Figure 1中所演示的`搜索工具栏项`
 
-*Listing 4*  一个*toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:*方法的实现，用于创建一个机遇视图的NSToolbarItem实例
+**Listing 4**  一个*toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:*方法的实现，用于创建一个机遇视图的NSToolbarItem实例
 
 ```
 - (NSToolbarItem *) toolbar:(NSToolbar *)toolbar
@@ -147,6 +151,7 @@ Listing 4中的范例代码实现了如Figure 1中所演示的`搜索工具栏�
  
     if ([itemIdentifier isEqual: SearchDocToolbarItemIdentifier]) {
     // Set up the standard properties
+    // 创建标准属性
     [toolbarItem setLabel:@"Search"];
     [toolbarItem setPaletteLabel:@"Search"];
     [toolbarItem setToolTip:@"Search Your Document"];
@@ -154,6 +159,8 @@ Listing 4中的范例代码实现了如Figure 1中所演示的`搜索工具栏�
     // Use a custom view, a rounded text field,
     // attached to searchFieldOutlet in InterfaceBuilder as
     // the custom view
+    // 使用一个定制视图：环形文本域
+    // 在Interface Builder中将其作为定制视图附加到searchFieldOutlet
     [toolbarItem setView:searchFieldOutlet];
     [toolbarItem setMinSize:NSMakeSize(100,NSHeight([searchFieldOutlet frame]))];
     [toolbarItem setMaxSize:NSMakeSize(400,NSHeight([searchFieldOutlet frame]))];
@@ -172,15 +179,18 @@ Listing 4中的范例代码实现了如Figure 1中所演示的`搜索工具栏�
     [toolbarItem setMenuFormRepresentation:menuFormRep];
     } else {
     // itemIdentifier referred to a toolbar item that is not
-    // not provided or supported by us or cocoa
+    // provided or supported by us or cocoa
     // Returning nil will inform the toolbar
     // this kind of item is not supported
+    // itemIdentifier指向我们或者Cocoa不支持或未提供的工具栏项。
+    // 返回nil将通知工具栏：不支持该项类型
     toolbarItem = nil;
     }
     return toolbarItem;
 }
 ```
 
+> 注意：从OS X 10.5开始，如果你总是在toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:中在工具栏项上设置新的视图，那么NSToolbar不会复制那个视图。在之前版本的操作系统中，当NST oolbar在定制调板中显示一个view-based项时，总是会使用键值归档复制该视图。
 
 
 
