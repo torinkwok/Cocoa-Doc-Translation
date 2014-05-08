@@ -123,9 +123,7 @@ Returning a toolbar item that creates a custom view is somewhat more complicated
 
 返回一个创建定制视图的工具栏项有点复杂。除了要指定简单工具栏项所必需的信息之外，app还必须显示设置要用于绘制该项的视图，设置视图合理显示所要求的最小尺寸，以及该工具栏项可以被重置的最大尺寸。
 
-```
-注意：自OS X 10.5起，如果你在一个NSToolbarItem对象上调用setView:方法，而没有调用setMinSize:或setMaxSize:方法，那么工具栏项会将自己的最大和最小尺寸设置为与视图的frame相同。
-```
+> 注意：自OS X 10.5起，如果你在一个NSToolbarItem对象上调用setView:方法，而没有调用setMinSize:或setMaxSize:方法，那么工具栏项会将自己的最大和最小尺寸设置为与视图的frame相同。
 
 
 
