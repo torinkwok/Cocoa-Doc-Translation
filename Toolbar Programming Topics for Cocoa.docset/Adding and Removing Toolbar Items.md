@@ -117,9 +117,9 @@ Listing 3中的范例代码为app的定制工具栏项（SaveDocToolbarItemIdent
 
 Returning a toolbar item that creates a custom view is somewhat more complicated. In addition to specifying the information required for a simple toolbar item, the application must also explicitly set the view that should be used to draw the item, the minimum size that the view requires to display properly, and the maximum size that the custom toolbar item can be resized.
 
-```
-Note: As of OS X v10.5, if you call setView: on an NSToolbarItem object without also calling setMinSize: or setMaxSize:, the toolbar item sets its minimum and maximum size equal to the view’s frame.
-```
+
+> Note: As of OS X v10.5, if you call setView: on an NSToolbarItem object without also calling setMinSize: or setMaxSize:, the toolbar item sets its minimum and maximum size equal to the view’s frame.
+
 
 返回一个创建定制视图的工具栏项有点复杂。除了要指定简单工具栏项所必需的信息之外，app还必须显示设置要用于绘制该项的视图，设置视图合理显示所要求的最小尺寸，以及该工具栏项可以被重置的最大尺寸。
 
