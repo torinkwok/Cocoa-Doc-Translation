@@ -37,11 +37,28 @@ The example implementation shown in Listing 1 configures the toolbar to allow a 
 
 ![ Figure 1 ](http://i.imgbox.com/8Ya6UAJn.gif)
 
-The default set of toolbar items is returned by implementing the required method toolbarDefaultItemIdentifiers:. The implementation is expected to return an array of identifiers containing the specified toolbar's default items. If during the toolbar's initialization no overriding values are found in the user defaults (by having called setAutosavesConfiguration: with YES as the argument) these items are used as the default set for the toolbar. In addition, if the user chooses to revert to the default toolbar items the set returned by toolbarDefaultItemIdentifiers: will be used.
+The default set of toolbar items is returned by implementing the required method *toolbarDefaultItemIdentifiers:*. The implementation is expected to return an array of identifiers containing the specified toolbar's default items. If during the toolbar's initialization no overriding values are found in the user defaults (by having called *setAutosavesConfiguration:* with YES as the argument) these items are used as the default set for the toolbar. In addition, if the user chooses to revert to the default toolbar items the set returned by *toolbarDefaultItemIdentifiers:* will be used.
 
 The example code in Listing 2 causes the default items to be configured as shown in Figure 2.
 
+通过实现必要的委托方法*toolbarDefaultIdentifiers:*来返回工具栏的默认项集合。实现被期望返回一个包含一组指定工具栏默认项的队列。如果在工具栏初始化时，没有在user defaults中找到覆盖值（通过以YES为参数调用*setAutosavesConfiguration:*方法），这些项就会被用于工具栏的默认项。此外，如果用户选择重置为默认工具栏，*toolbarDefaultItemIndentifiers:*方法返回的集合也会被用到。
 
+*Listing 2*  Example toolbarDefaultItemIdentifiers: method implementation
+```
+- (NSArray *) toolbarDefaultItemIdentifiers: (NSToolbar *) toolbar {
+    return [NSArray arrayWithObjects: SaveDocToolbarItemIdentifier,
+        NSToolbarPrintItemIdentifier,
+        NSToolbarSeparatorItemIdentifier,
+        NSToolbarShowColorsItemIdentifier,
+        NSToolbarShowFontsItemIdentifier,
+        NSToolbarFlexibleSpaceItemIdentifier,
+        NSToolbarSpaceItemIdentifier,
+        SearchDocToolbarItemIdentifier, nil];
+}
+```
+*Figure 2*  Example toolbar items configuration
+
+![ Figure 2 ](http://i.imgbox.com/H5clCHoL.gif)
 
 
 
