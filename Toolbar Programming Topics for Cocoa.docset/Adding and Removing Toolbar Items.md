@@ -193,6 +193,36 @@ Listing 4中的范例代码实现了如Figure 1中所演示的`搜索工具栏�
 > 注意：从OS X 10.5开始，如果你总是在toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:中在工具栏项上设置新的视图，那么NSToolbar不会复制那个视图。在之前版本的操作系统中，当NST oolbar在定制调板中显示一个view-based项时，总是会使用键值归档复制该视图。
 
 
+## Programmatically inserting and removing toolbar items
+
+While under most circumstances the user will add and remove items from a toolbar using the customization sheet or the context menu, it is possible to insert and remove items programmatically.
+
+The method *insertItemWithItemIdentifier:atIndex:* inserts the item specified by the item identifier at the specified index.
+
+The method *removeItemAtIndex:* removes the toolbar item at the specified index.
+
+## 以编程的方式插入和移除工具栏项
+
+虽然在大多数情况下，用户会使用*定制窗口*或者*上下文菜单*来从一个工具栏中添加或者移除项，但是也有可能需要以编程的方式插入和移除项。
+
+方法*insertItemWithItemIdentifier:atIndex:*用于在指定的索引位置插入通过*项标识符（item identifier）*指定的工具栏项。
+
+方法*removeItemAtIndex:*用于移除处在指定索引位置的工具栏项。
+
+
+## Being notified when items are added or removed from the toolbar
+
+An NSToolbar delegate can optionally be notified when toolbar items have been added or removed from the toolbar.
+
+The optional delegate method toolbarWillAddItem: provides notification that a toolbar item is about to be added to the toolbar. The identifier for the toolbar item is contained in the notification's userInfo dictionary under the key @"item". The typical use for this method is to set the target for a standard toolbar item, such as Print, and perhaps to alter other attributes of the item, such as its tool tip.
+
+The example code in Listing 5 sets the target and action for the standard toolbar Print item when the delegate is notified that the item will be added to the toolbar.
+
+## 当从工具栏移除工具栏项时得到通知
+
+
+
+
 
 
 
