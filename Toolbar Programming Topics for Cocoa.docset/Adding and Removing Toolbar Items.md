@@ -214,7 +214,7 @@ The method *removeItemAtIndex:* removes the toolbar item at the specified index.
 
 An NSToolbar delegate can optionally be notified when toolbar items have been added or removed from the toolbar.
 
-The optional delegate method *toolbarWillAddItem:* provides notification that a toolbar item is about to be added to the toolbar. The identifier for the toolbar item is contained in the notification's userInfo dictionary under the key @"item". The typical use for this method is to set the target for a standard toolbar item, such as Print, and perhaps to alter other attributes of the item, such as its tool tip.
+The optional delegate method *toolbarWillAddItem:* provides notification that a toolbar item is about to be added to the toolbar. The identifier for the toolbar item is contained in the notification's userInfo dictionary under the key `@"item"`. The typical use for this method is to set the target for a standard toolbar item, such as Print, and perhaps to alter other attributes of the item, such as its tool tip.
 
 The example code in Listing 5 sets the target and action for the standard toolbar Print item when the delegate is notified that the item will be added to the toolbar.
 
@@ -240,6 +240,25 @@ Listing 5中的范例代码在委托被通知到标准工具栏的`打印`项将
 }
 ```
 
+The optional delegate method *toolbarDidRemoveItem:* provides notification that the toolbar has removed a toolbar item from the toolbar. The identifier for the toolbar item is contained in the notification's userInfo dictionary under the key `@"item"`. You could use this opportunity to inform the window controller that the data associated with this item is no longer valid.
+
+The example in Listing 6 invalidates the application's search string when the search item is removed from the toolbar.
+
+**Listing 6**  An implementation of the *toolbarDidRemoveItem:* method that invalidates a value when a toolbar item is removed from the toolbar.
+
+可选的委托方法*toolbarDidRemoveItem:*提供了一个工具栏项被从工具栏中移除的通知。该工具栏项的标识符被包含在通知对象的userInfo词典中的`@"item"`键下。你可以利用这个机会去通知窗口控制器与该项关联的数据不再有效。
+
+在Listing 6的范例代码中，当search项被从工具栏移除时，会使应用程序的搜索字符串无效。
+
+**Listing 6**  An implementation of the *toolbarDidRemoveItem:* method that invalidates a value when a toolbar item is removed from the toolbar.
+```
+- (void)toolbarDidRemoveItem:(NSNotification *)notification {
+    NSToolbarItem *removedItem = [[notification userInfo] objectForKey: @"item"];
+    if ([removedItem itemIdentifier] isEqual:SearchDocToolbarItemIdentifier) {
+    [self invalidateSearchString];
+    }
+}
+```
 
 
 
