@@ -27,7 +27,7 @@ The example implementation shown in Listing 1 configures the toolbar to allow a 
 ```
 
 **Figure 1**  Example toolbar item configuration
-![ Figure 1 ](http://cl.ly/image/1N2e383C2u2d/allowed_toolbar_items.gif)
+![ Figure 1 ](http://cl.ly/image/2w0w0Z0c2w1Y/allowed_toolbar_items.png)
 
 ## 被允许的和默认的工具栏项
 
