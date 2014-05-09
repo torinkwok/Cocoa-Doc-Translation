@@ -99,14 +99,19 @@ After you complete the default and allowed sets of toolbar items, make sure the 
 4. Drag a connection line from the circle after the action name to the toolbar item in the allowed set.
 5. Implement the action method.
 
-Finally, make a connection between the delegate property of the toolbar and the object (if any) that responds to the delegation messages sent by the toolbar.
+Finally, make a connection between the *delegate* property of the toolbar and the object (if any) that responds to the delegation messages sent by the toolbar.
 
 # 设置目标（target），动作（action）以及工具栏委托（delegate）
 
 在完成了工具栏项的默认和可用集合之后，确保这些项被适当地设置为调用目标对象中的目标方法。比如说：对于一个定制工具栏项来说，你应该完成如下几步：
 
 1. 在其实例被用作目标（target）的类的头文件中，声明action方法（返回类型为IBAction）。
+2. 在Interface Builder文档窗口（经常是File's Owner）中选中代表这个类的对象。
+3. 右击（或者按Control键时单击）以显示连接窗口；在Received Actions中找到actions方法。
+4. 从action名字后面的圆圈中拖出一条连接线，连接到工具栏项的的可用集合中。
+5. 实现action方法。
 
+最后，在工具栏的*delegate*属性和**用于响应由工具栏发出的委托消息的对象（如果有）**之间创建连接。
 
 
 
