@@ -49,21 +49,21 @@ To add a toolbar item, drag it from the library onto the row of allowed toolbar 
 
 Custom toolbars are of two sorts: *custom image* and *custom view*. To add a custom image toolbar item, drag the *Image toolbar item* from the library and drop it on the row of allowed items. Complete the following steps to configure the custom toolbar item:
 
-    1. Add the image you want to use for the toolbar item to the project (Project > Add to Project).
-    2. Select the custom toolbar item and display the attributes for it (Command-1).
-    3. Enter the name of the image file (minus extension) in the Image Name field.
-    4. Enter labels and a tag number for the toolbar item and select the Autovalidates option.
-       You can use a toolbar item’s tag as a way to access it programmatically from its toolbar.
+1. Add the image you want to use for the toolbar item to the project (Project > Add to Project).
+2. Select the custom toolbar item and display the attributes for it (Command-1).
+3. Enter the name of the image file (minus extension) in the Image Name field.
+4. Enter labels and a tag number for the toolbar item and select the Autovalidates option.
+   You can use a toolbar item’s tag as a way to access it programmatically from its toolbar.
 
 要添加一个工具栏项，将其从库中拖放到可用的工具栏项的那一行中。如果你想让同样的方法出现在默认集合中，从可用的工具栏项集合中拖拽到工具栏上。然后根据你想让其显示在哪里来摆放它的位置。要移除一个项，将其从窗口中拖走并松开鼠标按键；这个方法同时适用于从默认集合和可用集合中移除项。
 
 定制工具栏分为两类：*定制图像*和*定制视图*。要添加一个定制图像工具栏项，从库中拖出*Image Toolbar Item*并将其放在可用项集合的行中。完成下列步骤以配置定制的工具栏项：
 
-    1. 将你想要用于工具栏项的图像添加到项目中（Project > Add to Project）。
-    2. 选择要定制的工具栏项并且显示其属性检视器（Command-1）。
-    3. 在Image Name文本域中输入图像文件的名称（去掉扩展名）。
-    4. 为工具栏项输入标签和标记数字，并且选中Autovalidates选项。
-       你可以使用工具栏项的标记作为以编程的方式从其所在的工具栏中的访问其的一种途径。
+1. 将你想要用于工具栏项的图像添加到项目中（Project > Add to Project）。
+2. 选择要定制的工具栏项并且显示其属性检视器（Command-1）。
+3. 在Image Name文本域中输入图像文件的名称（去掉扩展名）。
+4. 为工具栏项输入标签和标记数字，并且选中Autovalidates选项。
+   你可以使用工具栏项的标记作为以编程的方式从其所在的工具栏中的访问其的一种途径。
 
 
 ![ Figure 5 ](http://i.imgbox.com/GcKoUXV6.png)
@@ -105,7 +105,8 @@ Finally, make a connection between the delegate property of the toolbar and the 
 
 在完成了工具栏项的默认和可用集合之后，确保这些项被适当地设置为调用目标对象中的目标方法。比如说：对于一个定制工具栏项来说，你应该完成如下几步：
 
-1. 在其实例被用作目标的类的头文件中，声明action方法（返回类型为IBAction）。
+1. 在其实例被用作目标（target）的类的头文件中，声明action方法（返回类型为IBAction）。
+
 
 
 
