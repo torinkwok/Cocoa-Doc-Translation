@@ -80,6 +80,15 @@ You custom toolbar item will look similar to the one in this example.
 ![ Figure 6 ](http://i.imgbox.com/sfAZaasw.png)
 
 
+If you want this toolbar item in the default set, drag it to the toolbar.
+
+The procedure for adding a custom view item is very similar to that for a custom image item. (“Custom” in this context means any object from the Interface Builder library as well as instances of a custom NSView subclass.) Just drag any view object from the library onto the `Allowed Toolbar Items` area. Click the item once and press Command-1 to display the Attributes pane for the object as a toolbar item; click again to edit the attributes of the item as itself. You should modify the size of the custom view item in the Size pane of the inspector, not directly. If you drag a Custom View object into the allowed-items set, click it twice and set the name of the custom NSView class in the Identity pane of the inspector (Command-6).
+
+如果你想要该工具栏项处在默认集合中，则将其拖拽到工具栏中。
+
+添加定制视图项的过程和添加定制图像项的过程十分相似。（“定制”在这个上下文中意味任何来自Interface Builder库中的对象和任何NSView子类的实例）。只需要将任意视图对象从库中拖拽到`Allowed Toolbar Items`区域。单击该项并键入Command-1，以一个工具栏项的形式显示该定制视图的`Attributes Pane`，而非直接显示该视图的`Attributes Pane`。如果你拖拽一个定制视图对象到可用项集合中，双击它然后在检视器的`Identity Pane`中设置该定制视图的名称。
+
+
 
 
 
