@@ -89,8 +89,23 @@ The procedure for adding a custom view item is very similar to that for a custom
 添加定制视图项的过程和添加定制图像项的过程十分相似。（“定制”在这个上下文中意味任何来自Interface Builder库中的对象和任何NSView子类的实例）。只需要将任意视图对象从库中拖拽到`Allowed Toolbar Items`区域。单击该项并键入Command-1，以一个工具栏项的形式显示该定制视图的`Attributes Pane`，而非直接显示该视图的`Attributes Pane`。如果你拖拽一个定制视图对象到可用项集合中，双击它然后在检视器的`Identity Pane`（Command-6）中设置该定制视图的名称。
 
 
+# Setting the Target, Action, and Toolbar Delegate
 
+After you complete the default and allowed sets of toolbar items, make sure the appropriate ones are set up to invoke a target method in a target object. For example, for a custom toolbar item you would complete the following steps:
 
+1. Declare an action method (return type IBAction) in the header file of the class whose instance is the target.
+2. Select the object representing this class in the Interface Builder document window (it’s often File’s Owner).
+3. Right-click (or Control-click) to display the connections window; locate the action method under Received Actions.
+4. Drag a connection line from the circle after the action name to the toolbar item in the allowed set.
+5. Implement the action method.
+
+Finally, make a connection between the delegate property of the toolbar and the object (if any) that responds to the delegation messages sent by the toolbar.
+
+# 设置目标（target），动作（action）以及工具栏委托（delegate）
+
+在完成了工具栏项的默认和可用集合之后，确保这些项被适当地设置为调用目标对象中的目标方法。比如说：对于一个定制工具栏项来说，你应该完成如下几步：
+
+1. 在其实例被用作目标的类的头文件中，声明action方法（返回类型为IBAction）。
 
 
 
