@@ -5,7 +5,7 @@ The Chinese translation of Cocoa Doc.
 
 这个Repo是笔者在阅读Mac开发文档时进行的中文翻译，从最初的[ Mac Technology Overview]( https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/OSX_Technology_Overview/About/About.html )开始进行翻译，会详细地按照Topic，Guide，Class Reference等不同的文档类型进行分类管理。
 
-为了能够方便地在搜索引擎上找到，笔者将这些翻译好的文档上载到[ 笔者在OSC的博客中 ]( http://my.oschina.net/bephax/blog )。
+为了能够方便地在搜索引擎上找到，笔者将这些翻译好的文档上载到[ 笔者在OSC的博客中 ]( http://my.oschina.net/bephax/blog?catalog=482057 )。
 
 ---
 
