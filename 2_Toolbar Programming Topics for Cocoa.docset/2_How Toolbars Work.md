@@ -6,7 +6,7 @@ NSToolbar and NSToolbarItem classes provide you with a standard way to display a
 
 NSToolbar和NSToolbar两个类为你提供了在标题窗口的标题栏下方显示工具栏的标准途径。这些类也为用户提供了定制工具栏和保存那些定制的标准途径。下面展示了工具栏看上去是什么样子的：
 
-**Figure 1**  Example toolbar
+**Figure 1**  Example toolbar 
 
 ![ Example toolbar ]( http://cl.ly/image/0F101G3m0P1C/toolbar.jpg ).
 
@@ -108,11 +108,3 @@ Interface Builder predefines an application’s View menu with Show Toolbar and 
 NSWindow有若干个支持NSToolbar的方法：方法*toolbar*和*setToolbar:*是为了将一个工具栏附加到窗口中；*toggleToolbarShown:*方法是为`隐藏工具栏`／`显示工具栏`两个菜单项提供的动作（action）；*runToolbarCustomizationPalette:*方法是为`定制工具栏`菜单项提供的动作（action）。
 
 Interface Builder预定义了一个app的`视图`菜单及其中的`显示工具栏`以及`定制工具栏`菜单项，并且预先通过*First Responder*将它们连接到了*toggleToolbarShown:*和*runToolbarCustomizationPalette:*方法。NSWindow验证工具栏菜单项，并且将`显示工具栏`菜单项的标题在*“显示工具栏”*和*“隐藏工具栏”*之间进行切换以符合工具栏实际的状态。
-
-
-
-
-
-
-
-

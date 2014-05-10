@@ -6,10 +6,10 @@ By default toolbar items have click-through behavior, which is to say that toolb
 
 
 # 验证工具栏项
+ 
+工具栏会验证每一个可视的图像项和每一个不可视的项的溢出菜单项。
 
-工具栏会验证每一个可视的图像项，以及每一个不可视的项的溢出菜单项。
-
-默认情况下工具栏项拥有点击行为，其告知工具栏项当用户切换到另一个窗口甚至是另一个app时仍保持可用和可点击。要更改工具栏项的这一行为的话，你的验证代码需要考虑更大范围的环境。参阅*Aqua Human Interface Guidelines*以了解共多关于*点击行为*的信息。
+默认情况下工具栏项拥有点击行为，其在用户切换到另一个窗口甚至是另一个应用程序时，告知工具栏项保持可用并可被点击。要改变工具栏项的默认行为，你的验证代码需要考虑更大范围的环境。参阅*Aqua Human Interface Guidelines*以了解更多关于点击行为的信息
 
 
 ## Image item validation
@@ -20,4 +20,4 @@ In the absence of a custom menu form representation, NSToolbar validates an imag
 
 ## 图像项的验证
 
-当图像项被点击时，工具栏会自动保证其变暗，并且当该项不可用时，工具栏会自动使其褪色。所有代码要做的就是验证该项。如果一个图像项拥有一对有效的目标（target）/动作（action），且如果其目标实现了NSToolbarItemValidation协议中的*validateToolbarItem:*方法，工具栏就会在目标上调用该方法。
+当一个图像项被点击时工具栏会自动处理其变暗操作，并且当一个图像项被禁用时，工具栏也会自动为其做褪色处理。你的代码需要去验证项。如果一个图像项拥有一个有效的目标(target)/动作(action)对，并且目标实现了NSToolbarItemValidation非正式协议的*validateToolbarItem:*方法的话，工具栏就会调用该协议方法；否则项默认为可用的。
