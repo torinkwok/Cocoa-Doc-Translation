@@ -18,6 +18,7 @@ The toolbar automatically takes care of darkening an image item when it is click
 
 In the absence of a custom menu form representation, NSToolbar validates an image item’s overflow menu in the same way that it validates the toolbar item in the toolbar.
 
+
 ## 图像项的验证
 
 当一个图像项被点击时工具栏会自动处理其变暗操作，并且当一个图像项被禁用时，工具栏也会自动为其做褪色处理。你的代码需要去验证项。如果一个图像项拥有一个有效的目标(target)/动作(action)对，并且目标实现了NSToolbarItemValidation非正式协议的*validateToolbarItem:*方法的话，工具栏就会调用该协议方法；否则项默认为可用的。
