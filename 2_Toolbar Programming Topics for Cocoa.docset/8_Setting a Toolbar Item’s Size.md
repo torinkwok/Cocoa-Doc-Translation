@@ -18,10 +18,18 @@ The *minSize* and *maxSize* toolbar item properties are for use only by view ite
 
 > 注意：自OS X 10.5起，如果在一个NSToolbarItem对象上调用setView:的同时，没有调用setMinSize:或者setMaxSize:方法，工具栏项会将它的最大和最小尺寸设置为与视图的边框（frame）相同。
 
-The height of the toolbar is the height of the greatest minSize height of any item visible in the toolbar at the time. If a view item’s maxSize height is less than the height of the toolbar, then the toolbar centers the item’s view within the available vertical space. If a view item’s view does something intelligent when it is stretched, then you will set its maxSize greater than its minSize in height, width, or both. Horizontally-stretchable view items, including the Flexible Space standard item, compete equally for available horizontal space. An example of a view item that stretches horizontally is the “Search Mailbox” item in the Apple Mail application.
+The height of the toolbar is the height of the greatest *minSize* height of any item visible in the toolbar at the time. If a view item’s *maxSize* height is less than the height of the toolbar, then the toolbar centers the item’s view within the available vertical space. If a view item’s view does something intelligent when it is stretched, then you will set its *maxSize* greater than its *minSize* in height, width, or both. Horizontally-stretchable view items, including the Flexible Space standard item, compete equally for available horizontal space. An example of a view item that stretches horizontally is the “Search Mailbox” item in the Apple Mail application.
 
 An example of a view item that stretches vertically is the Separator standard toolbar item. When we insert a tall RGB Color custom item into the toolbar, the Separator item adds more dots to itself, but the image item and the non-stretchable view item don’t change (the toolbar merely centers them vertically):
 
+（这一段笔者还没有完全理解，无法提供可靠的翻译，等做几个demo理解之后再回来补上）
+
+**Figure 1**  Vertically stretched toolbar item
+
+![ Figure 1 ](http://i.imgbox.com/bf1sjGzJ.gif)
+
+
+![ Figure 2 ](http://i.imgbox.com/a0VFYTNE.gif)
 
 
 
