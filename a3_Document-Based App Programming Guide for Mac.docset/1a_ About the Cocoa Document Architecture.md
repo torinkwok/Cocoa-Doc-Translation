@@ -1,0 +1,51 @@
+# About the Cocoa Document Architecture
+
+In OS X, a Cocoa subsystem called the document architecture provides support for apps that manage documents, which are containers for user data that can be stored in files locally and in iCloud.
+
+# 关于Cocoa文档架构
+
+在OS X中，一个被称作文档架构（document architecture）的子系统为app管理文档提供支持，它是一个可以被存储在本地文件或者iCloud中的用户数据的容器。
+
+![ Cocoa Document Architexture - 1 ]( http://i.imgbox.com/pwJvWaOX.png )
+
+
+## At a Glance
+
+Document-based apps handle multiple documents, each in its own window, and often display more than one document at a time. Although these apps embody many complex behaviors, the **document architecture** provides many of their capabilities “for free,” requiring little additional effort in design and implementation.
+
+## 概览
+
+Document-based应用程序处理多个文档，每个文档都在其自己的窗口中，并且经常在同一时间显示多个文档。尽管这些应用程序包含了很多复杂的行为，但是**文档架构**“免费”提供很多他们的功能，在设计和只需要做一点额外的努力即可。
+
+---
+
+### The Model-View-Controller Pattern Is Basic to a Document-Based App
+The Cocoa document architecture uses the **Model-View-Controller** (MVC) design pattern in which model objects encapsulate the app’s data, view objects display the data, and controller objects act as intermediaries between the view and model objects. A document, an instance of an NSDocument subclass, is a controller that manages the app’s data model. Adhering to the MVC design pattern enables your app to fit seamlessly into the document architecture.
+
+> Relevant Chapters: [“Designing a Document-Based App”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/Designing/Designing.html#//apple_ref/doc/uid/TP40011179-CH2-SW3) and [“The Classes That Support Document-Based Apps”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/KeyObjects/KeyObjects.html#//apple_ref/doc/uid/TP40011179-CH3-SW2)
+
+### 模型-视图-控制器模式是Document-Based应用的基础
+Cocoa文档架构使用**模型-视图-控制器**(MVC)设计模式，其中的模型对象用于封装应用程序的数据，视图对象用于显示数据，以及控制器对象扮演在视图和模型对象之间的媒介。一个文档，即一个NSDocument子类的实例，就是一个管理应用程序数据模型的控制器。遵循MVC设计模式可以使你的应用程序无缝地融入到文档架构中去。
+
+> 相关章节：[“Designing a Document-Based App”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/Designing/Designing.html#//apple_ref/doc/uid/TP40011179-CH2-SW3)和[“The Classes That Support Document-Based Apps”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/KeyObjects/KeyObjects.html#//apple_ref/doc/uid/TP40011179-CH3-SW2)
+
+---
+
+### Xcode Supports Coding and Configuring Your App
+Taking advantage of the support provided by Xcode, including a document-based application template and interfaces for configuring app data, you can create a document-based app without having to write much code. In Xcode you design your app’s user interface in a graphical editor, specify entitlements for resources such as the App Sandbox and iCloud, and configure the app’s property list, which specifies global app keys and other information, such as document types.
+
+> Relevant Chapter: [“App Creation Process Overview”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/ApplicationCreationProcess/ApplicationCreationProcess.html#//apple_ref/doc/uid/TP40011179-CH6-SW5)
+
+### Xcode支持编码及配置你的App
+利用Xcode提供的包括document-based应用程序模板及配置应用数据的界面等支持，你不用写很多代码就可以创建一个document-based应用程序。在Xcode中，你可以在一个图形化的编辑器中设计你的app的用户界面，指定App沙箱和iCloud等资源的权限，以及配置app的用于指定全局app键和诸如文档类型之类的其他信息的属性列表。
+
+> 相关章节：[“App Creation Process Overview”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/ApplicationCreationProcess/ApplicationCreationProcess.html#//apple_ref/doc/uid/TP40011179-CH6-SW5)
+
+
+
+
+
+
+
+
+

@@ -16,7 +16,7 @@ Image items as well as view items can use a simple *menuFormRepresentation* with
 
 当工具栏在Icon & Text或者Text Only模式中时，工具栏项的*label*属性被显示为工具栏项的文本。默认情况下，标签也被以展现工具栏项的菜单项标题的形式用在溢出菜单中。在定制调板中使用*paletteLabel*而非*label*（如果*paletteLabel*没有被设置，定制调板在默认情况下也不会使用*label*）。
 
-在Text Only模式下点击图像项的标签或者选中图像项的溢出彩蛋项时，只会简单地调用图像项的action方法。
+在Text Only模式下点击图像项的标签或者选中图像项的溢出菜单项时，只会简单地调用图像项的action方法。
 
 另一方面对于视图项来说会更复杂一点，并且无法像通常那样进行简单地处理。主要是为了给视图项更多的灵活性，NSToolbarItem提供了一个*menuFormRepresentation*属性。
 
