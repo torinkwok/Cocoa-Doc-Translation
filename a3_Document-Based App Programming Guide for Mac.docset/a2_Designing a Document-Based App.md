@@ -30,7 +30,7 @@ The document-based style of app is one design choice among several that you shou
 
 The Cocoa document architecture provides a framework for document-based apps to do the following things:
 
-* **Create new documents**. The first time the user chooses to save a new document, it presents a dialog in which the user names and saves the document in a disk file in a user-chosen location.
+* **Create new documents.** The first time the user chooses to save a new document, it presents a dialog in which the user names and saves the document in a disk file in a user-chosen location.
 
 * **Open existing documents stored in files.** A document-based app specifies the types of document files it can read and write, as well as read-only and write-only types. It can represent the data of different document types internally and display the data appropriately.
 
@@ -50,7 +50,15 @@ The Cocoa document architecture provides a framework for document-based apps to 
 
 Cocoa’s document architecture implements most of its capabilities in three classes. These classes interoperate to provide an extensible app infrastructure that makes it easy for you to create document-based apps. Table 1-1 briefly describes these classes.
 
+## 文档架构免费提供了许多功能
 
+应用程序的document-based风格是当你在设计app时应该考虑的几种设计选择中的一个。其他的选择包括像Calculator.app这样的单一窗口（single-window）工具型app，以及像iPhoto.app这样的图书馆风格（library-style)“shoebox”应用。在设计早起选择基本的app风格是很重要的，开发工作会因为选中的不同的风格而进入完全不同的轨道。如果你的用户可以创建多个分散的数据集合，并且每个数据集合都可以由用户在图形化的环境中进行编辑并存储在文件中，那么你应该考虑开发document-based应用。
+
+Cocoa文档架构为document-based应用提供了一个框架以做到如下事情：
+
+* **Create new documents.** 第一次用户选择保存一个新的文档，其提供了一个对话框的用户名并将文档以磁盘文件的形式保存在用户选择的位置。
+
+* **Open existing documents stored in files.** 一个document-based应用会指定其可以读写的文档文件类型，以及只读（read-only)和只写（write-only）的文档文件类型。它可以在内部展示不同文档类型的数据并且合理地显示这些数据。
 
 
 
