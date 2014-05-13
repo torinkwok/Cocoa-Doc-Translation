@@ -6,7 +6,7 @@ In OS X, a Cocoa subsystem called the document architecture provides support for
 
 在OS X中，一个被称作文档架构（document architecture）的子系统为app管理文档提供支持，它是一个可以被存储在本地文件或者iCloud中的用户数据的容器。
 
-![ Cocoa Document Architexture - 1 ]( http://i.imgbox.com/pwJvWaOX.png )
+![ Cocoa Document Architexture - 1 ]( http://i.imgbox.com/HbABfOKN.png)
 
 
 ## At a Glance
@@ -41,6 +41,17 @@ Taking advantage of the support provided by Xcode, including a document-based ap
 
 > 相关章节：[“App Creation Process Overview”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/ApplicationCreationProcess/ApplicationCreationProcess.html#//apple_ref/doc/uid/TP40011179-CH6-SW5)
 
+---
+
+### You Must Subclass NSDocument
+Document-based apps in Cocoa are built around a subclass of NSDocument that you implement. In particular, you must override one document reading method and one document writing method. You must design and implement your app’s data model, whether it is simply a single text-storage object or a complex object graph containing disparate data types. When your reading method receives a request, it takes data provided by the framework and loads it appropriately into your object model. Conversely, your writing method takes your app’s model data and provides it to the framework’s machinery for writing to a document file, whether it is located only in your local file system or in iCloud.
+
+> Relevant Chapters: [“Creating the Subclass of NSDocument”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/ManagingLifecycle/ManagingLifecycle.html#//apple_ref/doc/uid/TP40011179-CH4-SW1) and [“The Classes That Support Document-Based Apps”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/KeyObjects/KeyObjects.html#//apple_ref/doc/uid/TP40011179-CH3-SW2)
+
+### 你必须子类化NSDocument
+Cocoa中的Document-based应用程序是建立在你实现的NSDocument子类之上的。尤其是你必须重写一个文档读取方法和一个文档写入方法。你必须设计并实现你的app的数据模型，该模型可以是一个单一的文本存储对象，亦或是一个复杂的包含各种数据类型的对象图。当你的读取方法获得一个请求时，它会获得由框架提供的数据，并且适当地加载到你的对象模型中。相反，你的写入方法会获取你的app的模型数据，并将其提供给框架机制以将数据写入到文档文件中，被写入的文档文件可以仅仅在你的本地文件系统中，也可以在iCloud中。
+
+> 相关章节：[“Creating the Subclass of NSDocument”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/ManagingLifecycle/ManagingLifecycle.html#//apple_ref/doc/uid/TP40011179-CH4-SW1)和[“The Classes That Support Document-Based Apps”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/KeyObjects/KeyObjects.html#//apple_ref/doc/uid/TP40011179-CH3-SW2)
 
 
 
