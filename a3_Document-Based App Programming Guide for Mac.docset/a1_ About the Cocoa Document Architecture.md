@@ -6,7 +6,7 @@ In OS X, a Cocoa subsystem called the document architecture provides support for
 
 在OS X中，一个被称作文档架构（document architecture）的子系统为app管理文档提供支持，它是一个可以被存储在本地文件或者iCloud中的用户数据的容器。
 
-![ Cocoa Document Architexture - 1 ]( http://i.imgbox.com/HbABfOKN.png)
+![Cocoa Document Architexture - 1]( http://i.imgbox.com/HbABfOKN.png)
 
 
 ## At a Glance
@@ -27,7 +27,7 @@ The Cocoa document architecture uses the **Model-View-Controller** (MVC) design 
 ### 模型-视图-控制器模式是Document-Based应用的基础
 Cocoa文档架构使用**模型-视图-控制器**(MVC)设计模式，其中的模型对象用于封装应用程序的数据，视图对象用于显示数据，以及控制器对象扮演在视图和模型对象之间的媒介。一个文档，即一个NSDocument子类的实例，就是一个管理应用程序数据模型的控制器。遵循MVC设计模式可以使你的应用程序无缝地融入到文档架构中去。
 
-> 相关章节：[“Designing a Document-Based App”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/Designing/Designing.html#//apple_ref/doc/uid/TP40011179-CH2-SW3)和[“The Classes That Support Document-Based Apps”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/KeyObjects/KeyObjects.html#//apple_ref/doc/uid/TP40011179-CH3-SW2)
+> 相关章节：[“Designing a Document-Based App”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/Designing/Designing.html#//apple_ref/doc/uid/TP40011179-CH2-SW3) 和 [“The Classes That Support Document-Based Apps”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/KeyObjects/KeyObjects.html#//apple_ref/doc/uid/TP40011179-CH3-SW2)
 
 ---
 
@@ -51,9 +51,49 @@ Document-based apps in Cocoa are built around a subclass of NSDocument that you 
 ### 你必须子类化NSDocument
 Cocoa中的Document-based应用程序是建立在你实现的NSDocument子类之上的。尤其是你必须重写一个文档读取方法和一个文档写入方法。你必须设计并实现你的app的数据模型，该模型可以是一个单一的文本存储对象，亦或是一个复杂的包含各种数据类型的对象图。当你的读取方法获得一个请求时，它会获得由框架提供的数据，并且适当地加载到你的对象模型中。相反，你的写入方法会获取你的app的模型数据，并将其提供给框架机制以将数据写入到文档文件中，被写入的文档文件可以仅仅在你的本地文件系统中，也可以在iCloud中。
 
-> 相关章节：[“Creating the Subclass of NSDocument”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/ManagingLifecycle/ManagingLifecycle.html#//apple_ref/doc/uid/TP40011179-CH4-SW1)和[“The Classes That Support Document-Based Apps”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/KeyObjects/KeyObjects.html#//apple_ref/doc/uid/TP40011179-CH3-SW2)
+> 相关章节：[“Creating the Subclass of NSDocument”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/ManagingLifecycle/ManagingLifecycle.html#//apple_ref/doc/uid/TP40011179-CH4-SW1) 和 [“The Classes That Support Document-Based Apps”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/KeyObjects/KeyObjects.html#//apple_ref/doc/uid/TP40011179-CH3-SW2)
 
+---
 
+### NSDocument Provides Core Behavior and Customization Opportunities
+The Cocoa document architecture provides your app with many built-in features, such as autosaving, asynchronous document reading and writing, file coordination, and multilevel undo support. In most cases, it is trivial to opt-in to these behaviors. If your app has particular requirements beyond the defaults, the document architecture provides many opportunities for extending and customizing your app’s capabilities through mechanisms such as delegation, subclassing and overriding existing methods with custom implementations, and integration of custom objects.
+
+> Relevant Chapters: [“Core App Behaviors”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/StandardBehaviors/StandardBehaviors.html#//apple_ref/doc/uid/TP40011179-CH5-SW3) and [“Alternative Design Considerations”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/AdvancedTopics/AdvancedTopics.html#//apple_ref/doc/uid/TP40011179-CH7-SW6)
+
+### NSDocument提供了核心行为及定制机会
+Cocoa文档架构为你的app提供了许多内置的特性，比如自动保存（autosaving），异步文档读写，文件协调，以及多层次撤销支持。在大多数情况下，选择性地加入这些行为是轻而易举的。如果你的app有一些超过默认支持范围的特殊需求，文档架构也提供了许多机会，通过诸如**委托（delegation）**，**子类化（subclassing）**，**使用自定义实现覆写（overriding）已存在的方法**以及**定制对象的集成**等机制来扩展和定制你的app的功能。
+
+> 相关章节：[“Core App Behaviors”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/StandardBehaviors/StandardBehaviors.html#//apple_ref/doc/uid/TP40011179-CH5-SW3) 和 [“Alternative Design Considerations”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/AdvancedTopics/AdvancedTopics.html#//apple_ref/doc/uid/TP40011179-CH7-SW6)
+
+---
+
+## Prerequisites
+
+Before you read this document, you should be familiar with the information presented in [Mac App Programming Guide.](https://developer.apple.com/library/mac/documentation/General/Conceptual/MOSXAppProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010543)
+
+## 前提条件
+
+在你阅读本份文档之前，你应该熟悉[Mac App Programming Guide.](https://developer.apple.com/library/mac/documentation/General/Conceptual/MOSXAppProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010543)中提供的信息。
+
+## See Also
+
+See *Document-Based App Programming Guide for iOS* for information about how to develop a document-based app for iOS using the UIDocument class.
+
+For information about iCloud, see [iCloud Design Guide.](https://developer.apple.com/library/mac/documentation/General/Conceptual/iCloudDesignGuide/Chapters/Introduction.html#//apple_ref/doc/uid/TP40012094)
+
+[File Metadata Search Programming Guide](https://developer.apple.com/library/mac/documentation/Carbon/Conceptual/SpotlightQuery/Concepts/Introduction.html#//apple_ref/doc/uid/TP40001841) describes how to conduct searches using the NSMetadataQuery class and related classes. You use metadata queries to locate an app’s documents stored in iCloud.
+
+For information about how to publish your app in the App Store, see [App Distribution Guide.](https://developer.apple.com/library/mac/documentation/IDEs/Conceptual/AppDistributionGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40012582-CH1-SW1)
+
+## 另请参阅
+
+要了解如何使用UIDocument类来为iOS开发document-based应用，参阅*Document-Based App Programming Guide for iOS*。
+
+关于iCloud的信息，参阅[iCloud Design Guide。](https://developer.apple.com/library/mac/documentation/General/Conceptual/iCloudDesignGuide/Chapters/Introduction.html#//apple_ref/doc/uid/TP40012094)
+
+[File Metadata Search Programming Guide](https://developer.apple.com/library/mac/documentation/Carbon/Conceptual/SpotlightQuery/Concepts/Introduction.html#//apple_ref/doc/uid/TP40001841)中描述了如何使用NSMetadataQuery类和相关类来执行搜索。你可以使用元数据查询（metadata queries）来定位app存储在iCloud中的文档。
+
+关于如何在App Store中发布你的app的信息，参阅see [App Distribution Guide。](https://developer.apple.com/library/mac/documentation/IDEs/Conceptual/AppDistributionGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40012582-CH1-SW1)
 
 
 
