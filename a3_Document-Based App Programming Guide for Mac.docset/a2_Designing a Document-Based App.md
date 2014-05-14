@@ -128,6 +128,28 @@ The document architecture helps document-based apps adopt App Sandbox, an access
 
 文档架构帮助document-based应用采用应用沙箱（App Sandbox）——一个当恶意代码利用的你app时，提供防止偷窃，损坏或者删除用户数据的最后一道防线的访问控制技术（access control technology）。当用户打开和保存文档或者使用拖放功能时，**NSDocument**类会自动地和Powerbox一起工作以使项可用于你的应用。如果用户使用Finder来移动文档，**NSDocument**也提供了在你的沙箱中保持这些文档的支持。更多关于应用沙箱的信息，参阅：[App Sandbox Design Guide。](https://developer.apple.com/library/mac/documentation/Security/Conceptual/AppSandboxDesignGuide/AboutAppSandbox/AboutAppSandbox.html#//apple_ref/doc/uid/TP40011183)
 
+## Considerations for Designing Your Document Data Model
+
+Your document data model is an object or graph of interconnected objects that contain the data displayed and manipulated by your document objects.
+
+## 考虑设计你的文档数据模型（Document Data Model）
+
+你的文档数据模型（document data model）是一个对象或者互相连接的对象图，其包含由你的文档对象显示和操作的数据。
+
+### Cocoa Uses the Model-View-Controller Design Pattern
+The Cocoa document architecture and many other technologies throughout Cocoa utilize the Model-View-Controller (MVC) design pattern. **Model objects** encapsulate the data specific to an app and manipulate and process that data. **View objects** display data from the app’s model objects and enable the editing of that data by users. **Controller objects** act as intermediaries between the app’s view objects and model objects. By separating these behaviors into discrete objects, your app code tends to be more reusable, the object interfaces are better defined, and your app is easier to maintain and extend. Perhaps most importantly, MVC-compliant app objects fit seamlessly into the document architecture.
+
+### Cocoa使用模型（Model）-视图（View）-控制器（Controller）设计模式
+Cocoa文档架构和许多其他的技术中到处都在使用模型-视图-控制器（MVC）设计模式。**模型对象**封装了特定于应用的数据并负责操作和处理这些数据。**视图对象**负责从应用的模型对象来显示数据并且允许用户编辑这些数据。**控制器对象**则在应用的视图对象和模型对象之间担任媒介。通过将这些行为分离到具体的对象中，你的应用的代码会更加趋于可重用，对象接口会被更好地定义，以及你的应用会更容易去维护和扩展。可能最重要的是，遵循MVC模式的应用程序会无缝地融合到文档架构中。
+
+---
+
+### A Data Model Corresponds to a Document Type
+A document object is a controller dedicated to managing the objects in the document’s data model. Each document object is a custom subclass of NSDocument designed specifically to handle a particular type of data model. Document-based apps are able to handle one or more types of documents, each with its own type of data model and corresponding NSDocument subclass. Apps use an information property list file, which is stored in the app’s bundle and named, by default, <appName>-Info.plist, to specify information that can be used at runtime. Document-based apps use this property list to specify the document types the app can edit or view. For example, when the NSDocumentController object creates a new document or opens an existing document, it searches the property list for such items as the document class that handles a document type, the uniform type identifier (UTI) for the type, and whether the app can edit or only view the type. For more information about creating a property list for types of documents, see “Complete the Information Property List.”
+
+### 一个数据模型对应于一个文档类型
+
+
 
 
 
