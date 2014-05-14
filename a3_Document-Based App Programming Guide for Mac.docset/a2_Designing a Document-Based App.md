@@ -120,6 +120,13 @@ iCloud中有两种类型的存储：**文档存储**和**键值数据存储**。
 
 **NSDocument**实现了文件协调，版本管理以及文档之间的冲突解决，所以它提供了使用iCloud最简单的途径。关于如何在iCloud中处理文档存储的详细解释，参阅：[“Moving Document Data to and from iCloud.”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/ManagingLifecycle/ManagingLifecycle.html#//apple_ref/doc/uid/TP40011179-CH4-SW2)
 
+## The Document Architecture Supports App Sandbox
+
+The document architecture helps document-based apps adopt App Sandbox, an access control technology that provides a last line of defense against stolen, corrupted, or deleted user data if malicious code exploits your app. The **NSDocument** class automatically works with Powerbox to make items available to your app when the user opens and saves documents or uses drag and drop. **NSDocument** also provides support for keeping documents within your sandbox if the user moves them using the Finder. For more information about App Sandbox, see [App Sandbox Design Guide.](https://developer.apple.com/library/mac/documentation/Security/Conceptual/AppSandboxDesignGuide/AboutAppSandbox/AboutAppSandbox.html#//apple_ref/doc/uid/TP40011183)
+
+## 文档架构支持应用沙箱（App Sandbox）
+
+文档架构帮助document-based应用采用应用沙箱（App Sandbox）——一个当恶意代码利用的你app时，提供防止偷窃，损坏或者删除用户数据的最后一道防线的访问控制技术（access control technology）。当用户打开和保存文档或者使用拖放功能时，**NSDocument**类会自动地和Powerbox一起工作以使项可用于你的应用。如果用户使用Finder来移动文档，**NSDocument**也提供了在你的沙箱中保持这些文档的支持。更多关于应用沙箱的信息，参阅：[App Sandbox Design Guide。](https://developer.apple.com/library/mac/documentation/Security/Conceptual/AppSandboxDesignGuide/AboutAppSandbox/AboutAppSandbox.html#//apple_ref/doc/uid/TP40011183)
 
 
 
