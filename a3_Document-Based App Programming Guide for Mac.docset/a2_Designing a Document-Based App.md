@@ -6,6 +6,8 @@ Documents are containers for user data that can be stored in files locally and i
 
 文档是可以被存储在本地文件中和iCloud中的用户数据的容器。在document-based设计中，app使得用户能够创建和管理包含他们数据的文档。一个app通常会处理多个文档，每个文档都处在其自己的窗口中，并且经常在同一时间显示多个文档。比如说：一个字处理程序就提供了用于创建新文档的命令，其提供了一个用户向文档中输入文本及嵌入图像得编辑环境，该程序还将文档数据保存到磁盘或者iCloud中，并且它还提供了其他文档相关的命令，比如打印（printing）和版本管理（version managment）。在Cocoa中，document-based应用设计通过一个被叫做**文档架构**得子系统来实现，该架构也是AppKit框架得一部分。
 
+
+
 ## Documents in OS X
 
 There are several ways to think of a document. Conceptually, a document is a container for a body of information that can be named and stored in a file. In this sense, the document is an object in memory that owns and manages the document data. To users, the document is their information—such as text and graphics formatted on a page. In the context of Cocoa, a document is an instance of a custom NSDocument subclass that knows how to represent internally persistent data that it can display in a window. This document object knows how to read document data from a file and create an object graph in memory for the document data model. It also knows how to modify that data model consistently and write the document data back out to disk. So, the document object mediates between different representations of document data, as shown in Figure 1-1.
@@ -25,6 +27,8 @@ Using iCloud, documents can be shared automatically among a user’s computers a
 ![Figure 1-1](http://i.imgbox.com/PsIRvNJm.png)
 
 使用iCloud使得文档能够在用户的计算机和iOS设备之间自动地被共享。系统会在不需要用户干预的情况下同步更改到文档数据。更多信息请参阅**“Storing Documents in iCloud”**。
+
+
 
 ## The Document Architecture Provides Many Capabilities for Free
 
@@ -62,8 +66,6 @@ NSDocumentController | Manages all of the document objects in the app
 
 > See [“The Classes That Support Document-Based Apps”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/KeyObjects/KeyObjects.html#//apple_ref/doc/uid/TP40011179-CH3-SW2) for more detailed information.
 
-
-
 ## 文档架构免费提供了许多功能
 
 应用程序的document-based风格是当你在设计app时应该考虑的几种设计选择中的一个。其他的选择包括像Calculator.app这样的单一窗口（single-window）工具型app，以及像iPhoto.app这样的图书馆风格（library-style)“shoebox”应用。在设计早起选择基本的app风格是很重要的，开发工作会因为选中的不同的风格而进入完全不同的轨道。如果你的用户可以创建多个分散的数据集合，并且每个数据集合都可以由用户在图形化的环境中进行编辑并存储在文件中，那么你应该考虑开发document-based应用。
@@ -100,6 +102,8 @@ NSDocumentController | 管理app中所有的文档对象
 
 > 更多详细信息参见：[“The Classes That Support Document-Based Apps”。](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/KeyObjects/KeyObjects.html#//apple_ref/doc/uid/TP40011179-CH3-SW2)
 
+
+
 ## Storing Documents in iCloud
 
 The iCloud storage technology enables you to share documents and other app data among multiple computers that run your document-based app. If you have a corresponding iOS version of your app, you can share your documents and app data with your iOS devices as well. Once your app sets up the proper connections, iCloud automatically pushes documents and changes to all the devices running an instance of your app with no explicit user intervention.
@@ -120,6 +124,8 @@ iCloud中有两种类型的存储：**文档存储**和**键值数据存储**。
 
 **NSDocument**实现了文件协调，版本管理以及文档之间的冲突解决，所以它提供了使用iCloud最简单的途径。关于如何在iCloud中处理文档存储的详细解释，参阅：[“Moving Document Data to and from iCloud.”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/ManagingLifecycle/ManagingLifecycle.html#//apple_ref/doc/uid/TP40011179-CH4-SW2)
 
+
+
 ## The Document Architecture Supports App Sandbox
 
 The document architecture helps document-based apps adopt App Sandbox, an access control technology that provides a last line of defense against stolen, corrupted, or deleted user data if malicious code exploits your app. The **NSDocument** class automatically works with Powerbox to make items available to your app when the user opens and saves documents or uses drag and drop. **NSDocument** also provides support for keeping documents within your sandbox if the user moves them using the Finder. For more information about App Sandbox, see [App Sandbox Design Guide.](https://developer.apple.com/library/mac/documentation/Security/Conceptual/AppSandboxDesignGuide/AboutAppSandbox/AboutAppSandbox.html#//apple_ref/doc/uid/TP40011183)
@@ -128,6 +134,8 @@ The document architecture helps document-based apps adopt App Sandbox, an access
 
 文档架构帮助document-based应用采用应用沙箱（App Sandbox）——一个当恶意代码利用的你app时，提供防止偷窃，损坏或者删除用户数据的最后一道防线的访问控制技术（access control technology）。当用户打开和保存文档或者使用拖放功能时，**NSDocument**类会自动地和Powerbox一起工作以使项可用于你的应用。如果用户使用Finder来移动文档，**NSDocument**也提供了在你的沙箱中保持这些文档的支持。更多关于应用沙箱的信息，参阅：[App Sandbox Design Guide。](https://developer.apple.com/library/mac/documentation/Security/Conceptual/AppSandboxDesignGuide/AboutAppSandbox/AboutAppSandbox.html#//apple_ref/doc/uid/TP40011183)
 
+
+
 ## Considerations for Designing Your Document Data Model
 
 Your document data model is an object or graph of interconnected objects that contain the data displayed and manipulated by your document objects.
@@ -135,6 +143,8 @@ Your document data model is an object or graph of interconnected objects that co
 ## 考虑设计你的文档数据模型（Document Data Model）
 
 你的文档数据模型（document data model）是一个对象或者互相连接的对象图，其包含由你的文档对象显示和操作的数据。
+
+---
 
 ### Cocoa Uses the Model-View-Controller Design Pattern
 The Cocoa document architecture and many other technologies throughout Cocoa utilize the Model-View-Controller (MVC) design pattern. **Model objects** encapsulate the data specific to an app and manipulate and process that data. **View objects** display data from the app’s model objects and enable the editing of that data by users. **Controller objects** act as intermediaries between the app’s view objects and model objects. By separating these behaviors into discrete objects, your app code tends to be more reusable, the object interfaces are better defined, and your app is easier to maintain and extend. Perhaps most importantly, MVC-compliant app objects fit seamlessly into the document architecture.
@@ -149,6 +159,27 @@ A document object is a controller dedicated to managing the objects in the docum
 
 ### 一个数据模型对应于一个文档类型
 一个文档对象就是一个专用于管理文档数据模型的对象的控制器。每个文档对象都是一个NSDocument类自定义的子类，其专门被设计用于处理特定数据模型类型的。文档驱动型应用可以处理一个或多个文档类型，每个都有它自己的数据模型类型以及对应的NSDocument子类。应用使用一个被存储在应用的bundle中并且默认命名为*<appname>-Info.plist*的信息属性列表文件，用于在运行时指定会被使用到的信息。文档驱动型应用使用该属性列表以指定该应用程序可以编辑或浏览的文档类型。比如说：当NSDocumentController对象创建了一个新的文档或者打开了一个已存在的文档时，它会在属性列表中搜索**处理某一个文档类型的文档类**，**统一类型标识符（UTI）**，以及**该应用程序可以编辑还是只能浏览该类型的文档**等项。更多关于为文档类型创建属性列表的信息，参阅：[“Complete the Information Property List。”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/ApplicationCreationProcess/ApplicationCreationProcess.html#//apple_ref/doc/uid/TP40011179-CH6-997699)
+
+---
+
+### Data Model Storage
+Any objects that are part of the persistent state of a document should be considered part of that document’s model. For example, the Sketch sample app has a subclass of NSDocument named SKTDocument. Objects of this class have an array of SKTGraphic objects containing the data that defines the shapes Sketch can draw, so they form the data model of the document. Besides the actual SKTGraphic objects, however, the SKTDocument object contains some additional data that should technically be considered part of the model, such as the order of the graphics within the document’s array, which determines the front-to-back ordering of the SKTGraphic objects.
+
+Like any document-based app, Sketch is able to write the data from its data model to a file and vice versa. The reading and writing are the responsibility of the SKTDocument object. Sketch implements the NSDocument data-based writing method that flattens its data model objects into an NSData object before writing it to a file. Conversely, it also implements the data-based NSDocument reading method to reconstitute its data model in memory from an NSData object it reads from one of its document files.
+
+There are three ways you can implement data reading and writing capabilities in your document-based app:
+
+* **Reading and writing native object types.** NSDocument has methods that read and write NSData and NSFileWrapper objects natively. You must override at least one writing method to convert data from the document model’s internal data structures into an NSData object or NSFileWrapper object in preparation for writing to a file. Conversely, you must also override at least one reading method to convert data from an NSData or NSFileWrapper object into the document model’s internal data structures in preparation for displaying the data in a document window. See “Creating the Subclass of NSDocument” for more details about document reading and writing methods.
+
+* **Using Core Data.** If you have a large data set or require a managed object model, you may want to use NSPersistentDocument to create a document-based app that uses the Core Data framework. Core Data is a technology for object graph management and persistence. One of the persistent stores provided by Core Data is based on SQLite. Although Core Data is an advanced technology requiring an understanding of Cocoa fundamental design patterns and programming paradigms, it brings many benefits to a document-based app, such as:
+    1. Incremental reading and writing of document data
+    2. Data compatibility for apps with iOS and OS X versions
+    
+    For more information, see Core Data Starting Point.
+    
+* **Custom object formats.** If you need to read and write objects without using NSData and NSFileWrapper, you can override other NSDocument methods to do so, but your code needs to duplicate what NSDocument does for you. Naturally, this means your code will have greater complexity and a greater possibility of error.
+
+### 数据模型存储
 
 
 
