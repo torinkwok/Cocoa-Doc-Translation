@@ -46,7 +46,7 @@ The Cocoa document architecture provides a framework for document-based apps to 
 
 * **Validate menu items.** The document enables or disables menu items automatically, depending on its edited status and the applicability of the associated action methods.
 
-* **Handle app and window delegation.** Notifications are sent and delegate methods called at significant life cycle events, such as when the app terminates.
+* **Handle app and window delegation.** **Notifications** are sent and **delegate** methods called at significant life cycle events, such as when the app terminates.
 
 Cocoa’s document architecture implements most of its capabilities in three classes. These classes interoperate to provide an extensible app infrastructure that makes it easy for you to create document-based apps. Table 1-1 briefly describes these classes.
 
@@ -56,9 +56,30 @@ Cocoa’s document architecture implements most of its capabilities in three cla
 
 Cocoa文档架构为document-based应用提供了一个框架以做到如下事情：
 
-* **Create new documents.** 第一次用户选择保存一个新的文档，其提供了一个对话框的用户名并将文档以磁盘文件的形式保存在用户选择的位置。
+* **创建新文档。** 第一次用户选择保存一个新的文档，其提供了一个对话框的用户名并将文档以磁盘文件的形式保存在用户选择的位置。
 
-* **Open existing documents stored in files.** 一个document-based应用会指定其可以读写的文档文件类型，以及只读（read-only)和只写（write-only）的文档文件类型。它可以在内部展示不同文档类型的数据并且合理地显示这些数据。
+* **打开存储在文件中的已存在文档** 一个document-based应用会指定其可以读写的文档文件类型，以及只读（read-only)和只写（write-only）的文档文件类型。它可以在内部展示不同文档类型的数据并且合理地显示这些数据。
+
+* **自动保存文档。** Document-based应用可以在适当的地方采用自动保存，并且它的文档在适当的时间会被自动保存，以便用户在屏幕上看到的数据与磁盘中的数据是一致的。保存是操作安全的，所以一个被打断的的保存操作不会留下不一致的数据。为避免无意操作的自动保存，旧的文件在编辑开始时会被锁定直到用户显示地解锁。
+
+* **异步读写文档数据。**  读取和写入是在后来线程中异步完成的，这是为了长时间的操作不会使得用户界面失去响应。此外，使用NSFilePresenter协议和NSFileCoordinator类来协调读写操以减少版本冲突。
+
+* **管理文档的多个版本。** 自动保存会在定期创建版本，并且用户可以随时手动保存版本。用户可以使用类似Time Machine的界面来浏览版本以及将文档内容还原到选中的历史版本。版本浏览器还用于从同步的iCloud更新中解决版本冲突。
+
+* **打印文档。** 用户可以在打印对话框和页面设置对话框中指定不同的页面布局。
+
+* **跟踪改变以及设置文档的编辑状态。* 文档管理它的编辑状态并实现了多层次的撤掉和重做。
+
+* **验证菜单项。** 文档会自动启用或禁用菜单项，这取决于文档的编辑状态以及与菜单项关联的动作（action）方法的适用性。
+
+* **处理应用和窗口委托。** 在诸如应用终止这类重要的生命周期事件发生时，会发送**通知**以及调用**委托**方法。
+
+
+
+
+
+
+
 
 
 
