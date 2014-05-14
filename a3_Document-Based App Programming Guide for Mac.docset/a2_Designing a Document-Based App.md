@@ -93,14 +93,30 @@ Cocoa文档架构为document-based应用提供了一个框架以做到如下事�
 类（class）           | 用途（purpose）
 -------------------- | -----------------------
 NSDocument           | 创建，提供以及存储文档数据
-NSWindowController   | 管理文档被显示在的窗口
-NSDocumentController | 管理app中的所有的文档对象
+NSWindowController   | 管理用于显示文档的窗口
+NSDocumentController | 管理app中所有的文档对象
 
 > 更多详细信息参见：[“The Classes That Support Document-Based Apps”。](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/KeyObjects/KeyObjects.html#//apple_ref/doc/uid/TP40011179-CH3-SW2)
 
+## Storing Documents in iCloud
 
+The iCloud storage technology enables you to share documents and other app data among multiple computers that run your document-based app. If you have a corresponding iOS version of your app, you can share your documents and app data with your iOS devices as well. Once your app sets up the proper connections, iCloud automatically pushes documents and changes to all the devices running an instance of your app with no explicit user intervention.
 
+There are two kinds of storage in iCloud: document storage and key-value data storage. Document storage is designed for storing large amounts of data such as that in a document file. Key-value storage is designed for small amounts of app data such as configuration data. For example, you might store the text and illustrations for a book in document storage, and you might store the reader’s page location in key-value storage. That way, whenever the user opens the document on any device, the correct page is displayed.
 
+Documents and key-value data designated for storage in iCloud are transferred to iCloud and to the user’s other computers as soon as possible. On iOS devices, only file metadata is transferred from iCloud to devices as soon as possible, while the file data itself is transferred on demand. Once data has been stored initially in iCloud, only changes are transferred thereafter, to make synchronization most efficient.
+
+NSDocument implements file coordination, version management, and conflict resolution among documents, so it provides the easiest path to using iCloud. For details explaining how to handle document storage in iCloud, see [“Moving Document Data to and from iCloud.”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/ManagingLifecycle/ManagingLifecycle.html#//apple_ref/doc/uid/TP40011179-CH4-SW2)
+
+## 在iCloud中存储文档
+
+iCloud存储技术使得你可以在多台运行你的document-based应用的计算机之间共享文档和其他应用程序数据。如果你有一个你的app对应的iOS版本，那么你也可以使用你的iOS设备来共享你的文档和应用程序数据。一旦你的应用程序创建了适当的连接，iCloud会自动推送文档，并且会在没有用户干预的情况下改变所有运行你的app的设备。
+
+iCloud中有两种类型的存储：**文档存储**和**键值数据存储**。文档存储被设计为存储像文档文件这样的大量数据。键值数据存储被设计为存储像配置文件这类的应用程序的小量数据。举个例子，你可以将一本书中的文本和插图存储到**文档存储**中，并且可以将阅读器的页面位置存储在**键值存储**中。那样，用户在任何时间任何地点打开该文档时，都会显示正确的页面。
+
+被指定为存储在iCloud中的文档和键值数据会被尽快地转存到iCloud和用户的其他计算机中。在iOS设备上，当文件数据自己被转存时，只有文件元数据会被尽快地从iCloud转存到设备中。一旦数据被第一次存储在iCloud中，从那以后只有改变会被转存，以做到最有效的同步。
+
+**NSDocument**实现了文件协调，版本管理以及文档之间的冲突解决，所以它提供了使用iCloud最简单的途径。关于如何在iCloud中处理文档存储的详细解释，参阅：[“Moving Document Data to and from iCloud.”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/ManagingLifecycle/ManagingLifecycle.html#//apple_ref/doc/uid/TP40011179-CH4-SW2)
 
 
 
