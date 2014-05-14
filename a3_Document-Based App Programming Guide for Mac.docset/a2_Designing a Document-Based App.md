@@ -50,6 +50,18 @@ The Cocoa document architecture provides a framework for document-based apps to 
 
 Cocoa’s document architecture implements most of its capabilities in three classes. These classes interoperate to provide an extensible app infrastructure that makes it easy for you to create document-based apps. Table 1-1 briefly describes these classes.
 
+Table 1-1  Primary classes in the document architecture
+
+Class                | Purpose
+-------------------- | --------------------------------------------------
+NSDocument           | Creates, presents, and stores document data
+NSWindowController   | Manages a window in which a document is displayed
+NSDocumentController | Manages all of the document objects in the app
+
+> See [“The Classes That Support Document-Based Apps”](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/KeyObjects/KeyObjects.html#//apple_ref/doc/uid/TP40011179-CH3-SW2) for more detailed information.
+
+
+
 ## 文档架构免费提供了许多功能
 
 应用程序的document-based风格是当你在设计app时应该考虑的几种设计选择中的一个。其他的选择包括像Calculator.app这样的单一窗口（single-window）工具型app，以及像iPhoto.app这样的图书馆风格（library-style)“shoebox”应用。在设计早起选择基本的app风格是很重要的，开发工作会因为选中的不同的风格而进入完全不同的轨道。如果你的用户可以创建多个分散的数据集合，并且每个数据集合都可以由用户在图形化的环境中进行编辑并存储在文件中，那么你应该考虑开发document-based应用。
@@ -68,13 +80,23 @@ Cocoa文档架构为document-based应用提供了一个框架以做到如下事�
 
 * **打印文档。** 用户可以在打印对话框和页面设置对话框中指定不同的页面布局。
 
-* **跟踪改变以及设置文档的编辑状态。* 文档管理它的编辑状态并实现了多层次的撤掉和重做。
+* **跟踪改变以及设置文档的编辑状态。** 文档管理它的编辑状态并实现了多层次的撤掉和重做。
 
 * **验证菜单项。** 文档会自动启用或禁用菜单项，这取决于文档的编辑状态以及与菜单项关联的动作（action）方法的适用性。
 
 * **处理应用和窗口委托。** 在诸如应用终止这类重要的生命周期事件发生时，会发送**通知**以及调用**委托**方法。
 
+在三个类中实现了Cocoa的文档架构大部分的功能。这些类互相操作以提供一个可扩展的应用架构，其使得创建document-based应用很容易。表1-1中简要地描述了这些类。
 
+表1-1 文档架构中的主要类
+
+类（class）           | 用途（purpose）
+-------------------- | -----------------------
+NSDocument           | 创建，提供以及存储文档数据
+NSWindowController   | 管理文档被显示在的窗口
+NSDocumentController | 管理app中的所有的文档对象
+
+> 更多详细信息参见：[“The Classes That Support Document-Based Apps”。](https://developer.apple.com/library/mac/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/KeyObjects/KeyObjects.html#//apple_ref/doc/uid/TP40011179-CH3-SW2)
 
 
 
