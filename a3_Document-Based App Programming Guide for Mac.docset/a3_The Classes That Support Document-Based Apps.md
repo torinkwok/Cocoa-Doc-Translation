@@ -8,5 +8,8 @@ There are three major classes in the document architecture: NSDocumentController
 
 在文档架构中有三个主要的类：NSDocumentController，NSDocument以及NSWindowController。这些类的对象对创建（creating），保存（saving），打开（opening）以及管理（managing）应用的文档进行了划分和详细规划。他们被安排为一个一对多的分层关系，就像Figure 2-1中描述的。一个应用只可以拥有一个NSDocumentController对象，其创建并管理一个或多个NSDocument对象（每个都支持新建或打开操作）。反过来，一个NSDocument对象创建并管理一个或多个NSWindowController对象，每个都对应一个显示文档的窗口。此外，这些对象中的一些拥有和NSApplication和NSWindow委托相似的责任，比如批准类似关闭（closing）和退出（quitting）之类的主事件。
 
+**Figure 2-1** NSDocumentController，NSDocument以及NSWindowController对象之间的关系。
+
+
 ![ Figure 2-1 ](http://i.imgbox.com/aZOHmhRO.png)
 
