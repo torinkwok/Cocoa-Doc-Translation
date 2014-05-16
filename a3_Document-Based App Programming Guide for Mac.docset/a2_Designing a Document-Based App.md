@@ -169,17 +169,66 @@ Like any document-based app, Sketch is able to write the data from its data mode
 
 There are three ways you can implement data reading and writing capabilities in your document-based app:
 
-* **Reading and writing native object types.** NSDocument has methods that read and write NSData and NSFileWrapper objects natively. You must override at least one writing method to convert data from the document model’s internal data structures into an NSData object or NSFileWrapper object in preparation for writing to a file. Conversely, you must also override at least one reading method to convert data from an NSData or NSFileWrapper object into the document model’s internal data structures in preparation for displaying the data in a document window. See “Creating the Subclass of NSDocument” for more details about document reading and writing methods.
+* **Reading and writing native object types.** NSDocument has methods that read and write NSData and NSFileWrapper objects natively. You must override at least one writing method to convert data from the document model’s internal data structures into an NSData object or NSFileWrapper object in preparation for writing to a file. Conversely, you must also override at least one reading method to convert data from an NSData or NSFileWrapper object into the document model’s internal data structures in preparation for displaying the data in a document window. See *“Creating the Subclass of NSDocument”* for more details about document reading and writing methods.
 
 * **Using Core Data.** If you have a large data set or require a managed object model, you may want to use NSPersistentDocument to create a document-based app that uses the Core Data framework. Core Data is a technology for object graph management and persistence. One of the persistent stores provided by Core Data is based on SQLite. Although Core Data is an advanced technology requiring an understanding of Cocoa fundamental design patterns and programming paradigms, it brings many benefits to a document-based app, such as:
+
     1. Incremental reading and writing of document data
+    
     2. Data compatibility for apps with iOS and OS X versions
     
     For more information, see Core Data Starting Point.
     
 * **Custom object formats.** If you need to read and write objects without using NSData and NSFileWrapper, you can override other NSDocument methods to do so, but your code needs to duplicate what NSDocument does for you. Naturally, this means your code will have greater complexity and a greater possibility of error.
 
+
 ### 数据模型存储
+任何作为文档持续状态的一部分的对象，都应该被认为是文档模型的一部分。举个例子，Sketch事例应用就拥有一个叫做SKDocument的NSDocument子类。该类的对象拥有一个SKTGraphic对象的数组，该数组用来包含定义了Sketch可绘制形状的数据。然而除了实际的SKTGraphic对象，SKTDocument还包含了一些从技术上应该被考虑为模型的一部分的额外数据，比如像在文档的数组中图形的顺序，其决定了SKTGraphic对象从前到后的顺序。
+
+就像任何文档驱动的应用一样，Sketch也允许将数据从数据模型写到文件中，反之亦然。读取和写入都是SKTDocument对象的责任。Sketch实现了NSDocument基于数据的写入方法，该方法在将数据模型写入到文件之前将它的数据模型冻结到一个NSData对象中。反过来，它也实现了基于数据的NSDocument读取方法，以在内存中将从它从文档文件中读取出来的NSData对象重建成它的数据模型。
+
+你可以通过三种途径来在你的文档驱动应用中实现读写操作：
+
+* **读取和写入原始对象类型。** NSDocument自带用于读写NSData和NSFileWrapper对象的方法。你必须覆写至少一个写方法以将数据从文档模型的内部数据结构转换成一个NSData对象或者NSFileWrapper对象，以此来为写入到文件做准备。反过来，你也必须实现至少一个读方法以将数据从NSData或者NSFileWrapper对象转换成文档模型的内部数据结构，以此来为将数据显示在文档窗口中来做准备。参阅*“Creating the Subclass of NSDocument”*以了解关于文档读写方法更详细的信息。
+
+* **使用Core Data。** 如果你拥有一个庞大的数据集或者需要托管对象模型，你可能想要使用NSPersistentDocuemnt以创建使用Core Data框架的文档驱动应用。Core Data是一个用于对象图管理及持久化的技术。由Core Data提供的持久化存储技术中的一个，是基于SQLite的。尽管Core Data是一门需要对Cocoa基本的设计模式和编程范式有所了解的技术，但是它的确使文档驱动程序很受益，比如说：
+
+    1. 文档数据的更多的读写方法。
+    
+    2. iOS版的和OS X版的应用之间的数据兼容性。
+    
+* **定制对象格式。** 如果你需要不使用NSData和NSFileWrapper来读写对象，你可以重写其他的NSDocument方法来做到，但是你的代码将会需要去重做很多NSDocument为你做过的事情。自然而然地，这意味着你的代码会拥有更多的复杂性和更多出错的可能。
+
+---
+
+### Handling a Shared Data Model in OS X and iOS
+Using iCloud, a document can be shared between document-based apps in OS X and iOS. However, there are differences between the platforms that you must take into consideration. For an app to edit the same document in iOS and OS X, the document-type information should be consistent. Other cross-platform considerations for document-data compatibility are:
+
+* Some technologies are available on one platform but not the other. For example, if you use rich text format (RTF) as a document format in OS X, it won’t work in iOS because its text system doesn’t have built-in support for rich text format (although you can implement that support in your iOS app).
+
+* The default coordinate system for each platform is different, which can affect how content is drawn. See “Default Coordinate Systems and Drawing in iOS” in *Drawing and Printing Guide for iOS* for a discussion of this topic.
+
+* If you archive a document’s model object graph, you may need to perform suitable conversions using NSCoder methods when you encode and decode the model objects.
+
+* Some corresponding classes are incompatible across the platforms. That is, there are significant differences between the classes representing colors (UIColor and NSColor), images (UIImage and NSImage), and Bezier paths (UIBezierPath and NSBezierPath). NSColor objects, for example, are defined in terms of a color space (NSColorSpace), but there is no color space class in UIKit.
+
+These cross-platform issues affect the way you store document data in the file that is shared between OS X and iOS as an iCloud document. Both versions of your app must be able to reconstitute a usable in-memory data model that is appropriate to its platform, using the available technologies and classes, without losing any fidelity. And, of course, both versions must be able to convert their platform-specific data model structures into the shared file format.
+
+One strategy you can use is to drop down to a lower-level framework that is shared by both platforms. For example, on the iOS side, UIColor defines a CIColor property holding a Core Image object representing the color; on the OS X side, your app can create an NSColor object from the CIColor object using the *colorWithCIColor:* class method.
+
+使用iCloud，一个文档可以在OS X和iOS上得文档驱动应用之间被共享。然而，在平台之间有一些你必须考虑到的不同。对于一个在iOS和OS X上编辑相同文档的应用，文档类型信息应该被考虑到。其他的一些关于文档格式兼容性的跨平台注意事项：
+
+* 一些技术在一个平台上可用但是在另一个平台上却不可用。比如说，如果你使用富文本格式（rich text format, RTF）作为一个在OS X中的文档格式，它在iOS中将不会工作，因为iOS的文本系统没有提供对RTF格式的内置支持（尽管你可以在你的iOS应用中实现该支持）。
+
+* 每个平台的默认做表系统都是不同的，这会影响到内容如何绘制。参阅*Drawing and Printing Guide for iOS*中的“Default Coordinate Systems and Drawing in iOS”以查看该主题的讨论。
+
+* 如果你归档一个文本的模型对象图，当你编码（encode）或者解码（decode）模型对象时，你可能需要使用NSCoder方法执行适当的转换。
+
+* 一些对应的类在跨平台时并不兼容。就是说，在类之间表现颜色（UIColor和NSColor），图像（UIImage和NSImage）以及贝塞尔路径（UIBezierPath和NSBezierPath）时，存在很重要的不同。比如说NSColor对象是依照一个色彩空间（NSColorSpace）定义的，但是在UIKit中不存在色彩空间类。
+
+这些跨平台问题影响着你存储**被作为iCloud文档在OS X和iOS之间共享的文档数据**到文件中的方式。你的应用的两个版本都必须能使用可用的技术和类来重建一个可用的在内存中的并且适用于其所在平台的数据模型。并且，两个版本必须能够将它们的平台相关数据模型结构转换成共享文件格式。
+
+一个你可以使用的策略就是，降低到更低层的可以被两个平台都支持的框架。比如说，在iOS这边，UIColor定义了一个CIColor属性控制了一个Core Image对象以展现色彩；在OS X这边，你的应用可以使用*colorWithCIColor:*方法从CIColor对象创建一个NSColor对象。
 
 
 
