@@ -127,6 +127,18 @@ NSDocument是应用程序架构中的文档对象的基类——你必须为你�
 
 
 
+## NSWindowController Manages One Document Window
+
+An NSWindowController object manages one window associated with a document. That window is typically stored in a nib file. As such, in the MVC design pattern, it is a view controller. When an NSWindowController object receives a request from its owning NSDocument object, it loads the nib file containing a window, displays the window, and sets itself as the File’s Owner of the nib file. It also assumes responsibility for closing windows properly.
+
+A window controller keeps track of its window using its window outlet. The window outlet should be connected to the window for which your window controller is responsible, as shown in Figure 2-3.
+
+**Figure 2-3**  Window outlet of window controller
+
+## NSWindowController管理一个文档窗口
+
+
+
 
 
 
