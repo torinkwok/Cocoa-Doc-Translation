@@ -287,6 +287,31 @@ Because your subclass derives from NSWindowController, you can just tell it the 
 
 ---
 
+#### You Rarely Need to Subclass NSDocumentController
+Most apps do not need to subclass NSDocumentController. Almost anything that can be done by subclassing can be done just as easily by the app’s delegate. However, it is possible to subclass NSDocumentController if you need to.
+
+For example, if you need to customize the `Open` dialog, an NSDocumentController subclass is needed. You can override the NSDocumentController method *runModalOpenPanel:forTypes:* to customize the dialog or add an accessory view. The *addDocument:* and *removeDocument:* methods are provided for subclasses that want to know when documents are opened or closed.
+
+There are two ways to subclass NSDocumentController:
+
+* You can make an instance of your subclass in your app’s main nib file. This instance becomes the shared instance.
+
+* You can create an instance of your subclass in your app delegate’s *applicationWillFinishLaunching:* method.
+
+The first NSDocumentController object to be created becomes the shared instance. The AppKit framework creates the shared instance (using the NSDocumentController class) during the “finish launching” phase of app startup. So if you need a subclass instance, you must create it before AppKit does.
+
+#### 你极少地需要子类化NSDocumentController
+大多数应用不需要子类化NSDocumentController。几乎任何可以通过子类化做到的事情，都可以通过应用的委托更简单地做到。然而，如果你需要的话，还是有可能去子类化NSDocumentController的。
+
+例如，如果你需要定制`Open`对话框，那么一个NSDocumentController子类时需要的。你可以覆写NSDocumentController方法*runModalOpenPanel:forTypes:*以定制对话框或者添加附件视图。*addDocument:*和*removeDocument:*方法提供给那些想要知道文档何时被打开或关闭的子类。
+
+有两种子类化NSDocumentController的途径：
+
+* 你可以在应用的主nib文件中创建你的子类的实例。该实例会成为共享实例。
+
+* 你可以在你的应用的委托的*applicationWillFinishLaunching:*方法中创建你的子类的实例。
+
+第一个NSDocumentController对象被创建成为共享实例。AppKit框架会在应用的启动阶段创建该共享实例（使用NSDocumentController类）。所以如果你需要一个子类化实例，你必在AppKit做这件事之前须创建它。
 
 
 
