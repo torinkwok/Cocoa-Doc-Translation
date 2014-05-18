@@ -268,6 +268,10 @@ This problem is solved by overriding the *init* method to call the superclass’
 
 **Figure 2-4**  Loading a nib file that is controller specific
 
+An NSWindowController object without an associated NSDocument object is useful by itself. NSWindowController can be used as the base class for auxiliary panel controllers in order to gain the use of its nib management abilities. One common standalone use of NSWindowController subclasses is as controllers for shared panels such as find panels, inspectors, or preferences panels. For example, the Sketch sample app uses NSWindowController subclasses for its various secondary panels. In this case, you can make an NSWindowController subclass that implements a “shared-instance” method to create a singleton window controller object. For example, you could create a PreferencesController subclass with a *sharedPreferenceController* class method that creates a single instance the first time it is called and returns that same instance on all subsequent calls.
+
+Because your subclass derives from NSWindowController, you can just tell it the name of your preferences nib file and it handles loading the nib file and managing the window automatically. You add your own outlets and actions, as usual, to hook up the specific user interface for your panel and add methods to manage the panel’s behavior.
+
 #### NSWindowController子类管理nib文件
 一个NSWindowController对象期望被告知哪个nib文件会被加载（通过它的*initWithWindowNib...*方法）因为这是一个所有窗口控制器默认行为的范型实现。然而，当你编写一个NSWindowController的子类时，该子类几乎总是被设计为控制特定nib文件中的用户界面，并且你的子类将不会与不同的nib文件一起工作。当不得不告知子类的初始化器那一个nib文件要被加载时，初始化操作就会产生不变和易错。
 
@@ -276,6 +280,10 @@ This problem is solved by overriding the *init* method to call the superclass’
 **Figure 2-4**  加载特定于控制器的nib文件
 
 ![ Figure 2-4 ](http://i.imgbox.com/Lg1vhorO.png)
+
+一个不关联到任何NSDocument对象的NSWindowController对象本身也是有用的。NSWindowController可以被用作辅助面板控制器的基类，以便获得nib使用的管理能力。一个通用的NSWindowController子类的独立用法是作为诸如查找面板，检视器，或者偏好设置面板之类的共享面板的控制器。例如，Sketch事例应用为它的各种次要面板使用NSWindowController子类。在这种情况中，你可以创建一个实现了“共享实例”方法的NSWindowController子类以创建单例模式的窗口控制器对象。例如，你可以使用*sharedPreferenceController*方法来创建一个PreferenceController子类，该方法在第一次被调用时创建一个单一实例，并在随后的所有调用中返回相同的实例。
+
+因为你的子类继承自NSWindowController，所以你可以只告诉该类你的偏好面板nib文件的名字，并且其自动处理加载nib文件和管理窗口。像往常一样添加你拥有的插座和动作，将你的面板连接到指定用户界面并添加方法以管理面板的行为。
 
 ---
 
