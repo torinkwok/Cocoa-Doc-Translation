@@ -161,6 +161,22 @@ Xcode的文档驱动应用模板并不会子类化NSWindowController，而且如
 
 
 
+## Subclassing Objects in the Document Architecture
+
+You can create a document-based app without writing much code. You have only to create a document project, compose the human interface, implement a subclass of NSDocument, and add any other custom classes or behavior required by your app. However, most app requirements are more complex, so you can customize the default object architecture through subclassing and delegation, as described in this section.
+
+Table 2-1 summarizes the object architecture and subclass requirements of a document-based app.
+
+**Table 2-1**  Document architecture objects and subclasses
+Class                   | Number of objects | Subclassing
+----------------------- | ----------------- | ---------------------------
+NSDocument              | 1 per document    | Required
+NSWindowController      | 1 per window      | Optional (but recommended)
+NSDocumentController    | 1 per app         | Optional (and unlikely)
+
+
+
+
 
 
 
