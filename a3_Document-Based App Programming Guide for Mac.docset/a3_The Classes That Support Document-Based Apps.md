@@ -184,14 +184,47 @@ Table 2-1总结了文档驱动型应用的对象架构和子类化需求。
 类                      | 对象数量            | 子类化
 :---------------------- | :---------------  | :--------------------
 NSDocument              | 每个文档1个         | 必须的
-NSWindowController      | 每个窗口一个        | 可选的（但是推荐）
-NSDocumentController    | 每个应用一个        | 可选的（但是不太可能需要）
+NSWindowController      | 每个窗口一个        | 可选的（推荐）
+NSDocumentController    | 每个应用一个        | 可选的（不太可能需要）
 
 ---
 
+### You Must Subclass NSDocument
+Every app that uses the document architecture must create at least one subclass of NSDocument. To create a document-based Cocoa app, you choose the Xcode template for a Cocoa application presented in the `New Project` dialog and select the option `Create Document-Based Application` in the next pane. When you do this, you get a new app project that already contains a subclass of NSDocument and nib files for your document and app menu. Minimal or empty method implementations are provided for:
 
+* **Reading and writing document data.** Comments explain what you need to fill in, how to handle an error condition, and alternate reading and writing methods to override instead. The method bodies include code that throws an “unimplemented method” exception if you don’t change anything.
 
+* **Initialization of the document object.** The implementation contains the proper Cocoa initialization pattern, which calls the superclass initializer and provides a place for subclass-specific initialization.
 
+* **Returning the document nib file name.** This code overrides the *windowNibName* method to return the nib file name used for documents of this type. Comments explain situations where you should do alternate overrides.
+
+* **Post-nib-loading code.** This override provides a place for code to be executed after the document window nib file is loaded. For example, objects in the nib cannot be initialized until after the nib is loaded.
+
+* **Opting into autosaving.** By leaving this override as written in the template to return YES, you ensure that your document saves its data to disk automatically.
+
+See *“Creating the Subclass of NSDocument”* for information about implementing the required methods in your NSDocument subclass.
+
+### 你必须子类化NSDocument
+每个使用文档架构的应用都必须创建至少一个NSDocument的子类。要创建一个文档驱动的Cocoa应用，你可以在`New Project`对话框中为Cocoa应用程序提供的Xcode模板，在下一个面板中并选择`Create Document-Based Application`选项。当你这样做后，你会获得一个新的应用项目，其中已经包含了一个NSDocument子类和为你的文档和应用菜单创建的两个nib文件。一下几个方法提供了最少的或者空的方法实现：
+
+* **读写文档数据。** 注释解释了你应该填入什么，如何处理错误情况，以及替换读写方法以覆写方法。方法体包含了如果你没有更改任何事物就会抛出一个“unimplemented method”异常的代码。
+
+* **文档对象的初始化。** 该实现包含了Cocoa特有的初始化模式，其调用超类的初始化器，并且为特定于子类的初始化提供了位置。
+
+* **返回文档nib文件的名称。** 该代码重写了*windowNibName*方法以返回用于该类型文档的nib文件名称。注释解释了你应该替换该覆写的情境。
+
+* **布置nib加载代码（Post-nib-loading code)。** 该覆写为那些在文档窗口nib文件被加载后被执行的代码提供了位置。比如说，在nib文件中的对象直到nib文件被加载后才会被初始化。
+
+* **选择autosaving。** 通过在模板中编写并返回YES来留下该覆写，你可以确保你的文档会自动将其数据保存到磁盘。
+
+参阅*“Creating the Subclass of NSDocument”*以获得关于实现你的NSDocument子类必要方法的信息。
+
+---
+
+### You Should Subclass NSWindowController
+Even if your document has only one window, it may be complex enough that you’d like to split up some of the logic in the controller layer to have a view controller as well as a model controller object. In this case, you should subclass NSWindowController as well as NSDocument. In this way, you can add specific knowledge of the app’s view layer that the window controller is responsible for managing. Any outlets and actions, and any other behavior that is specific to the management of the user interface, goes into the NSWindowController subclass. Especially for larger apps, splitting the controller duties between two classes makes a lot of sense. This strategy allows you to have documents that are open, but not onscreen, to avoid having to allocate memory and other resources of a front-end that may not be used in some circumstances.
+
+### 你应该子类化NSWindowController
 
 
 
