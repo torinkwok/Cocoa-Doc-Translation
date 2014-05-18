@@ -170,10 +170,25 @@ Table 2-1 summarizes the object architecture and subclass requirements of a docu
 **Table 2-1**  Document architecture objects and subclasses
 
 Class                   | Number of objects | Subclassing
-:---------------------: | :---------------: | :--------------------------:
+:---------------------- | :---------------  | :--------------------------
 NSDocument              | 1 per document    | Required
 NSWindowController      | 1 per window      | Optional (but recommended)
 NSDocumentController    | 1 per app         | Optional (and unlikely)
+
+你可以不编写很多代码而创建一个文档驱动型应用。你可以只创建一个文档项目，构建用户界面，实现NSDocument子类以及添加任何你的应用所需要的其他定制类或行为。然而，大多数应用的需求会更加复杂，所以你可以通过子类化和委托来定制默认对象架构，如该章节所描述
+
+Table 2-1总结了文档驱动型应用的对象架构和子类化需求。
+
+**Table 2-1**  文档架构的对象和子类化
+
+类                      | 对象数量            | 子类化
+:---------------------- | :---------------  | :--------------------
+NSDocument              | 每个文档1个         | 必须的
+NSWindowController      | 每个窗口一个        | 可选的（但是推荐）
+NSDocumentController    | 每个应用一个        | 可选的（但是不太可能需要）
+
+---
+
 
 
 
