@@ -187,7 +187,7 @@ NSDocument              | 每个文档1个         | 必须的
 NSWindowController      | 每个窗口一个        | 可选的（推荐）
 NSDocumentController    | 每个应用一个        | 可选的（不太可能需要）
 
----
+
 
 ### You Must Subclass NSDocument
 Every app that uses the document architecture must create at least one subclass of NSDocument. To create a document-based Cocoa app, you choose the Xcode template for a Cocoa application presented in the `New Project` dialog and select the option `Create Document-Based Application` in the next pane. When you do this, you get a new app project that already contains a subclass of NSDocument and nib files for your document and app menu. Minimal or empty method implementations are provided for:
@@ -219,12 +219,43 @@ See *“Creating the Subclass of NSDocument”* for information about implementi
 
 参阅*“Creating the Subclass of NSDocument”*以获得关于实现你的NSDocument子类必要方法的信息。
 
----
+
 
 ### You Should Subclass NSWindowController
 Even if your document has only one window, it may be complex enough that you’d like to split up some of the logic in the controller layer to have a view controller as well as a model controller object. In this case, you should subclass NSWindowController as well as NSDocument. In this way, you can add specific knowledge of the app’s view layer that the window controller is responsible for managing. Any outlets and actions, and any other behavior that is specific to the management of the user interface, goes into the NSWindowController subclass. Especially for larger apps, splitting the controller duties between two classes makes a lot of sense. This strategy allows you to have documents that are open, but not onscreen, to avoid having to allocate memory and other resources of a front-end that may not be used in some circumstances.
 
 ### 你应该子类化NSWindowController
+即使你的文档只有一个窗口，但是如果你想在控制器层中划分出一些逻辑以拥有视图控制器和模型控制器，还是会变得足够复杂。在这种情况中，你应该子类化NSWindowController和NSDocument。这样，你就可以添加应用的窗口控制器所负责管理的视图层的特定认知。任何插座（outlets）和动作（actions），以及任何特定于用户界面管理的行为都应该放入NSWindowController的子类。尤其是大型的应用，在两个类之间划分控制器的责任具有重大意义。该策略允许你使**那些被打开但是并没有在屏幕上显示的文档**避免在某些情况中被分配可能不会被用到的内存和前端资源。
+
+---
+
+#### Reasons to Subclass NSWindowController
+If your document requires or allows multiple windows for a single document, that is a good reason to subclass NSWindowController. For example, a CAD program could need to present front, top, and side views, as well as a rendered 3D view of a document. When it does, you might want to have one or more subclasses of NSWindowController to manage the different kinds of windows that your document needs, and so you must create one of each in *makeWindowControllers.*
+
+Some apps need only one window for a document but want to allow the user to create several copies of the window for a single document (sometimes this is called a multiple-view document) so that the user can have each window scrolled to a different position or displayed differently, such as at a different scale. In this case, your *makeWindowControllers* override would create only one NSWindowController object, and there would be a menu command or other control that allows the user to create others.
+
+Another reason to subclass NSWindowController is to customize your document window titles. To customize a document's window title properly, subclass NSWindowController and override *windowTitleForDocumentDisplayName:*. If your app requires even deeper customization, override *synchronizeWindowTitleWithDocumentName*.
+
+#### 子类化NSWindowController的原因
+如果你的文档需要或者允许一个文档对应多个窗口，那么这就是一个NSWindowController的好原因。比如说，一个CAD程序需要提供文档的前部，顶部和侧部视图，以及一个3D渲染视图。当这样时，你可能想要一个或多个NSWindowController的子类以管理你的文档所需要的不同种类的窗口，并且你必须在*makeWindowContorller*方法中挨个创建。
+
+一些应用只需要一个窗口对应一个文档，但是想要允许用户能够为一个文档创建该窗口的多份副本（有时候这叫做多视图文档），以便于用户可以使每个窗口都滚动到不同的位置或者以不同的方式显示，比如在不同的缩放下显示。在这种情况下，你的*makeWindowControllers*覆写将会只创建一个NSWindowController对象，并且将会有一个菜单命令或者其他允许用户创建其他窗口的NSControl。
+
+另一个子类化NSWindowController的原因就是要定制你的文档窗口的标题。要正确地定制一个文档窗口的标题，子类化NSWindowController并覆写*windowTitleForDocumentDisplayName:*方法。如果你的应用需要更深一步地定制，那么覆写*synchronizeWindowTitleWithDocumentName*方法。
+
+---
+
+#### How to Subclass NSWindowController
+Once you've decided to subclass NSWindowController, you need to change the default document-based app setup. First, add any Interface Builder outlets and actions for your document's user interface to the NSWindowController subclass instead of to the NSDocument subclass. The NSWindowController subclass instance should be the File’s Owner for the nib file because that creates better separation between the view-related logic and the model-related logic. Some menu actions can still be implemented in the NSDocument subclass. For example, Save and Revert Document are implemented by NSDocument, and you might add other menu actions of your own, such as an action for creating new views on a document.
+
+Second, instead of overriding windowNibName in your NSDocument subclass, override makeWindowControllers. In makeWindowControllers, create at least one instance of your custom NSWindowController subclass and use addWindowController: to add it to the document. If your document always needs multiple controllers, create them all here. If a document can support multiple views but by default has one, create the controller for the default view here and provide user actions for creating other views.
+
+You should not force the windows to be visible in makeWindowControllers. NSDocument does that for you if it’s appropriate.
+
+#### 如何子类化NSWindowController
+
+
+
 
 
 
