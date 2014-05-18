@@ -129,14 +129,35 @@ NSDocument是应用程序架构中的文档对象的基类——你必须为你�
 
 ## NSWindowController Manages One Document Window
 
-An NSWindowController object manages one window associated with a document. That window is typically stored in a nib file. As such, in the MVC design pattern, it is a view controller. When an NSWindowController object receives a request from its owning NSDocument object, it loads the nib file containing a window, displays the window, and sets itself as the File’s Owner of the nib file. It also assumes responsibility for closing windows properly.
+An NSWindowController object manages one window associated with a document. That window is typically stored in a nib file. As such, in the MVC design pattern, it is a **view controller.** When an NSWindowController object receives a request from its owning NSDocument object, it loads the nib file containing a window, displays the window, and sets itself as the File’s Owner of the nib file. It also assumes responsibility for closing windows properly.
 
 A window controller keeps track of its window using its window outlet. The window outlet should be connected to the window for which your window controller is responsible, as shown in Figure 2-3.
 
 **Figure 2-3**  Window outlet of window controller
 
+Although not required, it’s often convenient to set up your window controller as the delegate of the window it manages. In your nib file, connect the delegate outlet of the window your window controller is managing to the object that represents your window controller—specifically, the File’s Owner object.
+
+> Note: NSWindowController does not depend on being the controlled window's delegate to do its job, and it doesn't implement any NSWindow delegate methods. A subclass of NSWindowController, however, is a fine place to put implementations of NSWindow delegate methods, and if you do so you'll probably need to connect the delegate outlet of the window to the File's Owner of the nib file as described. But you do not have to do so for NSWindowController itself to work properly.
+
+The Xcode document-based app template does not subclass NSWindowController, and you do not need to do so if you are writing a simple app. However, if you are writing an app with more advanced requirements, as is typical, you will almost certainly want to do so. In addition, subclassing NSWindowController promotes better encapsulation of your view and model code. For more information, see *“You Should Subclass NSWindowController.”*
+
+
+
 ## NSWindowController管理一个文档窗口
 
+一个NSWindowController对象管理与某一个文档关联的窗口。该窗口通常存储在一个nib文件中。就其本身而言，在MVC设计模式中，它是一个**视图控制器**。当一个NSWindowController对象从拥有其的NSDocument对象接收一个请求时，它就会加载包含窗口的nib文件，显示该窗口，并且设置它自己为该nib文件的File's Owner。它也会承担正确关闭窗口的责任。
+
+一个窗口控制器使用它的窗口插座（outlet）来保持对它的窗口的追踪。窗口插座应该被连接到你的窗口控制器所负责的那个窗口上，如Figure 2-3所示。
+
+**Figure 2-3**  窗口控制器的窗口插座（outlet）
+
+![ Figure 2-3 ](http://i.imgbox.com/3XxaXLlQ.png)
+
+即使不是必须的，但通常还是很方便地将**你的窗口控制器**设置为**其管理的窗口**的委托。在你的nib文件中，将**你的窗口控制器所管理的窗口**的委托插座连接到代表你的窗口控制器的对象——明确地说，是File' Owner对象。
+
+> 注意：NSWindowController并不是一定要成为其所控制的窗口的委托才能履行自己的职责，并且它也没有实现任何NSWindow委托方法。然而，NSWindowController子类的确是一个放置NSWindow委托实现的好地方，并且如果你这么做了你可能需要如前所述地将窗口的委托插座连接到nib文件的File' Owner。但是并不是一定要做这些才能让NSWindowController正确地工作。
+
+Xcode的文档驱动应用模板并不会子类化NSWindowController，而且如果你在编写一个简单的应用那么其实并不需要子类化它。然而，如果你正在编写一个带有更多高级需求的应用，你几乎肯定相会子类化NSWindowController。此外，子类化NSWindowController会促进视图和模型代码更好地封装。更多信息，参阅*“You Should Subclass NSWindowController。”*
 
 
 
