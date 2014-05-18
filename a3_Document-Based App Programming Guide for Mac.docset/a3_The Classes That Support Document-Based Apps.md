@@ -259,6 +259,26 @@ You should not force the windows to be visible in *makeWindowControllers*. NSDoc
 
 你不应该在*makeWindowControllers*方法中强制窗口可见。NSDocument会在合适是的时候为你这样做。
 
+---
+
+#### An NSWindowController Subclass Manages Nib Files
+An NSWindowController object expects to be told what nib file to load (through its *initWithWindowNib...* methods) because it is a generic implementation of the default behavior for all window controllers. However, when you write a subclass of NSWindowController, that subclass is almost always designed to control the user interface contained in a particular nib file, and your subclass would not work with a different nib file. It is therefore inconvenient and error-prone for the instantiator of the subclass to have to tell it which nib file to load.
+
+This problem is solved by overriding the *init* method to call the superclass’s *initWithWindowNibName:* method with the correct nib name. Then instantiators just use *init*, and the controller has the correct nib file. You can also override the *initWithWindowNib...* methods to log an error, as shown in Figure 2-4, because no instantiator should ever try to tell your subclass which nib file to use. It is a good idea for any NSWindowController subclass designed to work with a specific nib file to use this technique. You should do otherwise only if you are extending just the basic functionality of NSWindowController in your subclass and have not tied that functionality to any particular nib file.
+
+**Figure 2-4**  Loading a nib file that is controller specific
+
+#### NSWindowController子类管理nib文件
+一个NSWindowController对象期望被告知哪个nib文件会被加载（通过它的*initWithWindowNib...*方法）因为这是一个所有窗口控制器默认行为的范型实现。然而，当你编写一个NSWindowController的子类时，该子类几乎总是被设计为控制特定nib文件中的用户界面，并且你的子类将不会与不同的nib文件一起工作。当不得不告知子类的初始化器那一个nib文件要被加载时，初始化操作就会产生不变和易错。
+
+这个问题通过覆写*init*方法以用正确的nib文件名调用超类的*initWithWindowNib:*方法来解决。然后初始化器可以只使用*init*方法，并且控制器会拥有正确的nib文件。你还可以覆写*initWithWindowNib...*方法来记录错误，如Figure 2-4所示，因为没有初始化器应该试图告诉你的子类那一个nib文件被使用。对于任何被设计用于与特定nib文件工作的NSWindowController子类，使用该技巧是一个好主意。只当你在你的子类中只是扩展NSWindowController的基础功能时，你才应该不这样做，并且不需要将功能与任何特定的nib文件捆绑。
+
+**Figure 2-4**  加载特定于控制器的nib文件
+
+![ Figure 2-4 ](http://i.imgbox.com/3XxaXLlQ.png)
+
+---
+
 
 
 
