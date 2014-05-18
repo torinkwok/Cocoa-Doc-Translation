@@ -275,7 +275,7 @@ This problem is solved by overriding the *init* method to call the superclass’
 
 **Figure 2-4**  加载特定于控制器的nib文件
 
-![ Figure 2-4 ](http://i.imgbox.com/3XxaXLlQ.png)
+![ Figure 2-4 ](http://i.imgbox.com/Lg1vhorO.png)
 
 ---
 
