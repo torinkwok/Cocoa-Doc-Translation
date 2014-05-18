@@ -168,6 +168,7 @@ You can create a document-based app without writing much code. You have only to 
 Table 2-1 summarizes the object architecture and subclass requirements of a document-based app.
 
 **Table 2-1**  Document architecture objects and subclasses
+
 Class                   | Number of objects | Subclassing
 ----------------------- | ----------------- | ---------------------------
 NSDocument              | 1 per document    | Required
