@@ -170,7 +170,7 @@ Table 2-1 summarizes the object architecture and subclass requirements of a docu
 **Table 2-1**  Document architecture objects and subclasses
 
 Class                   | Number of objects | Subclassing
------------------------ | ----------------- | ---------------------------
+:---------------------: | :---------------: | :--------------------------:
 NSDocument              | 1 per document    | Required
 NSWindowController      | 1 per window      | Optional (but recommended)
 NSDocumentController    | 1 per app         | Optional (and unlikely)
