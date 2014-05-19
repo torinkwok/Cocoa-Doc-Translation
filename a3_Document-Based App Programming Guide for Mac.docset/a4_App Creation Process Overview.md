@@ -109,6 +109,8 @@ Of these two techniques, the first is more common because many menu commands act
 
 For more information about menu validation and other menu topics, see [Application Menu and Pop-up List Programming Topics.](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/MenuList/MenuList.html#//apple_ref/doc/uid/10000032i)
 
+## 回顾一下你的应用程序菜单栏命令
+
 Table 3-1列出了存在于模板中的`文件`的First Responder动作链接。
 
 **Table 3-1**  在文档驱动应用模板中的`文件`菜单命令
