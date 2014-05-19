@@ -98,6 +98,7 @@ Print                    | printDocument:
 After a document has been saved for the first time, the `Save` command changes to `Save a Version`. In applications that have enabled autosaving in place, the `Save As` and `Save All` items in the `File` menu are hidden, and a `Duplicate` menu item is added. The template has similar ready-made connections for the `Edit`, `Format`, `View`, `Window`, and `Help` menus.
 
 > **Warning:** If your app does not support any of the supplied actions, such as printing, for example, you must remove the associated menu items from the nib. Otherwise, when a user chooses the action, your app could raise an exception or crash.
+
 For your app’s custom menu items that are not already connected to action methods in objects or placeholder objects in the nib file, there are two common techniques for handling menu commands in an OS X app:
 
 * Connect the corresponding menu item to a first responder method.
@@ -118,14 +119,24 @@ Table 3-1列出了存在于模板中的`文件`的First Responder动作链接。
 打开（Open）                                     | openDocument:
 最近打开文档（Open Recent） > 清除菜单（Clear Menu）| clearRecentDocuments:
 关闭（Close）                                    | performClose:
-保存（Save）／保存一个版本（Save a Version）         | saveDocument:
+保存（Save）/ 保存一个版本（Save a Version）         | saveDocument:
 还原文档（Revert Document）                       | revertDocumentToSaved:
 页面设置（Page Setup）                            | runPageLayout:
 打印（Print）                                    | printDocument:
 
 当一个文档第一次被保存后，`保存`命令就会变成`保存一个版本`。在已经允许在适当处自动保存的应用程序中，`文件`菜单中的`另存为`和`全部保存`项会被隐藏，而会添加一个`拷贝`项（Duplicate）。对于`编辑`，`格式`，`视图`，`窗口`，以及`帮助`菜单来说，模板都提供了类似的现成的连接。
 
-> **警告：** 如果你的应用没有提供任何自带菜单项中已提供动作的实现，比如打印，那么你必须从nib中移除关联的
+> **警告：** 如果你的应用没有提供任何自带菜单项中已提供动作的实现，比如打印，那么你必须从nib中移除关联的菜单项。否则，当用户选择该动作时，你的应用会抛出一个异常或者崩溃。
+
+对于你的应用中的没有连接到对象或者占位符对象中的动作方法的定制菜单项来说，有两条在OS X应用中处理菜单命令的通用技巧：
+
+* 将对应的菜单项连接到First Responder方法
+
+* 将菜单项连接到你的自定义应用对象或者应用委托对象中的方法
+
+在这两种技巧中，第一个更加常用，因为很多菜单命令都是作用于当前文档或者它的内容的，其属于响应者链的一部分。第二条技巧主要用于处理全局的应用命令，比如显示偏好设置或者创建新的文档。除了实现动作方法以响应你的菜单命令之外，你还必须实现NSMenuValidation协议的方法来为这些命令启用菜单项。
+
+更多关于菜单验证的信息以及其他菜单主题，参阅[Application Menu and Pop-up List Programming Topics。](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/MenuList/MenuList.html#//apple_ref/doc/uid/10000032i)
 
 
 
