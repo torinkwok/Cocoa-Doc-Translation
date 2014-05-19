@@ -56,6 +56,7 @@ Without writing any additional code, you can compile and run the app. When you f
 要在Xcode中创建你的工程，需选择`File` > `New` > `New Project`。选择OS X应用程序选项中的Cocoa Application图标。在下一个面板中，选择`Create Document-Based Application`选项，如Figure 3-1所示。在该面板中除了其他选项，你还可以要命名你的应用，为你的NSDocument子类给定前缀，以及指定你的文档的文件扩展名。如果你打算为你的数据模型使用Core Data，选择`Use Core Data`选项，该选项会自动插入NSPersistentDocument来作为你的文档子类直接超类。
 
 **Figure 3-1**  New Project对话框
+![ Figure 3-1 ](http://i.imgbox.com/0xKaFG5q.png)
 
 `New Project`对话框的最终面板允许你将你的工程放置到文件系统中，并且如果你希望还可以创建一个源代码控制仓库。更多关于Xcode工程创建过程的细节，参阅[Xcode Overview](https://developer.apple.com/library/mac/documentation/ToolsLanguages/Conceptual/Xcode_Overview/About_Xcode/about.html#//apple_ref/doc/uid/TP40010215)中的[“Start a Project”。](https://developer.apple.com/library/mac/documentation/ToolsLanguages/Conceptual/Xcode_Overview/ProjectsWorkspaces/start_project.html#//apple_ref/doc/uid/TP40010215-CH2)
 
@@ -83,18 +84,18 @@ Table 3-1 lists the `File` menu first-responder action connections that exist in
 
 **Table 3-1**  File Menu commands in the document-based app template
 
-File menu command           | First-responder action
-:-------------------------- | :----------------------------
-New                         | newDocument:
-Open                        | openDocument:
-Open Recent > Clear Menu    | clearRecentDocuments:
-Close                       | performClose:
-Save/Save a Version         | saveDocument:
-Revert Document             | revertDocumentToSaved:
-Page Setup                  | runPageLayout:
-Print                       | printDocument:
+File menu command        | First-responder action
+:----------------------- | :----------------------
+New                      | newDocument:
+Open                     | openDocument:
+Open Recent > Clear Menu | clearRecentDocuments:
+Close                    | performClose:
+Save/Save a Version      | saveDocument:
+Revert Document          | revertDocumentToSaved:
+Page Setup               | runPageLayout:
+Print                    | printDocument:
 
-After a document has been saved for the first time, the Save command changes to Save a Version. In applications that have enabled autosaving in place, the Save As and Save All items in the File menu are hidden, and a Duplicate menu item is added. The template has similar ready-made connections for the Edit, Format, View, Window, and Help menus.
+After a document has been saved for the first time, the `Save` command changes to `Save a Version`. In applications that have enabled autosaving in place, the `Save As` and `Save All` items in the File menu are hidden, and a `Duplicate` menu item is added. The template has similar ready-made connections for the `Edit`, `Format`, `View`, `Window`, and `Help` menus.
 
 > **Warning:** If your app does not support any of the supplied actions, such as printing, for example, you must remove the associated menu items from the nib. Otherwise, when a user chooses the action, your app could raise an exception or crash.
 For your app’s custom menu items that are not already connected to action methods in objects or placeholder objects in the nib file, there are two common techniques for handling menu commands in an OS X app:
