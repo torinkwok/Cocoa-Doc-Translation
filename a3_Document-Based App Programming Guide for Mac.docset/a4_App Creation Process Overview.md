@@ -140,6 +140,18 @@ Table 3-1列出了存在于模板中的`文件`的First Responder动作链接。
 
 更多关于菜单验证的信息以及其他菜单主题，参阅[Application Menu and Pop-up List Programming Topics。](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/MenuList/MenuList.html#//apple_ref/doc/uid/10000032i)
 
+## Complete the Information Property List
+
+You need to configure the project’s information property list so that the app knows what kinds of documents it can handle. You specify this information in the Xcode information property list file, which is shown in Figure 3-2. The property list file is stored in the app’s bundle and named <appName>-Info.plist by default.
+
+When the NSDocumentController object creates a new document or opens an existing document, it searches the property list for such items as the document class that handles a document type, the uniform type identifier (UTI) for the type, and whether the app can edit or only view the type. Similarly, Launch Services uses information about the icon file for the type and to know which app to launch when the user double-clicks a document file. Document type information is associated with the CFBundleDocumentTypes key as an array of dictionaries, each of which contains the key-value pairs that define the document type.
+
+Xcode provides a property list file with every Mac app project. The property list editor appears when you select the Info.plist file in the project navigator or select the target and choose the Info pane of the project editor. In the Info pane, there’s a list of target properties. You can edit the property values and add new key-value pairs. By default, Xcode displays a user-friendly version of each key name. To see the actual key names that are in the Info.plist file, Control-click an item in the editor and choose Show Raw Keys/Values from the contextual menu that appears.
+
+**Figure 3-2**  The information property list editor
+
+
+
 
 
 
