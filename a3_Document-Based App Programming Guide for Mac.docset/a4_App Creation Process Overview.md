@@ -95,7 +95,7 @@ Revert Document          | revertDocumentToSaved:
 Page Setup               | runPageLayout:
 Print                    | printDocument:
 
-After a document has been saved for the first time, the `Save` command changes to `Save a Version`. In applications that have enabled autosaving in place, the `Save As` and `Save All` items in the File menu are hidden, and a `Duplicate` menu item is added. The template has similar ready-made connections for the `Edit`, `Format`, `View`, `Window`, and `Help` menus.
+After a document has been saved for the first time, the `Save` command changes to `Save a Version`. In applications that have enabled autosaving in place, the `Save As` and `Save All` items in the `File` menu are hidden, and a `Duplicate` menu item is added. The template has similar ready-made connections for the `Edit`, `Format`, `View`, `Window`, and `Help` menus.
 
 > **Warning:** If your app does not support any of the supplied actions, such as printing, for example, you must remove the associated menu items from the nib. Otherwise, when a user chooses the action, your app could raise an exception or crash.
 For your app’s custom menu items that are not already connected to action methods in objects or placeholder objects in the nib file, there are two common techniques for handling menu commands in an OS X app:
@@ -118,10 +118,14 @@ Table 3-1列出了存在于模板中的`文件`的First Responder动作链接。
 打开（Open）                                     | openDocument:
 最近打开文档（Open Recent） > 清除菜单（Clear Menu）| clearRecentDocuments:
 关闭（Close）                                    | performClose:
-保存（Save）/保存一个版本（Save a Version）         | saveDocument:
+保存（Save）／保存一个版本（Save a Version）         | saveDocument:
 还原文档（Revert Document）                       | revertDocumentToSaved:
 页面设置（Page Setup）                            | runPageLayout:
 打印（Print）                                    | printDocument:
+
+当一个文档第一次被保存后，`保存`命令就会变成`保存一个版本`。在已经允许在适当处自动保存的应用程序中，`文件`菜单中的`另存为`和`全部保存`项会被隐藏，而会添加一个`拷贝`项（Duplicate）。对于`编辑`，`格式`，`视图`，`窗口`，以及`帮助`菜单来说，模板都提供了类似的现成的连接。
+
+> **警告：** 如果你的应用没有提供任何自带菜单项中已提供动作的实现，比如打印，那么你必须从nib中移除关联的
 
 
 
