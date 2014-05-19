@@ -82,7 +82,7 @@ Step-by-step instructions for connecting menu items to action methods in your co
 
 Table 3-1 lists the `File` menu first-responder action connections that exist in the template.
 
-**Table 3-1**  File Menu commands in the document-based app template
+**Table 3-1**  `File` Menu commands in the document-based app template
 
 File menu command        | First-responder action
 :----------------------- | :----------------------
@@ -108,6 +108,20 @@ Of these two techniques, the first is more common because many menu commands act
 
 For more information about menu validation and other menu topics, see [Application Menu and Pop-up List Programming Topics.](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/MenuList/MenuList.html#//apple_ref/doc/uid/10000032i)
 
+Table 3-1列出了存在于模板中的`文件`的First Responder动作链接。
+
+**Table 3-1**  在文档驱动应用模板中的`文件`菜单命令
+
+文件菜单命令                                      | First Responder动作
+:---------------------------------------------- | :----------------------
+新建（New）                                      | newDocument:
+打开（Open）                                     | openDocument:
+最近打开文档（Open Recent） > 清除菜单（Clear Menu）| clearRecentDocuments:
+关闭（Close）                                    | performClose:
+保存（Save）/保存一个版本（Save a Version）         | saveDocument:
+还原文档（Revert Document）                       | revertDocumentToSaved:
+页面设置（Page Setup）                            | runPageLayout:
+打印（Print）                                    | printDocument:
 
 
 
