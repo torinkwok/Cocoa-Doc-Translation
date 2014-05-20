@@ -162,6 +162,39 @@ Xcode为每个Mac应用工程提供一个属性列表文件。当你在工程导
 
 ![ Figure 3-2 ](http://i.imgbox.com/OdL6Ywd8.png)
 
+For a new document-based app, you should create a document type with a name and extension that make sense for your app. You can add more types as well, one for each of the document types your app handles. The app’s most important document type must be listed first in the list of types. This is the type that NSDocumentController uses by default when the user asks for a new document.
+
+The most important document type value is its Uniform Type Identifier (UTI), a string that uniquely identifies the type of data contained in the document for all apps and services to rely upon. A document’s UTI corresponds to the LSItemContentTypes key in the information property list. The UTI is used as the programmatic type name by NSDocument and NSDocumentController. By using UTIs, apps avoid much of the complexity previously required to handle disparate kinds of file-type information in the system, including filename extensions, MIME types, and HFS type codes (OS types).
+
+A document UTI can be defined by the system, as shown in [“System-Declared Uniform Type Identifiers”](https://developer.apple.com/library/mac/documentation/Miscellaneous/Reference/UTIRef/Articles/System-DeclaredUniformTypeIdentifiers.html#//apple_ref/doc/uid/TP40009259) in [Uniform Type Identifiers Reference](https://developer.apple.com/library/mac/documentation/Miscellaneous/Reference/UTIRef/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009257), or a document-based app can declare its own proprietary UTI. Such custom UTIs must also be exported to make the system aware of them, as described in *“Export Custom Document Type Information.”*
+
+To declare a document type in Xcode, perform the following steps:
+
+    1. Select the project in the project navigator.
+    
+    2. Select the target and click the Info tab.
+    
+    3. Click the Add (+) button at the bottom right of the editor area and choose Add Document Type from the pop-up menu.
+    
+    4. Click the triangle next to “Untitled” to disclose the property fields.
+    
+Alternatively, you can select the Info.plist file in the project navigator, click in the editor area, and choose `Editor` > `Add Item` to add document type properties directly to the property list file, as shown in Figure 3-2. Choose `Editor` > `Show Raw Keys & Values` to reveal the actual key names.
+
+Add the properties shown in Table 3-2.
+
+**Table 3-2**  Properties defining a document type (CFBundleDocumentTypes)
+
+Key                     | Xcode field (Info.plist identifier) | Value
+:---------------------- | :---------------------------------- | :-----------------------------------------------------
+LSItemContentTypes      | Identifier                          | An array of UTI strings. Typically, only one is specified per document type. The UTI string must be spelled out explicitly.
+NSDocumentClass         | Class (Cocoa NSDocument Class)      | A string specifying the NSDocument subclass name corresponding to this document type.
+CFBundleTypeRole        | Role                                | A string specifying the role the app with respect to this document type. Possible values are Editor, Viewer, Shell, Quick Look Generator, or None.
+NSExportableTypes       | (Exportable Type UTIs)              | An array of strings specifying UTIs that define a supported file type to which this document can export its content.
+LSTypeIsPackage         | Bundle (Document is a package or bundle) | A Boolean value specifying whether the document is distributed as a bundle. If NO, omit this value.
+CFBundleTypeIconFile    | Icon (Icon File Name)               | A string specifying the name of the icon resource file (extension .icns) to associate with this document type. An icon resource file contains multiple images at different resolutions.
+CFBundleTypeName        | Name (Document Type Name)           | A string specifying the abstract name of the document type.
+LSHandlerRank           | Handler rank                        | A string specifying how Launch Services ranks this app among those that declare themselves editors or viewers of documents of this type. Possible values, in order of precedence, are Owner, Alternate, and None.
+
 
 
 
