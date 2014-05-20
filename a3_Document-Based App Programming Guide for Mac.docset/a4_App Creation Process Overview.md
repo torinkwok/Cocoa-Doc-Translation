@@ -216,13 +216,13 @@ Xcode为每个Mac应用工程提供一个属性列表文件。当你在工程导
 
     2. 选择目标，并点击Info标签。
 
-    3. 点击编辑器区域底部右侧的Add(+)按钮，并从弹出菜单中选择Add Document Type。
+    3. 点击编辑器区域右下方的Add(+)按钮，并从弹出菜单中选择Add Document Type。
 
-    4. 点击下一个三角形展开属性域。
+    4. 点击紧邻“Untitled”的三角形以显示属性域。
 
 或者，你可以在工程导航器中选择Info.plist文件，点击编辑器区域，并选择`Editor` > `Add Item`以直接添加文档类型属性到属性列表文件中，如Figure 3-2所示。选择`Editor` > `Show Raw Keys & Values`以显示真正的键名。
 
-Table 3-2中展示了添加属性
+添加在Table 3-2中所示的属性。
 
 **Table 3-2**  定义文档类型（CFBundleDocumentTypes）的一些属性
 
@@ -238,6 +238,85 @@ CFBundleTypeName        | Name (Document Type Name)                | 该字符�
 LSHandlerRank           | Handler rank                             | 该字符串指定了启动服务（Launch Services）如何为那些声明为该类型文档的编辑器或查看器的应用程序排列优先级。可能的值为按优先级排序为Owner，Alternate以及None。
 
 更多关于这些及其他文档类型键的信息，参阅[Information Property List Key Reference](https://developer.apple.com/library/mac/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009247)中的“CFBundleDocumentTypes”。
+
+
+
+## Export Custom Document Type Information
+
+If you define a custom document type with its own UTI, you must export the UTI. To declare a document type in Xcode, perform the following steps:
+
+    1. Select the project in the project navigator area.
+    
+    2. Select the target and click the Info tab.
+
+    3. Click the Add (+) button at the bottom right of the editor area and choose Add Exported UTI from the pop-up menu.
+
+    4. Click the triangle next to “Untitled” to disclose the property fields.
+    
+Add the properties shown in Table 3-3.
+
+**Table 3-3**  Properties defining an exported document type (UTExportedTypeDeclarations)
+
+Key                     | Xcode field (Info.plist identifier) | Value
+:---------------------- | :---------------------------------- | :---------------------------------------------------
+UTTypeDescription       | Description                         | A string describing this document type.
+UTTypeIdentifier        | Identifier                          | The exported document type’s UTI.
+UTTypeIconFile          | Icon (Icon file name)               | A string specifying the name of the document type’s icon file.
+UTTypeConformsTo        | Conforms to (Conforms to UTIs)      | An array of strings representing the UTIs to which the document type conforms.
+UTTypeTagSpecification  | Extensions (Equivalent Types)       | An array of strings named public.filename-extension containing filename extensions corresponding to the document type.
+
+For more information about these and other exported type property keys, see [“Declaring New Uniform Type Identifiers”](https://developer.apple.com/library/mac/documentation/FileManagement/Conceptual/understanding_utis/understand_utis_declare/understand_utis_declare.html#//apple_ref/doc/uid/TP40001319-CH204) in [Uniform Type Identifiers Overview.](https://developer.apple.com/library/mac/documentation/FileManagement/Conceptual/understanding_utis/understand_utis_intro/understand_utis_intro.html#//apple_ref/doc/uid/TP40001319)
+
+
+## 导出定制文档类型信息
+
+如果你定义了一个使用其自己的UTI的文档类型，你必须导出该UTI。要在Xcode中声明一个文档类型，需执行如下步骤：
+
+    1. 在工程导航器区域选择工程。
+    
+    2. 选择目标并点击Info标签。
+    
+    3. 点击编辑器区域右下方的Add(+)按钮并从弹出菜单中选择Add Exported UTI。
+    
+    4. 点击紧邻“Untitled”的三角形以显示属性域。
+    
+添加Table 3-3中所示的属性。
+
+**Table 3-3**  定义导出文档类型（UTExportedTypeDeclarations）的一些属性
+
+Key                     | Xcode field (Info.plist identifier) | Value
+:---------------------- | :---------------------------------- | :---------------------------------------------------
+UTTypeDescription       | Description                         | 该字符串描述了该文档类型。
+UTTypeIdentifier        | Identifier                          | 被导出文档类型的UTI。
+UTTypeIconFile          | Icon (Icon file name)               | 该字符串指定了文档类型图标文件的名称。
+UTTypeConformsTo        | Conforms to (Conforms to UTIs)      | 该字符串数组代表文档类型所遵循的UTIs。
+UTTypeTagSpecification  | Extensions (Equivalent Types)       | 该命名为public.filename-extension的字符串数组包含了与该文档类型对应的文件扩展名。
+
+更多关于这些和其他导出类型属性键的信息，参阅[Uniform Type Identifiers Overview](https://developer.apple.com/library/mac/documentation/FileManagement/Conceptual/understanding_utis/understand_utis_intro/understand_utis_intro.html#//apple_ref/doc/uid/TP40001319)中的[“Declaring New Uniform Type Identifiers”。](https://developer.apple.com/library/mac/documentation/FileManagement/Conceptual/understanding_utis/understand_utis_declare/understand_utis_declare.html#//apple_ref/doc/uid/TP40001319-CH204)
+
+
+
+## Implement the NSDocument Subclass
+
+Every document-based app that uses the document architecture must create at least one subclass of NSDocument. You must override some NSDocument methods (among several choices), and you should override several others in certain situations. Details explaining how to implement your NSDocument subclass are in *“Creating the Subclass of NSDocument.”*
+
+## 实现NSDocument子类
+
+每个使用文档架构的文档驱动应用都必须创建至少一个NSDocument的子类。你必须覆写一些NSDocument方法（有几个不同的选择），并且在某些情况下你还应该覆写其他的几个方法。*“Creating the Subclass of NSDocument”*详细解释了如何实现你的NSDocument子类。
+
+
+
+## Create Any Additional Custom Classes
+
+The Cocoa document architecture, as embodied primarily in NSDocument, NSDocumentController, and NSWindowController, provides an operating framework for apps, including sophisticated document handling mechanisms. However, you must add the behaviors that differentiate your app and suit it to its particular purpose. Much customized behavior can be implemented in your NSDocument subclass, in delegate methods, custom classes added to your project, and subclasses of NSDocumentController and NSWindowController if you need to extend the capabilities of either of those classes. Generally, you should use custom classes to encapsulate the program logic of your data model and controllers, maintaining a healthy MVC separation.
+
+For more information about app design, see [Mac App Programming Guide.](https://developer.apple.com/library/mac/documentation/General/Conceptual/MOSXAppProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010543)
+
+## 创建任何额外的定制类
+
+Cocoa文档架构主要由NSDocument，NSDocumentController和NSWindowController来呈现，其为应用程序提供了一个操作框架，包括复杂的文档处理机制。然而，你必须添加能够区分你的应用并适合特定目的的行为。如果你需要扩展这些类中的任意一个的功能，那么很多定制行为都可以在NSDocument子类中，委托方法中，添加到你的工程的定制类中以及NSDocumentController和NSWindowController的子类中被实现。通常你需要使用定制类去封装你的数据模型和控制器的程序逻辑，以保持一个合理的MVC划分。
+
+更多关于应用程序设计的信息，参阅[Mac App Programming Guide。](https://developer.apple.com/library/mac/documentation/General/Conceptual/MOSXAppProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010543)
 
 
 
