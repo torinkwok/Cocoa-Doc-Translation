@@ -146,9 +146,21 @@ You need to configure the project’s information property list so that the app 
 
 When the NSDocumentController object creates a new document or opens an existing document, it searches the property list for such items as the document class that handles a document type, the uniform type identifier (UTI) for the type, and whether the app can edit or only view the type. Similarly, Launch Services uses information about the icon file for the type and to know which app to launch when the user double-clicks a document file. Document type information is associated with the CFBundleDocumentTypes key as an array of dictionaries, each of which contains the key-value pairs that define the document type.
 
-Xcode provides a property list file with every Mac app project. The property list editor appears when you select the Info.plist file in the project navigator or select the target and choose the Info pane of the project editor. In the Info pane, there’s a list of target properties. You can edit the property values and add new key-value pairs. By default, Xcode displays a user-friendly version of each key name. To see the actual key names that are in the Info.plist file, Control-click an item in the editor and choose Show Raw Keys/Values from the contextual menu that appears.
+Xcode provides a property list file with every Mac app project. The property list editor appears when you select the Info.plist file in the project navigator or select the target and choose the `Info` pane of the project editor. In the `Info` pane, there’s a list of target properties. You can edit the property values and add new key-value pairs. By default, Xcode displays a user-friendly version of each key name. To see the actual key names that are in the Info.plist file, Control-click an item in the editor and choose `Show Raw Keys/Values` from the contextual menu that appears.
 
 **Figure 3-2**  The information property list editor
+
+## 完善信息属性列表
+
+你需要配置工程的信息属性列表一边应用程序知道它可以处理什么类型的文档。你应在Xcode信息属性列表文件中指定该信息，如Figure 3－2中所示。信息属性列表文件被存储在应用的bundle中，并且默认情况下命名为<appName>-Info.plist。
+
+当NSDocumentController对象创建一个新的文档或者打开一个已存在的文档时，它就会搜索属性列表来获取诸如处理一个文档类型的文档类，某个类型的UTI，以及该应用是可以编辑该类型还是只能浏览等信息。同样地，启动服务（Launch Services）会使用关于某个类型的图标文件的信息以及去了解当用户双击一个文档文件时那一个应用会被启动。文档类型信息会作为一个词典数组与CFBundleDocumentTypes键关联，每个词典中包含定义文档类型的键值对。
+
+Xcode为每个Mac应用工程提供一个属性列表文件。当你在工程导航器中或选中Info.plist文件，或者选中目标并选择工程编辑器的`Info`面板时，属性列表编辑器就会显示。在`Info`面板中，有一系列的目标属性。你可以编辑这些属性值以及添加新的键值对。默认情况下，Xcode会为每个键名称显示一个用户有好的版本。要查看在Info.plist文件中的实际的键名称，可以按下Control并单击编辑器中的一个项，并从显示的上下文菜单中选择`Show Raw Keys/Values`。
+
+**Figure 3-2**  信息属性列表编辑器
+
+![ Figure 3-2 ](http://i.imgbox.com/OdL6Ywd8.png)
 
 
 
