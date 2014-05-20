@@ -121,7 +121,7 @@ Table 3-1列出了存在于模板中的`文件`的First Responder动作链接。
 打开（Open）                                     | openDocument:
 最近打开文档（Open Recent） > 清除菜单（Clear Menu）| clearRecentDocuments:
 关闭（Close）                                    | performClose:
-保存（Save）/ 保存一个版本（Save a Version）         | saveDocument:
+保存（Save）/ 保存一个版本（Save a Version）        | saveDocument:
 还原文档（Revert Document）                       | revertDocumentToSaved:
 页面设置（Page Setup）                            | runPageLayout:
 打印（Print）                                    | printDocument:
@@ -140,6 +140,9 @@ Table 3-1列出了存在于模板中的`文件`的First Responder动作链接。
 
 更多关于菜单验证的信息以及其他菜单主题，参阅[Application Menu and Pop-up List Programming Topics。](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/MenuList/MenuList.html#//apple_ref/doc/uid/10000032i)
 
+
+
+
 ## Complete the Information Property List
 
 You need to configure the project’s information property list so that the app knows what kinds of documents it can handle. You specify this information in the Xcode information property list file, which is shown in Figure 3-2. The property list file is stored in the app’s bundle and named <appName>-Info.plist by default.
@@ -149,16 +152,6 @@ When the NSDocumentController object creates a new document or opens an existing
 Xcode provides a property list file with every Mac app project. The property list editor appears when you select the Info.plist file in the project navigator or select the target and choose the `Info` pane of the project editor. In the `Info` pane, there’s a list of target properties. You can edit the property values and add new key-value pairs. By default, Xcode displays a user-friendly version of each key name. To see the actual key names that are in the Info.plist file, Control-click an item in the editor and choose `Show Raw Keys/Values` from the contextual menu that appears.
 
 **Figure 3-2**  The information property list editor
-
-## 完善信息属性列表
-
-你需要配置工程的信息属性列表一边应用程序知道它可以处理什么类型的文档。你应在Xcode信息属性列表文件中指定该信息，如Figure 3－2中所示。信息属性列表文件被存储在应用的bundle中，并且默认情况下命名为<appName>-Info.plist。
-
-当NSDocumentController对象创建一个新的文档或者打开一个已存在的文档时，它就会搜索属性列表来获取诸如处理一个文档类型的文档类，某个类型的UTI，以及该应用是可以编辑该类型还是只能浏览等信息。同样地，启动服务（Launch Services）会使用关于某个类型的图标文件的信息以及去了解当用户双击一个文档文件时那一个应用会被启动。文档类型信息会作为一个词典数组与CFBundleDocumentTypes键关联，每个词典中包含定义文档类型的键值对。
-
-Xcode为每个Mac应用工程提供一个属性列表文件。当你在工程导航器中或选中Info.plist文件，或者选中目标并选择工程编辑器的`Info`面板时，属性列表编辑器就会显示。在`Info`面板中，有一系列的目标属性。你可以编辑这些属性值以及添加新的键值对。默认情况下，Xcode会为每个键名称显示一个用户有好的版本。要查看在Info.plist文件中的实际的键名称，可以按下Control并单击编辑器中的一个项，并从显示的上下文菜单中选择`Show Raw Keys/Values`。
-
-**Figure 3-2**  信息属性列表编辑器
 
 ![ Figure 3-2 ](http://i.imgbox.com/OdL6Ywd8.png)
 
@@ -171,13 +164,13 @@ A document UTI can be defined by the system, as shown in [“System-Declared Uni
 To declare a document type in Xcode, perform the following steps:
 
     1. Select the project in the project navigator.
-    
+
     2. Select the target and click the Info tab.
-    
+
     3. Click the Add (+) button at the bottom right of the editor area and choose Add Document Type from the pop-up menu.
-    
+
     4. Click the triangle next to “Untitled” to disclose the property fields.
-    
+
 Alternatively, you can select the Info.plist file in the project navigator, click in the editor area, and choose `Editor` > `Add Item` to add document type properties directly to the property list file, as shown in Figure 3-2. Choose `Editor` > `Show Raw Keys & Values` to reveal the actual key names.
 
 Add the properties shown in Table 3-2.
@@ -195,8 +188,55 @@ CFBundleTypeIconFile    | Icon (Icon File Name)                    | A string sp
 CFBundleTypeName        | Name (Document Type Name)                | A string specifying the abstract name of the document type.
 LSHandlerRank           | Handler rank                             | A string specifying how Launch Services ranks this app among those that declare themselves editors or viewers of documents of this type. Possible values, in order of precedence, are Owner, Alternate, and None.
 
+For more information about these and other document type keys, see “CFBundleDocumentTypes” in [Information Property List Key Reference.](https://developer.apple.com/library/mac/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009247)
+
+## 完善信息属性列表
+
+你需要配置工程的信息属性列表一边应用程序知道它可以处理什么类型的文档。你应在Xcode信息属性列表文件中指定该信息，如Figure 3－2中所示。信息属性列表文件被存储在应用的bundle中，并且默认情况下命名为<appName>-Info.plist。
+
+当NSDocumentController对象创建一个新的文档或者打开一个已存在的文档时，它就会搜索属性列表来获取诸如处理一个文档类型的文档类，某个类型的UTI，以及该应用是可以编辑该类型还是只能浏览等信息。同样地，启动服务（Launch Services）会使用关于某个类型的图标文件的信息以及去了解当用户双击一个文档文件时那一个应用会被启动。文档类型信息会作为一个词典数组与CFBundleDocumentTypes键关联，每个词典中包含定义文档类型的键值对。
+
+Xcode为每个Mac应用工程提供一个属性列表文件。当你在工程导航器中或选中Info.plist文件，或者选中目标并选择工程编辑器的`Info`面板时，属性列表编辑器就会显示。在`Info`面板中，有一系列的目标属性。你可以编辑这些属性值以及添加新的键值对。默认情况下，Xcode会为每个键名称显示一个用户有好的版本。要查看在Info.plist文件中的实际的键名称，可以按下Control并单击编辑器中的一个项，并从显示的上下文菜单中选择`Show Raw Keys/Values`。
+
+**Figure 3-2**  信息属性列表编辑器
+
+![ Figure 3-2 ](http://i.imgbox.com/OdL6Ywd8.png)
 
 
+对于一个新的文档驱动应用程序，你应该使用一个类型名和一个你的应用能够理解的扩展名来创建文档类型。你也可以添加更多的类型，每个类型都对应着你的应用可以处理的一个文档类型。应用的最重要的文档类型必须被列在类型列表中的首位。当用户请求一个新文档时，NSDocumentController就会默认使用该类型。
+
+最重要的文档类型值是一它的**统一类型标识符（UTI）**，这是一个为所有应用和服务所依赖的，唯一标识包含在文档中的数据类型的字符串。一个文档的UTI对应于信息属性列表中的LSItemContentTypes键。UTI通过NSDocument和NSDocumentController被用作可编程的类型名。通过使用UTIs，应用避免了许多之前处理系统中的不同种类的文件类型信息的复杂性，包括文件扩展名，MIME类型，以及HFS类型代码（OS类型）。
+
+一个文档UTI可以由系统定义，如[“System-Declared Uniform Type Identifiers”](https://developer.apple.com/library/mac/documentation/Miscellaneous/Reference/UTIRef/Articles/System-DeclaredUniformTypeIdentifiers.html#//apple_ref/doc/uid/TP40009259) in [Uniform Type Identifiers Reference](https://developer.apple.com/library/mac/documentation/Miscellaneous/Reference/UTIRef/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009257)所示，或者一个文档驱动应用定义它自己的专有UTI。这样定制的UTIs还必须被导出以创建它们的识别系统，如*“Export Custom Document Type Information.”*中所描述。
+
+要在Xcode中声明一个文档类型，需执行如下步骤：
+
+    1. 选择工程导航器中的工程。
+
+    2. 选择目标，并点击Info标签。
+
+    3. 点击编辑器区域底部右侧的Add(+)按钮，并从弹出菜单中选择Add Document Type。
+
+    4. 点击下一个三角形展开属性域。
+
+或者，你可以在工程导航器中选择Info.plist文件，点击编辑器区域，并选择`Editor` > `Add Item`以直接添加文档类型属性到属性列表文件中，如Figure 3-2所示。选择`Editor` > `Show Raw Keys & Values`以显示真正的键名。
+
+Table 3-2中展示了添加属性
+
+**Table 3-2**  定义文档类型（CFBundleDocumentTypes）的一些属性
+
+键                      | Xcode域（Info.plist标识符）                | 值
+:---------------------- | :--------------------------------------- | :----------------------------------------------------------
+LSItemContentTypes      | Identifier                               | 一个UTI字符串数组。通常地，每个文档类型只被指定一个。UTI字符串必须清楚明确。
+NSDocumentClass         | Class (Cocoa NSDocument Class)           | 该字符串指定了与该文档类型相对应的NSDocument子类的名称。
+CFBundleTypeRole        | Role                                     | 该字符串指定了应用程序对该文档类型所扮演的角色。可能的值有Editor，Viewer，Shell，Quick Look Generator或者None。
+NSExportableTypes       | (Exportable Type UTIs)                   | 该字符串数组指定了定义该文档可以导出其内容的支持文件的UTIs。
+LSTypeIsPackage         | Bundle (Document is a package or bundle) | 该Boolean值指定了文档是否部署为一个bundle。如果值为NO，忽略该值。
+CFBundleTypeIconFile    | Icon (Icon File Name)                    | 该字符串指定了与该文档类型相关联的图标资源文件（扩展名为.icns）。一个图标资源文件包含了不同分辨率的图像。
+CFBundleTypeName        | Name (Document Type Name)                | 该字符串指定了文档类型的抽象名称。
+LSHandlerRank           | Handler rank                             | 该字符串指定了启动服务（Launch Services）如何为那些声明为该类型文档的编辑器或查看器的应用程序排列优先级。可能的值为按优先级排序为Owner，Alternate以及None。
+
+更多关于这些及其他文档类型键的信息，参阅[Information Property List Key Reference](https://developer.apple.com/library/mac/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009247)中的“CFBundleDocumentTypes”。
 
 
 
