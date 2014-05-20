@@ -48,6 +48,7 @@ The following sections describe the process of selecting and utilizing the docum
 To create your project in Xcode, choose `File` > `New` > `New Project`. Select the Cocoa Application icon from the OS X Application choices. In the next pane, select the `Create Document-Based Application` option, as shown in Figure 3-1. In this pane you also name your app, give your NSDocument subclass a prefix, and specify your documents’ filename extension, in addition to other options. If you intend to use Core Data for your data model, select the `Use Core Data` option, which automatically inserts NSPersistentDocument as the immediate superclass of your document subclass.
 
 **Figure 3-1**  New Project dialog
+![ Figure 3-1 ](http://i.imgbox.com/0xKaFG5q.png)
 
 The final pane of the `New Project` dialog enables you to place your project in the file system and create a source control repository if you wish. For more details about the Xcode project creation process, see [“Start a Project”](https://developer.apple.com/library/mac/documentation/ToolsLanguages/Conceptual/Xcode_Overview/ProjectsWorkspaces/start_project.html#//apple_ref/doc/uid/TP40010215-CH2) in [Xcode Overview.](https://developer.apple.com/library/mac/documentation/ToolsLanguages/Conceptual/Xcode_Overview/About_Xcode/about.html#//apple_ref/doc/uid/TP40010215)
 
