@@ -184,16 +184,16 @@ Add the properties shown in Table 3-2.
 
 **Table 3-2**  Properties defining a document type (CFBundleDocumentTypes)
 
-Key                     | Xcode field (Info.plist identifier) | Value
-:---------------------- | :---------------------------------- | :-----------------------------------------------------
-LSItemContentTypes      | Identifier                          | An array of UTI strings. Typically, only one is specified per document type. The UTI string must be spelled out explicitly.
-NSDocumentClass         | Class (Cocoa NSDocument Class)      | A string specifying the NSDocument subclass name corresponding to this document type.
-CFBundleTypeRole        | Role                                | A string specifying the role the app with respect to this document type. Possible values are Editor, Viewer, Shell, Quick Look Generator, or None.
-NSExportableTypes       | (Exportable Type UTIs)              | An array of strings specifying UTIs that define a supported file type to which this document can export its content.
+Key                     | Xcode field (Info.plist identifier)      | Value
+:---------------------- | :--------------------------------------- | :-----------------------------------------------------
+LSItemContentTypes      | Identifier                               | An array of UTI strings. Typically, only one is specified per document type. The UTI string must be spelled out explicitly.
+NSDocumentClass         | Class (Cocoa NSDocument Class)           | A string specifying the NSDocument subclass name corresponding to this document type.
+CFBundleTypeRole        | Role                                     | A string specifying the role the app with respect to this document type. Possible values are Editor, Viewer, Shell, Quick Look Generator, or None.
+NSExportableTypes       | (Exportable Type UTIs)                   | An array of strings specifying UTIs that define a supported file type to which this document can export its content.
 LSTypeIsPackage         | Bundle (Document is a package or bundle) | A Boolean value specifying whether the document is distributed as a bundle. If NO, omit this value.
-CFBundleTypeIconFile    | Icon (Icon File Name)               | A string specifying the name of the icon resource file (extension .icns) to associate with this document type. An icon resource file contains multiple images at different resolutions.
-CFBundleTypeName        | Name (Document Type Name)           | A string specifying the abstract name of the document type.
-LSHandlerRank           | Handler rank                        | A string specifying how Launch Services ranks this app among those that declare themselves editors or viewers of documents of this type. Possible values, in order of precedence, are Owner, Alternate, and None.
+CFBundleTypeIconFile    | Icon (Icon File Name)                    | A string specifying the name of the icon resource file (extension .icns) to associate with this document type. An icon resource file contains multiple images at different resolutions.
+CFBundleTypeName        | Name (Document Type Name)                | A string specifying the abstract name of the document type.
+LSHandlerRank           | Handler rank                             | A string specifying how Launch Services ranks this app among those that declare themselves editors or viewers of documents of this type. Possible values, in order of precedence, are Owner, Alternate, and None.
 
 
 
