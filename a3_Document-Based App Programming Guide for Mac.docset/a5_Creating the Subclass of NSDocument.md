@@ -224,7 +224,58 @@ The iCloud storage technology enables you to share documents and other app data 
 
 ![ Figure 4-1 ](http://i.imgbox.com/HbABfOKN.png)
 
-## 
+Access to iCloud is controlled using entitlements, which your app configures through Xcode. If these entitlements are not present, your app is prevented from accessing files and other data in iCloud. In particular, the container identifiers for your app must be declared in the **com.apple.developer.ubiquity-container-identifiers** entitlement. For information about how to configure your app’s entitlements, see *Developing for the App Store* and *Tools Workflow Guide for Mac.*
+
+All files and directories stored in iCloud must be managed by an object that adopts the NSFilePresenter protocol, and all changes you make to those files and directories must occur through an NSFileCoordinator object. The file presenter and file coordinator prevent external sources from modifying the file at the same time and deliver relevant notifications to other file presenters. NSDocument implements the methods of the NSFilePresenter protocol and handles all of the file-related management for you. All your app must do is read and write the document data when told to do so. Be sure you override *autosavesInPlace* to return YES to enable file coordination in your NSDocument object.
+
+## 将文档数据移动到iCloud或从iCloud中移出
+
+iCloud存储技术使得你可以在多台运行你的文档驱动应用的计算机之间共享文档和其他应用数据。如果你有一个该应用的共享相同数据格式的iOS版本，文档也可以在iOS设备之间被共享，如Figure 4-1中所示。对某一台设备上的文件或目录的更改，会被存储到本地，并且还会使用本地的守护进程推送到iCloud。将文件从每台设备转移或转移到该设备的过程，对于你的应用来说都是透明的。
+
+**Figure 4-1**  通过iCloud共享文档数据
+
+![ Figure 4-1 ](http://i.imgbox.com/HbABfOKN.png)
+
+对iCloud的访问是使用权限控制的，你的应用程序可以通过Xcode来配置该权限。如果没有提供这些权限，那么你的应用程序将会被阻止访问iCloud中的文件和其他数据。尤其是你的应用的容器标识符必须在**com.apple.developer.ubiquity-container-identifiers**权限中声明。关于如何配置应用程序的权限，参阅*Developing for the App Store*及*Tools Workflow Guide for Mac。*
+
+所有存储在iCloud中的文件和目录都必须由采用NSFilePresenter协议的对象管理，并且你对这些文件和目录所做的改变都必须通过NSFileCoordinator对象发生。文件提供器（file presenter）和文件协调器（file coordinator）会防止外部来源同时修改文件，并且会转发相关的通知到其他的文件提供器。NSDocument实现了NSFilePresenter协议的方法并且会为你处理全部与文件相关的管理。你的应用所必须做的全部就是在被告知时读写文档数据。要确保覆写了*autosavesInPlace*方法并返回YES，以启用你的NSDocument对象中的文件协调。
+
+
+
+## Determining Whether iCloud Is Enabled
+Early in the execution of your app, before you try to use any other iCloud interfaces, you must call the NSFileManager method URLForUbiquityContainerIdentifier: to determine whether iCloud storage is enabled. This method returns a valid URL when iCloud is enabled (and the specified container directory is available) or nil when iCloud is disabled. URLForUbiquityContainerIdentifier: also returns nil if you specify a container ID that the app isn't allowed to access or that doesn't exist. In that case, the NSFileManager object logs a message to the console to help diagnose the error.
+
+Listing 4-3 illustrates how to determine whether iCloud is enabled for the document’s file URL, presenting an error message to the user if not, and setting the value of the document’s destination URL to that of its iCloud container otherwise (in preparation for moving the document to iCloud using the setUbiquitous:itemAtURL:destinationURL:error: method).
+
+**Listing 4-3**  Determining whether iCloud is enabled
+```
+NSURL *src = [self fileURL];
+NSURL *dest = NULL;
+NSURL *ubiquityContainerURL = [[[NSFileManager defaultManager]
+                                 URLForUbiquityContainerIdentifier:nil]
+                                 URLByAppendingPathComponent:@"Documents"];
+    if (ubiquityContainerURL == nil) {
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+              NSLocalizedString(@"iCloud does not appear to be configured.", @""),
+                              NSLocalizedFailureReasonErrorKey, nil];
+        NSError *error = [NSError errorWithDomain:@"Application" code:404
+                                         userInfo:dict];
+        [self presentError:error modalForWindow:[self windowForSheet] delegate:nil
+                             didPresentSelector:NULL contextInfo:NULL];
+        return;
+        }
+        dest = [ubiquityContainerURL URLByAppendingPathComponent:
+                                                          [src lastPathComponent]];
+```
+
+Because the message specifies nil for the container identifier parameter, URLForUbiquityContainerIdentifier: returns the first container listed in the com.apple.developer.ubiquity-container-identifiers entitlement and creates the corresponding directory if it does not yet exist. Alternatively, you could specify your app’s container identifier—a concatenation of team ID and app bundle ID, separated by a period for the app’s primary container identifier, or a different container directory. For example, you could declare a string constant for the container identifier, as in the following example, and pass the constant name with the message.
+
+```static NSString *UbiquityContainerIdentifier = @"A1B2C3D4E5.com.domainname.appname";```
+
+The method also appends the document’s filename to the destination URL.
+
+
+
 
 
 
