@@ -412,26 +412,27 @@ Here is an example:
 ### Printing and Page Layout
 A document-based app can change the information it uses to define how document data is printed. This information is encapsulated in an NSPrintInfo object. If you want users to be able to print a document, you must override *printOperationWithSettings:error:*, possibly providing a modified NSPrintInfo object.
 
-> Warning: If your app does not support printing, you must remove the printing-related menu items from the menu bar nib file (MainMenu.nib) provided when you create a document-based application using the Cocoa Application template in Xcode.
+> **Warning:** If your app does not support printing, you must remove the printing-related menu items from the menu bar nib file (MainMenu.nib) provided when you create a document-based application using the Cocoa Application template in Xcode.
 
 ### 打印和页面布局
 一个文档驱动型应用程序可以更改其用于定义如何打印文档数据的信息。该信息被封装在一个NSPrintInfo对象中。如果你想让用户能够答应文档，你就必须覆写*printOperationWithSetting:error:*方法，其可能提供一个被修改过的NSPrintInfo对象。
 
-> 警告：如果你的应用不支持打印，你就必须从当你使用Xcode中的Cocoa应用程序模板创建文档驱动型应用程序时所提供的菜单栏nib文件（MainMenu.nib）中移出与打印相关的菜单项。
+> **警告：**如果你的应用不支持打印，你就必须从当你使用Xcode中的Cocoa应用程序模板创建文档驱动型应用程序时所提供的菜单栏nib文件（MainMenu.nib）中移出与打印相关的菜单项。
 
 ---
 
 ### Modifying the Save Dialog Accessory View
-By default, when NSDocument runs the Save dialog, and the document has multiple writable document types, it inserts an accessory view near the bottom of the dialog. This view contains a pop-up menu of the writable types. If you don’t want this pop-up menu, override *shouldRunSavePanelWithAccessoryView* to return NO. You can also override *prepareSavePanel:* to do any further customization of the Save dialog.
+By default, when NSDocument runs the `Save` dialog, and the document has multiple writable document types, it inserts an accessory view near the bottom of the dialog. This view contains a pop-up menu of the writable types. If you don’t want this pop-up menu, override *shouldRunSavePanelWithAccessoryView* to return NO. You can also override *prepareSavePanel:* to do any further customization of the `Save` dialog.
 
-
+默认情况下，当NSDocument运行`保存`对话框时，并且文档拥有多个可写出文档类型的话，其就会在该对话框的底部附近插入一个附件视图。该视图包含了一个可写出类型的弹出式菜单。如果你不想要这个弹出式菜单，可以覆写*shouldRunSavePanelWithAccessoryView*并返回NO。你还可以覆写*prepareSavePanel:*方法来对`保存`对话框作进一步的定制。
 
 ---
 
 ### Validating Menu Items
-NSDocument implements *validateUserInterfaceItem:* to manage the enabled state of the Revert Document and Save menu items. If you want to validate other menu items, you can override this method, but be sure to invoke the superclass implementation. For more information on menu item validation, see [Application Menu and Pop-up List Programming Topics.](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/MenuList/MenuList.html#//apple_ref/doc/uid/10000032i)
+NSDocument implements *validateUserInterfaceItem:* to manage the enabled state of the `Revert Document` and `Save` menu items. If you want to validate other menu items, you can override this method, but be sure to invoke the superclass implementation. For more information on menu item validation, see [Application Menu and Pop-up List Programming Topics.](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/MenuList/MenuList.html#//apple_ref/doc/uid/10000032i)
 
-
+### 验证菜单项
+NSDocument实现了*validateUserInterfaceItem:*方法来管理`还原文档`和`保存`菜单项的启用状态。如果你想要验证其他菜单项，你可以覆写该方法，但是要确保调用超类的实现。更多关于菜单项验证的信息，参阅[Application Menu and Pop-up List Programming Topics。](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/MenuList/MenuList.html#//apple_ref/doc/uid/10000032i)
 
 
 
