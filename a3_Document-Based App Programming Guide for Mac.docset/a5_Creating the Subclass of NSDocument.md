@@ -347,8 +347,33 @@ NSDocument会自动处理冲突，所以你不需要自己实现它。如果在�
 
 The areas described by items in the following sections require method overrides in some situations. And, of course, you must implement any methods that are special to your NSDocument subclass. More options for your NSDocument subclass are described in “Alternative Design Considerations.”
 
+这一块通过下面章节中的几项描述了在一些情况中必须重写的方法。当然，你必须实现任何特定与你的NSDocument子类的方法。关于你的NSDocument子类的更多选项在“Alternative Design Considerations”中有所描述。
 
+---
 
+### Window Controller Creation
+NSDocument subclasses must create their window controllers. They can do this indirectly or directly. If a document has only one nib file with one window in it, the subclass can override *windowNibName* to return the name of the window nib file. As a consequence, the document architecture creates a default NSWindowController instance for the document, with the document as the nib file’s owner. If a document has multiple windows, or if an instance of a custom NSWindowController subclass is used, the NSDocument subclass must override *makeWindowControllers* to create these objects.
+
+If your document has only one window, the project template provides a default implementation of the NSDocument method *windowNibName:*
+```
+- (NSString *)windowNibName {
+    return @"MyDocument";
+}
+```
+
+If your document has more than one window, or if you have a custom subclass of NSWindowController, override *makeWindowControllers* instead. Make sure you add each created window controller to the list of such objects managed by the document using *addWindowController:.*
+
+### 窗口控制器的创建
+NSDocument的子类们必须创建它们的窗口控制器。子类们可以直接或间接地做这件事。如果一个文档对象只有一个带有一个窗口的nib文件，那么子类可以覆写*windowNibName*方法以返回窗口nib文件的名称。作为结果，文档架构会会该文档对象创建一个默认的NSWindowController实例，并将该文档对象设置为nib文件的File' Owner。如果一个文档对象拥有多个窗口，或者如果使用的是一个定制NSWindowController子类的实例，那么NSDocument子类必须覆写*makeWindowControllers*方法以创建这些对象。
+
+如果你的文档只有一个窗口，项目模板会为NSDocument的*windowNibName*方法提供一个默认实现：
+```
+- (NSString *)windowNibName {
+    return @"MyDocument";
+}
+```
+
+如果你的文档拥有超过一个窗口，或者如果你拥有一个定制的NSWindowController子类，那么覆写*makeWindowControllers*替换之。要确保你使用*addWindowController:*方法将每个创建好的窗口控制器对象添加到由文档对象管理的窗口控制器列表中。
 
 
 
