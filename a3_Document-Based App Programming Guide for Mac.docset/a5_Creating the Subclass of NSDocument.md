@@ -136,9 +136,9 @@ If your override cannot determine all of the information it needs from the passe
 
 ## Writing Document Data
 
-In addition to implementing a document-reading method, you must implement a document-writing method to save your document data to disk. In the simplest case, you can override the data-based writing method, *dataOfType:error:*. If it works for your application, you should override dataOfType:error:. Overriding that method makes your work easier because it uses the default document-reading infrastructure provided by NSDocument. The responsibility of your override of the *dataOfType:error:* method is to create and return document data of a supported type, packaged as an NSData object, in preparation for writing that data to a file.
+In addition to implementing a document-reading method, you must implement a document-writing method to save your document data to disk. In the simplest case, you can override the data-based writing method, *dataOfType:error:*. If it works for your application, you should override *dataOfType:error:*. Overriding that method makes your work easier because it uses the default document-reading infrastructure provided by NSDocument. The responsibility of your override of the *dataOfType:error:* method is to create and return document data of a supported type, packaged as an NSData object, in preparation for writing that data to a file.
 
-Listing 4-2 shows an example implementation of dataOfType:error:. As with the corresponding example implementation document-reading method, this example assumes that the app has an NSTextView object configured with an NSTextStorage object to hold the document’s data. The document object has an outlet property connected to the NSTextView object and named textView. The document object also has synthesized mString and setMString: accessors for the document’s NSAttributedString data model, declared as a property named mString.
+Listing 4-2 shows an example implementation of *dataOfType:error:*. As with the corresponding example implementation document-reading method, this example assumes that the app has an NSTextView object configured with an NSTextStorage object to hold the document’s data. The document object has an outlet property connected to the NSTextView object and named textView. The document object also has synthesized mString and setMString: accessors for the document’s NSAttributedString data model, declared as a property named mString.
 
 **Listing 4-2**  Data-based document-writing method implementation
 ```
@@ -157,9 +157,65 @@ Listing 4-2 shows an example implementation of dataOfType:error:. As with the co
     return data;
 }
 ```
+The override sends the NSTextView object a *breakUndoCoalescing* message when saving the text view’s contents to preserve proper tracking of unsaved changes and the document’s dirty state.
+
+If your app needs access to document files, you can override *writeToURL:ofType:error:* instead. If your document data is stored in file packages, you can override *fileWrapperOfType:error:* instead. For information about overriding the other NSDocument writing methods, see *“Overriding the URL and File Package Writing Methods.”*
+
+The actual flow of messages during this sequence of events is shown in detail in Figure 6-6.
+
+## 写入文档数据
+
+除了要实现一个文档读取方法之外，你还必须实现一个文档写入方法来将你的数据保存到磁盘。在最简单的情况中，你可以覆写基于数据的写入方法*dataOfType:error:*。如果适合你的应用程序，你就应该覆写*dataOfType:error:*方法。覆写该方法会使得你的工作更加简单，因为它使用了NSDocument提供的默认文档读取基础结构。你的*dataOfType:error:*方法覆写的责任就是创建并返回一个支持类型的文档数据，将其打包成一个NSData对象，并未将该NSData对象写入文件做准备。
+
+Listing 4-2中展示了一个*dataOfType:error:*方法的范例实现。正如对应的文档写入方法的范例实现一样，该范例实现假设应用有一个配置了NSTextStorage对象以持有文档数据的NSTextView对象。文档对象还有一个连接到NSTextView对象并且命名为textView的插座属性。文档对象还拥有合成的用于文档的NSAttributedString数据模型的mString与setMString:存取器，其声明为mString属性。
+
+**Listing 4-2**  基于数据的文档写入方法实现
+```
+- (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError {
+    NSData *data;
+    [self setMString:[self.textView textStorage]]; // Synchronize data model with the text storage
+    NSMutableDictionary *dict = [NSDictionary dictionaryWithObject:NSRTFTextDocumentType
+                                                            forKey:NSDocumentTypeDocumentAttribute];
+    [self.textView breakUndoCoalescing];
+    data = [self.mString dataFromRange:NSMakeRange(0, [self.mString length])
+                    documentAttributes:dict error:outError];
+    if (!data && outError) {
+        *outError = [NSError errorWithDomain:NSCocoaErrorDomain
+                                code:NSFileWriteUnknownError userInfo:nil];
+    }
+    return data;
+}
+```
+当保存文本视图的内容时，该覆写会向NSTextView发送一个*breakUndoCoalescing*消息以保持对为保存的更改和文档的dirty状态的跟踪。
+
+如果你的应用需要访问文档文件，那么你就应该覆写*writeToURL:error:*方法替换之。如果你的文档数据被存储在文件包中，你可以覆写*fileWrapperOfType:error:*方法替换之。关于覆写其他NSDocument写入方法的信息，参阅*“Overriding the URL and File Package Writing Methods。”*
+
+在这一系列事件发生时，实际的消息流程如Figure 6-6中所示。
+
+
+
+## Initializing a New Document
+
+The *init* method of NSDocument is the designated initializer, and it is invoked by the other initializers *initWithType:error:* and *initWithContentsOfURL:ofType:error:*. If you perform initializations that must be done when creating new documents but not when opening existing documents, override *initWithType:error:*. If you have any initializations that apply only to documents that are opened, override *initWithContentsOfURL:ofType:error:*. If you have general initializations, override *init*. In all three cases, be sure to invoke the superclass implementation as the first action.
+
+If you override *init*, make sure that your override never returns nil. Returning nil could cause a crash (in some versions of AppKit) or present a less than useful error message. If, for example, you want to prevent the creation or opening of documents under circumstances unique to your app, override a specific NSDocumentController method instead. That is, you should control this behavior directly in your app-level logic (to prevent document creation or opening in certain cases) rather than catching the situation after document initialization has already begun.
+
+> Note: If you don’t want to open an untitled document when the app is launched or activated, implement the app delegate method *applicationShouldOpenUntitledFile:* to return NO. If you do want to open an untitled document when launched, but don't want to open an untitled document when the app is already running and activated from the dock, you can instead implement the delegate’s *applicationShouldHandleReopen:hasVisibleWindows:* method to return NO.
+
+Implement *awakeFromNib* to initialize objects unarchived from the document’s window nib files (but not the document itself).
+
+## 初始化一个新的文档
+
+NSDocument的*init*方法是一个指定初始化器（designated initializer），并且它会被*initWithType:error:*和*initWithContentOfURL:ofType:error:*方法调用。如果你要执行一些在创建一个新的文档而非在打开已存在文档所执行的初始化，覆写*initWithType:error:*方法。如果你要执行一些只用于被打开文档的初始化动作，那么覆写*initWithContentsOfURL:ofType:error:*方法。如果你要执行一些泛型的初始化，覆写*init*方法。在全部三种情况中，都要确保将调用超类的实现作为第一步动作。
+
+如果你覆写*init*，要确保你的覆写绝不会返回nil。返回nil会导致崩溃（在一些AppKit版本中）或者会提供一些没有多大用的错误信息。例如，如果你想提供在特定于你的应用的情况下的文档创建和打开操作，可以覆写特性的NSDocumentController方法。换言之，你应该在你的应用层逻辑中直接控制该行为（在某些类中提供文档创建或打开）而非在文档初始化已经开始之后才捕捉这种状况。
+
+> 注意：如果你不想在应用被启动或激活时打开一个无标题文档，可以实现应用程序委托方法*applicationShouldOpenUntitledFile:*并返回NO。如果你确实向在启动时打开一个无标题文档，但是不想在应用已经运行和激活时从dock中打开无标题文档的话，你可以实现委托的*applicationShouldHandleReopen:hasVisibleWindows:*方法并返回NO。
+
+实现*awakeFromNib*方法来初始化那些从文档的窗口nib文件（而非文档本身）中解归档出来的对象。
 
 
 
 
 
-
+ 
