@@ -214,7 +214,9 @@ NSDocument的*init*方法是一个指定初始化器（designated initializer）
 
 实现*awakeFromNib*方法来初始化那些从文档的窗口nib文件（而非文档本身）中解归档出来的对象。
 
+---
 
+> 译注：Moving Document Data to and from iCloud板块中的内容涉及了iCloud编程方面的知识，由于我还不熟悉iCloud编程的知识（惭愧），所以虽然这段可以翻译，但是明显不熟悉某些iCloud的编程范式和一些术语，肯定会造成歧义和翻译错误。我会尽快学习iCloud接口方面的知识，尽快将这一部分翻译好。
 
 ## Moving Document Data to and from iCloud
 
@@ -228,24 +230,13 @@ Access to iCloud is controlled using entitlements, which your app configures thr
 
 All files and directories stored in iCloud must be managed by an object that adopts the NSFilePresenter protocol, and all changes you make to those files and directories must occur through an NSFileCoordinator object. The file presenter and file coordinator prevent external sources from modifying the file at the same time and deliver relevant notifications to other file presenters. NSDocument implements the methods of the NSFilePresenter protocol and handles all of the file-related management for you. All your app must do is read and write the document data when told to do so. Be sure you override *autosavesInPlace* to return YES to enable file coordination in your NSDocument object.
 
-## 将文档数据移动到iCloud或从iCloud中移出
-
-iCloud存储技术使得你可以在多台运行你的文档驱动应用的计算机之间共享文档和其他应用数据。如果你有一个该应用的共享相同数据格式的iOS版本，文档也可以在iOS设备之间被共享，如Figure 4-1中所示。对某一台设备上的文件或目录的更改，会被存储到本地，并且还会使用本地的守护进程推送到iCloud。将文件从每台设备转移或转移到该设备的过程，对于你的应用来说都是透明的。
-
-**Figure 4-1**  通过iCloud共享文档数据
-
-![ Figure 4-1 ](http://i.imgbox.com/HbABfOKN.png)
-
-对iCloud的访问是使用权限控制的，你的应用程序可以通过Xcode来配置该权限。如果没有提供这些权限，那么你的应用程序将会被阻止访问iCloud中的文件和其他数据。尤其是你的应用的容器标识符必须在**com.apple.developer.ubiquity-container-identifiers**权限中声明。关于如何配置应用程序的权限，参阅*Developing for the App Store*及*Tools Workflow Guide for Mac。*
-
-所有存储在iCloud中的文件和目录都必须由采用NSFilePresenter协议的对象管理，并且你对这些文件和目录所做的改变都必须通过NSFileCoordinator对象发生。文件提供器（file presenter）和文件协调器（file coordinator）会防止外部来源同时修改文件，并且会转发相关的通知到其他的文件提供器。NSDocument实现了NSFilePresenter协议的方法并且会为你处理全部与文件相关的管理。你的应用所必须做的全部就是在被告知时读写文档数据。要确保覆写了*autosavesInPlace*方法并返回YES，以启用你的NSDocument对象中的文件协调。
 
 ---
 
-## Determining Whether iCloud Is Enabled
-Early in the execution of your app, before you try to use any other iCloud interfaces, you must call the NSFileManager method URLForUbiquityContainerIdentifier: to determine whether iCloud storage is enabled. This method returns a valid URL when iCloud is enabled (and the specified container directory is available) or nil when iCloud is disabled. URLForUbiquityContainerIdentifier: also returns nil if you specify a container ID that the app isn't allowed to access or that doesn't exist. In that case, the NSFileManager object logs a message to the console to help diagnose the error.
+### Determining Whether iCloud Is Enabled
+Early in the execution of your app, before you try to use any other iCloud interfaces, you must call the NSFileManager method *URLForUbiquityContainerIdentifier:* to determine whether iCloud storage is enabled. This method returns a valid URL when iCloud is enabled (and the specified container directory is available) or nil when iCloud is disabled. *URLForUbiquityContainerIdentifier:* also returns nil if you specify a container ID that the app isn't allowed to access or that doesn't exist. In that case, the NSFileManager object logs a message to the console to help diagnose the error.
 
-Listing 4-3 illustrates how to determine whether iCloud is enabled for the document’s file URL, presenting an error message to the user if not, and setting the value of the document’s destination URL to that of its iCloud container otherwise (in preparation for moving the document to iCloud using the setUbiquitous:itemAtURL:destinationURL:error: method).
+Listing 4-3 illustrates how to determine whether iCloud is enabled for the document’s file URL, presenting an error message to the user if not, and setting the value of the document’s destination URL to that of its iCloud container otherwise (in preparation for moving the document to iCloud using the *setUbiquitous:itemAtURL:destinationURL:error:* method).
 
 **Listing 4-3**  Determining whether iCloud is enabled
 ```
@@ -273,6 +264,89 @@ Because the message specifies nil for the container identifier parameter, URLFor
 ```static NSString *UbiquityContainerIdentifier = @"A1B2C3D4E5.com.domainname.appname";```
 
 The method also appends the document’s filename to the destination URL.
+
+---
+
+### Searching for Documents in iCloud
+Apps should use NSMetadataQuery objects to search for items in iCloud container directories. Metadata queries return results only when iCloud storage is enabled and the corresponding container directories have been created. For information about how to create and configure metadata search queries, see [File Metadata Search Programming Guide.](https://developer.apple.com/library/mac/documentation/Carbon/Conceptual/SpotlightQuery/Concepts/Introduction.html#//apple_ref/doc/uid/TP40001841) For information about how to iterate directories using NSFileManager, see [File System Programming Guide.](https://developer.apple.com/library/mac/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010672)
+
+---
+
+### Moving a Document into iCloud Storage
+To save a new document to the iCloud container directory, first save it locally and then call the NSFileManager method *setUbiquitous:itemAtURL:destinationURL:error:* to move the document file to iCloud.
+
+> **Warning:** Do not call setUbiquitous:itemAtURL:destinationURL:error: from your app’s main thread. Doing so can trigger a deadlock with any file presenter monitoring the file, and it can take an indeterminate amount of time to complete. Instead, call the method in a block running in a dispatch queue other than the main-thread queue.
+
+Listing 4-4 shows an example implementation of a method that moves a file to iCloud storage. It assumes the source and destination URLs from Listing 4-3.
+
+**Listing 4-4**  Moving a document to iCloud
+```
+dispatch_queue_t globalQueue =
+        dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+dispatch_async(globalQueue, ^(void) {
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    NSError *error = nil;
+    // Move the file.
+    BOOL success = [fileManager setUbiquitous:YES itemAtURL:src
+                               destinationURL:dest error:&error];
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        if (! success) {
+            [self presentError:error modalForWindow:[self windowForSheet]
+                  delegate:nil didPresentSelector:NULL contextInfo:NULL];
+        }
+    });
+});
+[self setFileURL:dest];
+[self setFileModificationDate:nil];
+```
+
+After a document file has been moved to iCloud, as shown in Listing 4-4, reading and writing are performed by the normal NSDocument mechanisms, which automatically manage the file access coordination required by iCloud.
+
+---
+
+### Removing a Document from iCloud Storage
+To move a document file from an iCloud container directory, follow the same procedure described in “Moving a Document into iCloud Storage,” except switch the source URL (now the document file in the iCloud container directory) and the destination URL (the location of the document file in the local file system). In addition, the first parameter of the *setUbiquitous:itemAtURL:destinationURL:error:* method should now be NO.
+
+For clarity in this example, the URL of the file in iCloud storage is named cloudsrc and the local URL to which the file is moved is named localdest.
+
+```
+dispatch_queue_t globalQueue =
+        dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+dispatch_async(globalQueue, ^(void) {
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    NSError *error = nil;
+    // Move the file.
+    BOOL success = [fileManager setUbiquitous:NO itemAtURL:cloudsrc
+                               destinationURL:localdest error:&error];
+
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        if (! success) {
+            [self presentError:error modalForWindow:[self windowForSheet]
+                  delegate:nil didPresentSelector:NULL contextInfo:NULL];
+        }
+    });
+});
+```
+
+For more information about iCloud, see [iCloud Design Guide.](https://developer.apple.com/library/mac/documentation/General/Conceptual/iCloudDesignGuide/Chapters/Introduction.html#//apple_ref/doc/uid/TP40012094)
+
+> 译注：OK，以上是没有翻译的部分。
+
+---
+
+### NSDocument Handles Conflict Resolution Among Document Versions
+NSDocument handles conflict resolution automatically, so you do not need to implement it yourself. If a conflict comes in while the document is open, NSDocument presents a sheet asking the user to resolve the conflict (or ignore, which marks it as resolved and accepts the automatic winner of the conflict, usually the one with the most recent modification date). Clicking `Resolve` invokes the `Versions` user interface (see *“Users Can Browse Document Versions”*) with only the conflicting versions visible. The user can choose a particular version and click `Restore` to make it the winner of the conflict, or just select `Done` to accept the automatic winner.
+
+Even after the conflict is resolved, NSDocument always keeps the conflicting versions, and they can be accessed normally through Versions.
+
+NSDocument会自动处理冲突，所以你不需要自己实现它。如果在文档被打开时，进入一个冲突，NSDocument会提供一个sheet窗口来询问用户解决冲突（或者忽略，这会将冲突标记为已解决并会接受自动的冲突获胜者，通常获胜者是具有最近的更改日期的版本）。点击`Resolve`会仅使用一个可视的冲突版本调用`Versions`（Versions）的用户界面（参阅*“Users Can Browse Document Versions”*）用户可以选择一个特定的版本并点击`Restore`以让该版本成为冲突的获胜者，或者只是选择`Done`以接受自动获胜者。
+
+---
+
+## Optional Method Overrides
+
+The areas described by items in the following sections require method overrides in some situations. And, of course, you must implement any methods that are special to your NSDocument subclass. More options for your NSDocument subclass are described in “Alternative Design Considerations.”
+
 
 
 
