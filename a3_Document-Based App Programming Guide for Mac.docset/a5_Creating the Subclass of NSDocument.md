@@ -240,7 +240,7 @@ iCloud存储技术使得你可以在多台运行你的文档驱动应用的计�
 
 所有存储在iCloud中的文件和目录都必须由采用NSFilePresenter协议的对象管理，并且你对这些文件和目录所做的改变都必须通过NSFileCoordinator对象发生。文件提供器（file presenter）和文件协调器（file coordinator）会防止外部来源同时修改文件，并且会转发相关的通知到其他的文件提供器。NSDocument实现了NSFilePresenter协议的方法并且会为你处理全部与文件相关的管理。你的应用所必须做的全部就是在被告知时读写文档数据。要确保覆写了*autosavesInPlace*方法并返回YES，以启用你的NSDocument对象中的文件协调。
 
-
+---
 
 ## Determining Whether iCloud Is Enabled
 Early in the execution of your app, before you try to use any other iCloud interfaces, you must call the NSFileManager method URLForUbiquityContainerIdentifier: to determine whether iCloud storage is enabled. This method returns a valid URL when iCloud is enabled (and the specified container directory is available) or nil when iCloud is disabled. URLForUbiquityContainerIdentifier: also returns nil if you specify a container ID that the app isn't allowed to access or that doesn't exist. In that case, the NSFileManager object logs a message to the console to help diagnose the error.
