@@ -375,6 +375,37 @@ NSDocument的子类们必须创建它们的窗口控制器。子类们可以直�
 
 如果你的文档拥有超过一个窗口，或者如果你拥有一个定制的NSWindowController子类，那么覆写*makeWindowControllers*替换之。要确保你使用*addWindowController:*方法将每个创建好的窗口控制器对象添加到由文档对象管理的窗口控制器列表中。
 
+---
+
+### Window Nib File Loading
+You can implement *windowControllerWillLoadNib:* and *windowControllerDidLoadNib:* to perform any necessary tasks related to the window before and after it is loaded from the nib file. For example, you may need to perform setup operations on user interface objects, such as setting the content of a view, after the app’s model data has been loaded. In this case, you must remember that the NSDocument data-reading methods, such as *readFromData:ofType:error:*, are called before the document’s user interface objects contained in its nib file are loaded. Of course, you cannot send messages to user interface objects until after the nib file loads. So, you can do such operations in *windowControllerDidLoadNib:*.
+
+Here is an example:
+```
+- (void)windowControllerDidLoadNib:(NSWindowController *)windowController {
+    [super windowControllerDidLoadNib:windowController];
+    [textView setAllowsUndo:YES];
+    if (fileContents != nil) {
+        [textView setString:fileContents];
+        fileContents = nil;
+    }
+}
+```
+
+### 窗口nib文件的加载
+你可以实现*windowControllerWillLoadNib:*和*windowControllerDidLoadNib:*方法来在窗口被加载前和加载后执行任何与窗口有关的工作。例如，你可能需要在用户界面对象上执行一些设置操作，比如在应用模型数据被加载后设置一个视图的内容。在这种情况下，你必须牢记NSDocument的诸如*readFromData:ofType:error:*之类的数据读取方法，是在文档的那些包含在nib文件中的用户界面对象被加载前调用的。自然，在nib文件被加载之前你不能向用户界面对象发送消息。所以，你可以在*windowControllerDidLoadNib:*方法中执行这样的操作：
+
+这是一个示例：
+```
+- (void)windowControllerDidLoadNib:(NSWindowController *)windowController {
+    [super windowControllerDidLoadNib:windowController];
+    [textView setAllowsUndo:YES];
+    if (fileContents != nil) {
+        [textView setString:fileContents];
+        fileContents = nil;
+    }
+}
+```
 
 
 
