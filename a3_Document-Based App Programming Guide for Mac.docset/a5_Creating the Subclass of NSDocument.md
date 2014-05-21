@@ -216,6 +216,17 @@ NSDocument的*init*方法是一个指定初始化器（designated initializer）
 
 
 
+## Moving Document Data to and from iCloud
+
+The iCloud storage technology enables you to share documents and other app data among multiple computers that run your document-based app. If you have an iOS version of your document-based app that shares the same document data formats, documents can be shared among iOS devices as well, as shown in Figure 4-1. Changes made to the file or directory on one device are stored locally and then pushed to iCloud using a local daemon. The transfer of files to and from each device is transparent to your app.
+
+**Figure 4-1**  Sharing document data via iCloud
+![ Figure 4-1 ](http://i.imgbox.com/Rw3IR07z.png)
+
+## 
+
+
+
 
 
  
