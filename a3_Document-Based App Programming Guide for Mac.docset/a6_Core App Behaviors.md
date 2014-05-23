@@ -97,6 +97,18 @@ Some types of autosaves can be safely cancelled to unblock user interaction, whi
 
 
 
+## Users Can Browse Document Versions
+
+The document architecture implements the Versions feature of OS X v10.7 in the behavior of NSDocument. An NSDocument subclass adopts autosaving in place by returning YES from *autosavesInPlace*, as described in *“Documents Are Automatically Saved,”* and adopting autosaving in turn enables version browsing.
+
+After a document has been named and saved, the `Save` menu item is replaced by the `Save a Version` menu item. This command saves a version of the document identified by date and time. And NSDocument sometimes creates a version automatically during autosaving. The user can choose `File` > `Revert Document`, or choose `Browse All Revisions` from the pop-up menu at the right of the title bar, to display a dialog enabling the user to choose between the last saved version or an older version. Choosing an older version displays a Time Machine–like user interface that selects among all of the document’s versions.
+
+If the user chooses to restore a previous version, the current document contents are preserved on disk, if necessary, and the file's contents are replaced with those of the selected version. Holding down the Option key while browsing versions gives the user the option to restore a copy of a previous version, which does not affect the current document contents. The user can also select and copy contents from a version and paste them into the current document.
+
+## 用户可以浏览文档版本
+
+文档架构实现了 
+
 
 
 
