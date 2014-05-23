@@ -56,12 +56,30 @@ Before you enable autosaving, consider the saving performance of your app. If yo
 ### Safety Checking Prevents Unintentional Edits
 When saving happens without user knowledge, it becomes easier for unintentional edits to get saved to disk, resulting in potential data loss. To help prevent autosaving unintentional edits, NSDocument performs safety checking to determine when a user has opened a document to read it, but not edit it. For example, if the document has not been edited for some period of time, it is locked for editing and opened only for reading. (The period after editing when the document is locked is an option in the Time Machine system preference.) NSDocument also checks for documents that are in folders where the user typically does not edit documents, such as the *~/Downloads* folder.
 
-When an edit is made to the document, NSDocument offers the user the choice of canceling the change, creating a new document with the change, or allowing editing. A document that is preventing edits displays `Locked` in the title bar. The user can explicitly enable editing of the document by clicking on the `Locked` label and choosing `Unlock` in the pop-up menu. A document that has been changed since it was last opened and is therefore being actively autosaved in place displays Edited in the titlebar instead of Locked.
+When an edit is made to the document, NSDocument offers the user the choice of canceling the change, creating a new document with the change, or allowing editing. A document that is preventing edits displays *Locked* in the title bar. The user can explicitly enable editing of the document by clicking on the *Locked* label and choosing *Unlock* in the pop-up menu. A document that has been changed since it was last opened and is therefore being actively autosaved in place displays *Edited* in the titlebar instead of *Locked*.
 
-An app can programmatically determine when a document is locked in read-only “viewing mode” by sending it the isInViewingMode message. You can use this information to prevent certain kinds of user actions or changes when the user is viewing an old document revision. Another useful feature for managing locked documents is NSChangeDiscardable. You can use this constant to specify that a particular editing change is non-critical and can be thrown away instead of prompting the user. For example, changing the slide in a Keynote document would normally cause some data to be saved in the document, but Keynote declares that change to be discardable, so the user viewing a locked document can change slides without being prompted to unlock it.
+An app can programmatically determine when a document is locked in read-only “viewing mode” by sending it the *isInViewingMode* message. You can use this information to prevent certain kinds of user actions or changes when the user is viewing an old document revision. Another useful feature for managing locked documents is NSChangeDiscardable. You can use this constant to specify that a particular editing change is non-critical and can be thrown away instead of prompting the user. For example, changing the slide in a Keynote document would normally cause some data to be saved in the document, but Keynote declares that change to be discardable, so the user viewing a locked document can change slides without being prompted to unlock it.
 
-### 安全检查可以组织无意识的编辑
+### 安全检查可以阻止无意识的编辑
+当保存操作在用户不知情的情况下发生时，它会很容易使无意识操作被保存到磁盘中，这会导致潜在的数据丢失。为了帮助组织自动保存无意识的编辑，NSDocument会执行安全检查来判断用户何时打开了一个文档阅读它而非编辑它。例如，如果该文档在一段时间间隔中都没有被编辑，该文档就会被锁定编辑，，并会开启只读。（当文档被锁定时编辑后的间隔时间是Time Machine系统偏好中的一个选项）NSDocument也会检查那些存在于用户通常不会编辑文档的文件夹中的文档，比如像*~/Downloads*文件夹。
 
+当一个编辑操作作用于该文档时，NSDocument会提供给用户取消更改，使用更改创建一个新文档，或者允许编辑等选择。一个阻止编辑的文档会在标题栏中显式*Locked*。用户可以通过点击*Locked*标签并选择弹出菜单中的*Unlock*以显式启用文档的编辑状态。一个被在其最后一次被打开并激活了Autosave in Place的文档在标题栏中显式*Edited*而不是*Locked*。
+
+一个应用可以以编程的方式通过向其发送*isInViewingMode*消息来判断文档何时被锁定在只读的“viewing mode”状态。你可以在用户正在浏览一个旧文档版本时，使用该信息以阻止某些类型的用户动作或更改。另一个管理锁定文档的有用特性是NSChangeDiscardable。你可以使用该常量以指定一个特定的编辑更改为非关键性的（non-critical），并且可以被丢弃而不是提醒用户。例如，在一个Keynote.app的文档中更改幻灯片通常会导致一些数据被保存在文档中，但是Keynote.app将更改声明为可丢弃，所以当用户查看一个锁定文档时可以更改幻灯片而不用被提醒解锁它。
+
+---
+
+## Document Saving Can Be Asynchronous
+
+In OS X v10.7 and later, NSDocument can save asynchronously, so that document data is written to a file on a background thread. In this way, even if writing is slow, the app’s user interface remains responsive. You can override the method *canAsynchronouslyWriteToURL:ofType:forSaveOperation:* to return YES to enable asynchronous saving. In this case, NSDocument creates a separate writing thread and invokes *writeSafelyToURL:ofType:forSaveOperation:error:* on it. However, the main thread remains blocked until an object on the writing thread invokes the *unblockUserInteraction* method.
+
+When *unblockUserInteraction* is invoked, the app resumes dequeueing user interface events and the user is able to continue editing the document, even if the writing of document data takes some time. The right moment to invoke *unblockUserInteraction* is when an immutable snapshot of the document’s contents has been taken, so that writing out the snapshot of the document’s contents can continue safely on the writing thread while the user continues to edit the document on the main thread.
+
+## 文档保存可以是异步的（asynchronous）
+
+在OS X 10.7和之后的版本中，NSDocument可以异步保存，以便文档数据可以在后台线程中被写入。这样，即使写入操作很慢，应用的用户界面也可以保持响应。你可以覆写*canAsynchronouslyWriteToURL:ofType:forSaveOperation:*方法并返回YES来启用异步保存。在这种情况下，NSDocument会创建一个独立的写线程并在其上调用*writeSafelyToURL:ofType:forSaveOperation:error:*。然而，主线程在调用*unblockUserInteraction*方法之前会一直保持阻塞。
+
+当*unblockUserInteraction*方法被调用时，应用会继续处理用户界面事件并且用户可以继续编辑文档，即使文档数据的写操作会花费一些时间。当已经创建好文档内容的不可变快照之后，就是恰当的调用*unblockUserInteraction*的时刻，这样以便在用户继续在主线程上编辑文档时，还可以继续在写线程上安全地写出文档内容的快照。
 
 
 
