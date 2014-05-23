@@ -83,6 +83,22 @@ When *unblockUserInteraction* is invoked, the app resumes dequeueing user interf
 
 
 
+## Some Autosaves Can Be Cancelled
+
+For various reasons, an app may not be able to implement asynchronous autosaving, or it may be unable to take a snapshot of the document’s contents quickly enough to avoid interrupting the user’s workflow with autosaves. In that case, the app needs to use a different strategy to remain responsive. The document architecture supports the concept of cancellable autosaves for this purpose, which the app can implement instead of asynchronous saving. At various times during an autosave operation, the app can check to see if the user is trying to edit the document, usually by checking the event queue. If an event is detected, and if the actual write to file has not yet begun, the app can cancel the save operation and simply return an NSUserCancelledError error.
+
+Some types of autosaves can be safely cancelled to unblock user interaction, while some should be allowed to continue, even though they cause a noticeable delay. You can determine whether a given autosave can be safely cancelled by sending the document an *autosavingIsImplicitlyCancellable* message. This method returns YES when periodic autosaving is being done for crash protection, for example, in which case you can safely cancel the save operation. It returns NO when you should not cancel the save, as when the document is being closed, for example.
+
+## 一些自动保存可以被取消
+
+由于不同的原因，一个应用可能不能够实现异步的自动保存，或者其可能不能够足够快速地创建文档内容的快照来避免因自动保存而打断用户的工作流程。在这种情况下，应用需要使用一个不同的策略来保持响应。文档架构为该目的提供了可取消的自动保存的概念，应用可以实现改概念而不是异步保存。在一个自动保存操作中的不同时间点上，应用可以检查用户是否正在试图编辑文档，通常是通过检查事件队列。如果一个这类事件被侦测到，并且如果实际的写入文件操作还没有开始，应用可以取消改保存操作并简单地返回一个NSUserCancelledError错误。
+
+在一些操作应该被允许继续的时候，一些类型的自动保存可以被安全地取消以解阻塞用户交互，即使它们会引起明显的延迟。你可以通过给文档对象发送一个*autosavingIsImplicitlyCancellable*消息来判断给定的自动保存是否能够被安全地取消。该方法在定期的自动保存因为崩溃保护而被完成时返回YES。当你不应该取消保存时会返回NO，例如在文档要被关闭时。
+
+
+
+
+
 
 
 
