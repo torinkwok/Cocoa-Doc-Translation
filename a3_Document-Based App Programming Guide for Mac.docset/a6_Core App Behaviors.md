@@ -137,8 +137,12 @@ The document architecture implements the following steps in the window restorati
 
     4. The restoration class reopens the document and locates its window. Then it invokes the passed-in completion handler with the window as a parameter.
     
-    5. Cocoa sends the restoreStateWithCoder: message to the window, which decodes its restorable state from the passed-in NSCoder object and restores the
+    5. Cocoa sends the *restoreStateWithCoder:* message to the window, which decodes its restorable state from the passed-in NSCoder object and restores the
     details of its content.
+    
+Although the preceding steps describe only window restoration, in fact every object inheriting from NSResponder has its own restorable state. For example, an NSTextView object stores the selected range (or ranges) of text in its restorable state. Likewise, an NSTabView object records its selected tab, an NSSearchField object records the search term, an NSScrollView object records its scroll position, and an NSApplication object records the z-order of its windows. An NSDocument object has state as well. Although NSDocument does not inherit from NSResponder, it implements many NSResponder methods, including the restoration methods shown in Figure 5-2.
+
+When the app is relaunched, Cocoa sends the *restoreStateWithCoder:* message to the relevant objects in turn: first to the NSApplication object, then to each NSWindow object, then to the NSWindowController object, then to the NSDocument object, and then to each view that has saved state.
 
 ## 窗口会被自动还原
 
@@ -146,9 +150,23 @@ OS X 10.7中的文档架构实现了Resume特性，以便独立的应用程序�
 
 文档架构在窗口还原过程中实现了如下几步；这些步骤在Figure 5-2中与相应的数字对应：
 
-    1. NSWindowController的*setDocument:*方法设置了文档窗口的还原类为共享的NSDocumentController对象的类。每当NSWindow对象的状态被通过给它自己发*invalidateRestorableState*消息而被更改时，NSWindow对象都会使它的可还原状态无效。在下一个合适的时间，Cocoa会给窗口对象发送一个*encodeRestorableStateWithCoder:*消息，并且窗口对象会将它的识别信息与状态信息编码进传入的编码器中。
-当系统重启时，Cocoa会重新启动应用程序并给还原类对象发送一个*restoreWindowWithIdentifier:state:completionHandler:*消息，并返回YES。
+    1. NSWindowController的*setDocument:*方法设置了文档窗口的还原类为共享的NSDocumentController对象的类。每当NSWindow对象的状态被通过给它自己发*invalidateRestorableState*    消息而被更改时，NSWindow对象都会使它的可还原状态无效。
+    
+    2. 在下一个合适的时间，Cocoa会给窗口对象发送一个*encodeRestorableStateWithCoder:*消息，并且窗口对象会将它的识别信息与状态信息编码   进传入的编码器中。
 
+    3. 当系统重启时，Cocoa会重新启动应用程序并给还原类对象发送一个*restoreWindowWithIdentifier:state:completionHandler:*消息，并返回YES。
+    
+    应用可以覆写该方法去做任何窗口还原所需要的常规工作，比如使用一个新的还原类替换已有的，或者从一个独立的bundle中加在还原类。
+    
+    NSApp会从窗口对象解码还原类，给还原类发送*restoreWindowWithIdentifier:state:completionHandler:*消息，并返回YES。
+    
+    4. 还原类会从新打开文档并定位它的窗口。然后其会将该窗口作为一个参数传入completion handler中。
+    
+    5. Cocoa会向该窗口发送*restoreStateWithCoder:*消息，该消息会从传入的NSCoder对象中解码可还原状态并恢复它的详细内容。
+    
+即使之前描述的步骤只是针对于窗口还原，事实上任何从NSResponder中继承的对象都可以拥有自己的可还原状态。例如，一个NSTextView对象在它的可还原状态中存储了其文本的单个选择范围（或者多个选中范围）。同样地，一个NSTabView对象还记录了它的选中标签，一个NSSearchField对象记录了其搜索条件，一个NSScrollView对象记录了它的滚动位置，并且一个NSApplication对象记录了它的窗口的z轴次序。一个NSDocument对象也拥有状态。即使NSDocument并不是从NSResponder中继承的，但是它还是实现了许多的NSResponder方法，包括在Figure 5-2中所示的还原方法。
+
+当应用被重启时，Cocoa会给相关对象依次发送*restoreStateWithCoder:*：首先发送给NSApplication对象，然后发送给每个NSWindow对象，再然后发送给NSWindowController对象，接着发送给NSDocument对象，最后发送给每个
 
 
 
