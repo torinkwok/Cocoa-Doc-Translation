@@ -107,7 +107,7 @@ If the user chooses to restore a previous version, the current document contents
 
 ## 用户可以浏览文档版本
 
-文档架构在OS X 10.7中实现了NSDocument的版本特性。一个NSDocument子类通过从*autosavesInPlace*方法返回YES来采用在是当处自动保存（Autosaving in Place），如*“Documents Are Automatically Saved,”*所示，采用自动保存反过来也会启用版本浏览机制。
+OS X 10.7中的文档架构实现了NSDocument的版本特性。一个NSDocument子类通过从*autosavesInPlace*方法返回YES来采用在是当处自动保存（Autosaving in Place），如*“Documents Are Automatically Saved,”*所示，采用自动保存反过来也会启用版本浏览机制。
 
 在一个文档被命名和保存后，`Save`菜单项会被替换为`Save a Version`菜单项。该命令会保存一个由日期和事件标示的文档版本。并且NSDocument有时会在自动保存期间自动创建一个版本。用户可以选择`File` > `Revert Document`，或者从标题栏右侧的弹出式菜单中选择`Browe All Revisions`，以显示一个允许用户在最后保存的版本或之前的版本之间做出选择的对话框。选择一个之前的版本会显示一个在全部文档版本之间做出选择的类Time Machine用户界面。
 
@@ -121,17 +121,34 @@ The document architecture implements the Resume feature of OS X v10.7, so that i
 
 The document architecture implements the following steps in the window restoration process; the steps correlate to the numbers shown in Figure 5-2:
 
-The NSWindowController method setDocument: sets the restoration class of document windows to the class of the shared NSDocumentController object. The NSWindow object invalidates its restorable state whenever its state changes by sending invalidateRestorableState to itself.
-At the next appropriate time, Cocoa sends the window an encodeRestorableStateWithCoder: message, and the window encodes identification and status information into the passed-in encoder.
-When the system restarts, Cocoa relaunches the app and sends the restoreWindowWithIdentifier:state:completionHandler: message to the NSApp object.
-Apps can override this method to do any general work needed for window restoration, such as substituting a new restoration class or loading it from a separate bundle.
+    1. The NSWindowController method *setDocument:* sets the restoration class of document windows to the class of the shared NSDocumentController object.
+    The NSWindow object invalidates its restorable state whenever its state changes by sending *invalidateRestorableState* to itself.
 
-NSApp decodes the restoration class for the window, sends the restoreWindowWithIdentifier:state:completionHandler: message to the restoration class object, and returns YES.
+    2. At the next appropriate time, Cocoa sends the window an *encodeRestorableStateWithCoder:* message, and the window encodes identification and status
+    information into the passed-in encoder.
 
-The restoration class reopens the document and locates its window. Then it invokes the passed-in completion handler with the window as a parameter.
-Cocoa sends the restoreStateWithCoder: message to the window, which decodes its restorable state from the passed-in NSCoder object and restores the details of its content.
+    3. When the system restarts, Cocoa relaunches the app and sends the restoreWindowWithIdentifier:state:completionHandler: message to the NSApp object.
+
+    Apps can override this method to do any general work needed for window restoration, such as substituting a new restoration class or loading it from a
+    separate bundle.
+
+    NSApp decodes the restoration class for the window, sends the *restoreWindowWithIdentifier:state:completionHandler:* message to the restoration class
+    object, and returns YES.
+
+    4. The restoration class reopens the document and locates its window. Then it invokes the passed-in completion handler with the window as a parameter.
+    
+    5. Cocoa sends the restoreStateWithCoder: message to the window, which decodes its restorable state from the passed-in NSCoder object and restores the
+    details of its content.
 
 ## 窗口会被自动还原
+
+OS X 10.7中的文档架构实现了Resume特性，以便独立的应用程序可以只需要编码特定于它们的以及还原它们的窗口状态所必须的信息。
+
+文档架构在窗口还原过程中实现了如下几步；这些步骤在Figure 5-2中与相应的数字对应：
+
+    1. NSWindowController的*setDocument:*方法设置了文档窗口的还原类为共享的NSDocumentController对象的类。每当NSWindow对象的状态被通过给它自己发*invalidateRestorableState*消息而被更改时，NSWindow对象都会使它的可还原状态无效。在下一个合适的时间，Cocoa会给窗口对象发送一个*encodeRestorableStateWithCoder:*消息，并且窗口对象会将它的识别信息与状态信息编码进传入的编码器中。
+当系统重启时，Cocoa会重新启动应用程序并给还原类对象发送一个*restoreWindowWithIdentifier:state:completionHandler:*消息，并返回YES。
+
 
 
 
