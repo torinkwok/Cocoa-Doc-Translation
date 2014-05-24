@@ -103,11 +103,37 @@ The document architecture implements the Versions feature of OS X v10.7 in the b
 
 After a document has been named and saved, the `Save` menu item is replaced by the `Save a Version` menu item. This command saves a version of the document identified by date and time. And NSDocument sometimes creates a version automatically during autosaving. The user can choose `File` > `Revert Document`, or choose `Browse All Revisions` from the pop-up menu at the right of the title bar, to display a dialog enabling the user to choose between the last saved version or an older version. Choosing an older version displays a Time Machine–like user interface that selects among all of the document’s versions.
 
-If the user chooses to restore a previous version, the current document contents are preserved on disk, if necessary, and the file's contents are replaced with those of the selected version. Holding down the Option key while browsing versions gives the user the option to restore a copy of a previous version, which does not affect the current document contents. The user can also select and copy contents from a version and paste them into the current document.
+If the user chooses to restore a previous version, the current document contents are preserved on disk, if necessary, and the file's contents are replaced with those of the selected version. Holding down the `Option` key while browsing versions gives the user the option to restore a copy of a previous version, which does not affect the current document contents. The user can also select and copy contents from a version and paste them into the current document.
 
 ## 用户可以浏览文档版本
 
-文档架构实现了 
+文档架构在OS X 10.7中实现了NSDocument的版本特性。一个NSDocument子类通过从*autosavesInPlace*方法返回YES来采用在是当处自动保存（Autosaving in Place），如*“Documents Are Automatically Saved,”*所示，采用自动保存反过来也会启用版本浏览机制。
+
+在一个文档被命名和保存后，`Save`菜单项会被替换为`Save a Version`菜单项。该命令会保存一个由日期和事件标示的文档版本。并且NSDocument有时会在自动保存期间自动创建一个版本。用户可以选择`File` > `Revert Document`，或者从标题栏右侧的弹出式菜单中选择`Browe All Revisions`，以显示一个允许用户在最后保存的版本或之前的版本之间做出选择的对话框。选择一个之前的版本会显示一个在全部文档版本之间做出选择的类Time Machine用户界面。
+
+如果用户选择还原一个之前的版本，如果必要的话当前的文档内容也会保存在磁盘中，并且文件的内容会被当前选中的版本替换。在浏览版本时按下`Option`键可以给用户一个还原之前版本的副本的选项，该选项不会影响到当前的文档内容。用户也可以从一个版本选择和复制并将其粘贴到当前文档中。
+
+
+
+## Windows Are Restored Automatically
+
+The document architecture implements the Resume feature of OS X v10.7, so that individual apps need to encode only information that is peculiar to them and necessary to restore the state of their windows.
+
+The document architecture implements the following steps in the window restoration process; the steps correlate to the numbers shown in Figure 5-2:
+
+The NSWindowController method setDocument: sets the restoration class of document windows to the class of the shared NSDocumentController object. The NSWindow object invalidates its restorable state whenever its state changes by sending invalidateRestorableState to itself.
+At the next appropriate time, Cocoa sends the window an encodeRestorableStateWithCoder: message, and the window encodes identification and status information into the passed-in encoder.
+When the system restarts, Cocoa relaunches the app and sends the restoreWindowWithIdentifier:state:completionHandler: message to the NSApp object.
+Apps can override this method to do any general work needed for window restoration, such as substituting a new restoration class or loading it from a separate bundle.
+
+NSApp decodes the restoration class for the window, sends the restoreWindowWithIdentifier:state:completionHandler: message to the restoration class object, and returns YES.
+
+The restoration class reopens the document and locates its window. Then it invokes the passed-in completion handler with the window as a parameter.
+Cocoa sends the restoreStateWithCoder: message to the window, which decodes its restorable state from the passed-in NSCoder object and restores the details of its content.
+
+## 窗口会被自动还原
+
+
 
 
 
