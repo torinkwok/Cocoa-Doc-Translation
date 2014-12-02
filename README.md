@@ -20,4 +20,5 @@ The Chinese translation of Cocoa Doc.
 
 Email: <Tong-G@outlook.com>
 
-Tumblr: <http://esquire-tongg.tumblr.com>
+Twitter: [@NSTongG](https://twitter.com/NSTongG)
+Blog: <http://nstongg.tumblr.com>
