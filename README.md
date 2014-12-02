@@ -21,3 +21,5 @@ Email: <Tong-G@outlook.com>
 Twitter: [@NSTongG](https://twitter.com/NSTongG)
 
 Blog: <http://nstongg.tumblr.com>
+
+GnuPG Public Key: **0x67B9E95236924648**
